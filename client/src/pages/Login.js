@@ -48,7 +48,7 @@ export default function Login() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://media.istockphoto.com/photos/glad-to-work-with-you-picture-id951514270?k=20&m=951514270&s=170667a&w=0&h=JBmhQwsfuZJNbfxhKsjGPAWAHXX4efZvYQhC0vZ5bCk=)',
+            backgroundImage: 'url(https://img.freepik.com/free-photo/medium-shot-women-hugging_23-2149481047.jpg?w=2000)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -108,7 +108,7 @@ export default function Login() {
               <Grid container>
                 
                 <Grid item>
-                  <Link href="/signup" variant="body2">
+                  <Link href="/" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
