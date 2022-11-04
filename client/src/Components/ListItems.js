@@ -30,17 +30,12 @@ export const mainListItems = (
             </ListItemIcon>
             <ListItemText primary="Alert" />
         </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <BarChartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Biomertic Matching" />
-        </ListItemButton>
+        
         <ListItemButton>
             <ListItemIcon>
                 <LayersIcon />
             </ListItemIcon>
-            <ListItemText primary="Reports" />
+            <ListItemText primary="Logout" />
         </ListItemButton>
     </React.Fragment>
 );
