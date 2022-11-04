@@ -70,7 +70,7 @@ export default function Login() {
               <AccountCircleIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign In
+              Login
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
