@@ -166,19 +166,19 @@ function DashboardContent() {
                             {/* Chart */}
                             <Grid item xs={12} md={8} lg={4}>
                                 
-                                    <DashboardComponent head="Scan Image" buttontitle="CAPTURE NOW" imgurl="https://www.indiewire.com/wp-content/uploads/2021/04/webcam-on-laptop.jpg"/>
+                                    <DashboardComponent head="Scan Image" buttontitle="CAPTURE NOW" imgurl="https://www.indiewire.com/wp-content/uploads/2021/04/webcam-on-laptop.jpg" buttonurl="/scan_face"/>
                                 
                             </Grid>
                             {/* Recent Deposits */}
                             <Grid item xs={12} md={8} lg={4}>
                                 
-                                    <DashboardComponent head="FIR's" buttontitle="CHECK FIR" imgurl="https://miro.medium.com/max/800/1*o-GxCIM0N7dUA1haTO_5zg.jpeg"/>
+                                    <DashboardComponent head="FIR's" buttontitle="CHECK FIR" imgurl="https://miro.medium.com/max/800/1*o-GxCIM0N7dUA1haTO_5zg.jpeg" buttonurl="#"/>
                                 
                             </Grid>
                             {/* Recent Orders */}
                             <Grid item xs={12} md={8} lg={4}>
                                 
-                                    <DashboardComponent head="Past FIR's" buttontitle="CHECK Past Data" imgurl="https://image.shutterstock.com/image-photo/file-folders-on-white-background-260nw-80907754.jpg"/>
+                                    <DashboardComponent head="Past FIR's" buttontitle="CHECK Past Data" imgurl="https://image.shutterstock.com/image-photo/file-folders-on-white-background-260nw-80907754.jpg" buttonurl="#"/>
                                 
                             </Grid>
                         </Grid>

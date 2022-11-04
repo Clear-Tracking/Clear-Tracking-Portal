@@ -40,6 +40,7 @@ export default function PoliceLogin() {
     };
 
     return (
+        <section className='policebg'>
         <ThemeProvider theme={theme}>
             <div >
             <Container component="main" maxWidth="xs" className='loginPoliceLogin'>
@@ -97,5 +98,6 @@ export default function PoliceLogin() {
             </Container>
             </div>
         </ThemeProvider>
+        </section>
     );
 }
