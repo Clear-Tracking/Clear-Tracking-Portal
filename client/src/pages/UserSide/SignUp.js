@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -12,6 +10,7 @@ import Grid from '@mui/material/Grid';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 function Copyright(props) {
   return (
@@ -28,7 +27,14 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function Login() {
+export default function SignUp() {
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();};
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -37,6 +43,8 @@ export default function Login() {
       password: data.get('password'),
     });
   };
+
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -48,7 +56,7 @@ export default function Login() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://img.freepik.com/free-photo/medium-shot-women-hugging_23-2149481047.jpg?w=2000)',
+            backgroundImage: 'url(https://news.usc.edu/files/2020/04/Family-member-loss-COVID-web.jpg)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -70,20 +78,64 @@ export default function Login() {
               <AccountCircleIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Login
+              Sign Up
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="first_name"
+                label="First Name"
+                name="first_name"
+                type="text"
+                autoComplete="first_name"
+                autoFocus
+              />
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="last_name"
+                label="Last Name"
+                type="text"
+                name="last_name"
+                autoComplete="last_name"
+                
+              />
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="phone"
+                label="Phone Number"
+                type="number"
+                name="phone"
+                autoComplete="phone"
+                
+              />
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="aadhar"
+                type="number"
+                label="Aadhar Number"
+                name="aadhar"
+                autoComplete="aadhar"
+                
+              />
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="email"
+                type="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                autoFocus
               />
-              <TextField
+             <TextField
                 margin="normal"
                 required
                 fullWidth
@@ -92,24 +144,20 @@ export default function Login() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+              />              
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Sign Up
               </Button>
               <Grid container>
                 
                 <Grid item>
                   <Link href="/" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"Already have an account? Sign In"}
                   </Link>
                 </Grid>
               </Grid>

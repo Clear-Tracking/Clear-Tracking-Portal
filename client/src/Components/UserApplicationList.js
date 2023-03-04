@@ -14,53 +14,40 @@ import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
-import PieChartIcon from '@mui/icons-material/PieChart';
 
 export const mainListItems = (
     <React.Fragment>
-        <ListItemButton to="/dashboard/">
+        <ListItemButton to="/userdashboard">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="Home" />
         </ListItemButton>
-        <ListItemButton to="/dashboard/caseregister">
+        <ListItemButton to="">
             <ListItemIcon>
                 <AppRegistrationIcon />
             </ListItemIcon>
-            <ListItemText primary="Registered Cases" />
+            <ListItemText primary="Your Profile" />
         </ListItemButton>
-        <ListItemButton to="/dashboard/launchedfirdata">
+        <ListItemButton to="/userdashboard/reportmissing">
             <ListItemIcon>
                 <HowToRegIcon />
             </ListItemIcon>
-            <ListItemText primary="Launched FIR Data" />
+            <ListItemText primary="Report Missing" />
         </ListItemButton>
-        <ListItemButton to="/dashboard/database">
+        <ListItemButton to="/userdashboard/missingpersonprofile">
             <ListItemIcon>
                 <PeopleIcon />
             </ListItemIcon>
-            <ListItemText primary="Data Base" />
-        </ListItemButton>
-        <ListItemButton to="/dashboard/scanface">
-            <ListItemIcon>
-                <CameraAltIcon />
-            </ListItemIcon>
-            <ListItemText primary="Scan Face" />
+            <ListItemText primary="Missing Person Profile" />
         </ListItemButton>
         <ListItemButton to="">
             <ListItemIcon>
-                <FingerprintIcon />
+                <PeopleIcon />
             </ListItemIcon>
-            <ListItemText primary="Biometric Scan" />
+            <ListItemText primary="Notification" />
         </ListItemButton>
-        <ListItemButton to="">
-            <ListItemIcon>
-                <CrisisAlertIcon />
-            </ListItemIcon>
-            <ListItemText primary="Alert" />
-        </ListItemButton>
-
+        
         <ListItemButton>
             <ListItemIcon>
                 <LayersIcon />
@@ -75,17 +62,11 @@ export const secondaryListItems = (
         <ListSubheader component="div" inset>
             Saved reports
         </ListSubheader>
-        <ListItemButton to="/dashboard/policeprofile">
+        <ListItemButton>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Profile" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <PieChartIcon />
-            </ListItemIcon>
-            <ListItemText primary="View Statistics" />
+            <ListItemText primary="Generate report" />
         </ListItemButton>
         <ListItemButton>
             <ListItemIcon>

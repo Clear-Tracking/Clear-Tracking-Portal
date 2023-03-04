@@ -28,7 +28,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignInSide() {
+export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -48,7 +48,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://news.usc.edu/files/2020/04/Family-member-loss-COVID-web.jpg)',
+            backgroundImage: 'url(https://img.freepik.com/free-photo/medium-shot-women-hugging_23-2149481047.jpg?w=2000)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -70,19 +70,9 @@ export default function SignInSide() {
               <AccountCircleIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign Up
+              Login
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="name"
-                label="Full Name"
-                name="name"
-                autoComplete="name"
-                autoFocus
-              />
               <TextField
                 margin="normal"
                 required
@@ -91,6 +81,7 @@ export default function SignInSide() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                autoFocus
               />
               <TextField
                 margin="normal"
@@ -102,23 +93,23 @@ export default function SignInSide() {
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
-              />
+              /> */}
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign Up
+                Sign In
               </Button>
               <Grid container>
                 
                 <Grid item>
-                  <Link href="/login" variant="body2">
-                    {"Already have an account? Sign In"}
+                  <Link href="/usersignup" variant="body2">
+                    {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>

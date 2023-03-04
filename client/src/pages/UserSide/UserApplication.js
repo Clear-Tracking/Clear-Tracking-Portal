@@ -17,11 +17,9 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from '../Components/ListItems';
-import Chart from '../Components/Chart';
-import Deposits from '../Components/Deposits';
-import Orders from '../Components/Orders';
-import DashboardComponent from '../Components/DashboardComponent';
+import { mainListItems, secondaryListItems } from '../../Components/UserApplicationList';
+
+import { Outlet } from 'react-router-dom';
 
 function Copyright(props) {
     return (
@@ -84,7 +82,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+function UserApplication() {
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -119,7 +117,7 @@ function DashboardContent() {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Dashboard
+                            Hi User
                         </Typography>
                         <IconButton color="inherit">
                             <Badge badgeContent={4} color="secondary">
@@ -161,35 +159,18 @@ function DashboardContent() {
                     }}
                 >
                     <Toolbar />
-                    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }} >
-                        <Grid container spacing={3}>
-                            {/* Chart */}
-                            <Grid item xs={12} md={8} lg={4}>
-                                
-                                    <DashboardComponent head="Scan Image" buttontitle="CAPTURE NOW" imgurl="https://www.indiewire.com/wp-content/uploads/2021/04/webcam-on-laptop.jpg" buttonurl="/scan_face"/>
-                                
-                            </Grid>
-                            {/* Recent Deposits */}
-                            <Grid item xs={12} md={8} lg={4}>
-                                
-                                    <DashboardComponent head="FIR's" buttontitle="CHECK FIR" imgurl="https://miro.medium.com/max/800/1*o-GxCIM0N7dUA1haTO_5zg.jpeg" buttonurl="#"/>
-                                
-                            </Grid>
-                            {/* Recent Orders */}
-                            <Grid item xs={12} md={8} lg={4}>
-                                
-                                    <DashboardComponent head="Past FIR's" buttontitle="CHECK Past Data" imgurl="https://image.shutterstock.com/image-photo/file-folders-on-white-background-260nw-80907754.jpg" buttonurl="#"/>
-                                
-                            </Grid>
-                        </Grid>
+                    <div style={{paddingLeft:"10px", marginRight: "10px"}}>
+                    <Outlet/>
+                    </div>
+                        
                         <Copyright sx={{ pt: 4 }} />
-                    </Container>
+                   
                 </Box>
             </Box>
         </ThemeProvider>
     );
 }
 
-export default function Dashboard() {
-    return <DashboardContent />;
+export default function UserApplicationDashBoard() {
+    return <UserApplication />;
 }

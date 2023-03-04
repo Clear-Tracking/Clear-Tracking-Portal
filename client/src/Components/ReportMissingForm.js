@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useNavigate } from "react-router-dom";
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,6 +20,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Paper } from '@mui/material';
 
+import dayjs from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+
 
 function Copyright(props) {
   return (
@@ -34,14 +41,18 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function UserInput() {
+export default function ReportMissingForm() {
+
+  let navigate = useNavigate(); 
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    console.log("FIR form submitted"/*{
       email: data.get('email'),
       password: data.get('password'),
-    });
+    }*/);
+    navigate("/dashboard")
   };
 
 
@@ -49,6 +60,17 @@ export default function UserInput() {
   
   const handleChange = (event) => {
     setgender(event.target.value);
+  };
+
+  const [value, setValue] = React.useState('');
+  const [missValue, setMissValue] = React.useState('');
+
+  const handleChangeDate = (newValue) => {
+    setValue(newValue);
+  };
+
+  const handleChangeMissingDate = (newValue) => {
+    setMissValue(newValue);
   };
 
   return (
@@ -71,7 +93,8 @@ export default function UserInput() {
           <Typography component="h1" variant="h5">
             Form
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -95,14 +118,13 @@ export default function UserInput() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="dob"
-                  label="Date of Birth"
-                  name="Date of Birth"
-                  autoComplete="DOB"
-                />
+              <DesktopDatePicker
+                label="Date of Birth"
+                inputFormat="DD/MM/YYYY"
+                value={value}
+                onChange={handleChangeDate}
+                renderInput={(params) => <TextField {...params} />}
+              />
               </Grid>
               <Grid item xs={12} sm={6}>
               <Box sx={{ minWidth: 120 }}>
@@ -177,15 +199,13 @@ export default function UserInput() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  name="Date of missing"
-                  label="date of missing"
-                  type="number"
-                  id="dom"
-                  autoComplete="dom"
-                />
+              <DesktopDatePicker
+                label="Missing Date"
+                inputFormat="DD/MM/YYYY"
+                value={missValue}
+                onChange={handleChangeMissingDate}
+                renderInput={(params) => <TextField {...params} />}
+              />
               </Grid>
               <Typography component="h1" variant="h6">
               Physical features
@@ -206,7 +226,7 @@ export default function UserInput() {
                   
                   fullWidth
                   name="Eye"
-                  label="Eye"
+                  label="Eye Colour"
                   type="Eye"
                   id="Eye"
                   autoComplete="Eye"
@@ -217,7 +237,7 @@ export default function UserInput() {
                   
                   fullWidth
                   name="Hair"
-                  label="Hair"
+                  label="Hair Colour"
                   type="Hair"
                   id="Hair"
                   autoComplete="Hair"
@@ -228,7 +248,7 @@ export default function UserInput() {
                   
                   fullWidth
                   name="face"
-                  label="Face"
+                  label="Face Marks (if any)"
                   type="Face"
                   id="Face"
                   autoComplete="Face"
@@ -239,7 +259,7 @@ export default function UserInput() {
                   
                   fullWidth
                   name="Any other disability"
-                  label="Any other disability"
+                  label="Any other disability (if any)"
                   type="text"
                   id="aod"
                   autoComplete="Any other disability"
@@ -250,8 +270,8 @@ export default function UserInput() {
                   
                   fullWidth
                   name="Height"
-                  label="Height"
-                  type="number"
+                  label="Height in cms"
+                  type="text"
                   id="Height"
                   autoComplete="Height"
                 />
@@ -261,8 +281,8 @@ export default function UserInput() {
                   
                   fullWidth
                   name="Weight"
-                  label="Weight"
-                  type="number"
+                  label="Weight in Kgs"
+                  type="text"
                   id="Weight"
                   autoComplete="Weight"
                 />
@@ -282,8 +302,10 @@ export default function UserInput() {
             >
               Submit
             </Button>
+          </LocalizationProvider>
           </Box>
         </Box>
+        
         <Copyright sx={{ mt: 5 }} />
         
       </Container>
