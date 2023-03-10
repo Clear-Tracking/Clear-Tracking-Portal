@@ -18,23 +18,23 @@ export default function MissingPersonProfileCard() {
         <Typography variant="h3" pt={2}>
             Profile
             </Typography>
-            <Card sx={{ display: 'flex' }} style={{width:"80vw" , marginTop:"40px"}}>
+            <Card sx={{ maxWidth: 345 }} style={{marginTop:"30px",marginBottom:"30px",marginLeft:"10px"}}>
             <CardMedia
                 component="img"
-                sx={{ width: 151 }}
+                sx={{ width: 345 ,height:280 }}
                 image="http://www.messagescollection.com/wp-content/uploads/2015/04/cute-cat-profile-for-facebook.jpg"
                 alt="Live from space album cover"
             />
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
-                    <Typography component="div" variant="h5">
-                        Name
-                    </Typography>
-                    <Typography variant="subtitle1" color="text.secondary" component="div">
-                        Details
-                    </Typography>
+                <Typography gutterBottom variant="h5" component="div" textAlign={"center"} color="black"  fontWeight="bold" fontFamily={"Poppins"} fontStyle={"normal"}lineHeight="143%"letterSpacing="-0.03rem">
+          Charlie Puth
+        </Typography>
+        <Typography variant="body2" color="#555555" textAlign={"center"} fontWeight="600" padding="8px" background="#81D0DF" fontFamily={"Poppins"} fontStyle={"normal"}lineHeight="143%"letterSpacing="-0.03rem" textTransform={"uppercase"}>
+          Male
+          </Typography>
                 </CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1, textAlign:"center" }}>
                     Other Details
                 </Box>
             </Box>            

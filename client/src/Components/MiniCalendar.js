@@ -6,7 +6,7 @@ import "../assets/css/MiniCalendar.css"
 export default function MiniCalendar() {
   return (
     <div>
-      <Calendar style={{backgrounfcolor:"blue"}}/>
+      <Calendar style={{backgroundcolor:"blue",fontFamily:"Poppins"}}/>
     </div>
   )
 }

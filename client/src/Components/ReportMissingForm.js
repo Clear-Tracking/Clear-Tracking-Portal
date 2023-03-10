@@ -24,6 +24,9 @@ import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Stack from '@mui/material/Stack';
 
 
 function Copyright(props) {
@@ -76,7 +79,7 @@ export default function ReportMissingForm() {
   return (
     <ThemeProvider theme={theme}>
       
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" style={{background:"white",borderRadius:15}}>
         <CssBaseline />
         
         <Box
@@ -90,9 +93,19 @@ export default function ReportMissingForm() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography variant="h5"style={{fontFamily:"Poppins",fontWeight:"bold",fontStyle:"normal",lineHeight:"143%"}}>
             Form
           </Typography>
+          <Stack direction="row" alignItems="left" spacing={2}>
+      <Button variant="contained" component="label" style={{alignItems:"left"}}>
+        Upload Photo
+        <input hidden accept="image/*" multiple type="file" />
+      </Button>
+      <IconButton color="primary" aria-label="upload picture" component="label">
+        <input hidden accept="image/*" type="file" />
+        <PhotoCamera/>
+        </IconButton>
+        </Stack>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Grid container spacing={2}>
@@ -145,7 +158,7 @@ export default function ReportMissingForm() {
           </Box>
           </Grid>
                 
-              <Grid item xs={12} sm={6} >
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -154,15 +167,20 @@ export default function ReportMissingForm() {
                   type="Address"
                   id="Address"
                   autoComplete="Address"
+                  multiline rows={(4)}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
                   name="Aadhar Number"
                   label="Aadhar Number"
                   id="aadhar"
+                  type="number"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                   autoComplete="ano"
                 />
               </Grid>
@@ -184,6 +202,7 @@ export default function ReportMissingForm() {
                   name="Contact"
                   label="Contact"
                   id="Contact"
+                  type="number"
                   autoComplete="Contact"
                 />
               </Grid>
@@ -207,7 +226,7 @@ export default function ReportMissingForm() {
                 renderInput={(params) => <TextField {...params} />}
               />
               </Grid>
-              <Typography component="h1" variant="h6">
+              <Typography variant="h5" style={{marginTop:10,fontFamily:"Poppins",fontWeight:"bold",fontStyle:"normal",lineHeight:"143%"}}>
               Physical features
           </Typography>
               <Grid item xs={12}>
@@ -271,7 +290,7 @@ export default function ReportMissingForm() {
                   fullWidth
                   name="Height"
                   label="Height in cms"
-                  type="text"
+                  type="number"
                   id="Height"
                   autoComplete="Height"
                 />
@@ -282,7 +301,7 @@ export default function ReportMissingForm() {
                   fullWidth
                   name="Weight"
                   label="Weight in Kgs"
-                  type="text"
+                  type="number"
                   id="Weight"
                   autoComplete="Weight"
                 />
@@ -306,7 +325,7 @@ export default function ReportMissingForm() {
           </Box>
         </Box>
         
-        <Copyright sx={{ mt: 5 }} />
+        
         
       </Container>
       
