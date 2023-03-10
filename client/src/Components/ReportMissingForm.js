@@ -119,6 +119,8 @@ export default function ReportMissingForm() {
               </Grid>
               <Grid item xs={12} sm={6}>
               <DesktopDatePicker
+              id="dob"
+              name="dob"
                 label="Date of Birth"
                 inputFormat="DD/MM/YYYY"
                 value={value}
@@ -132,7 +134,8 @@ export default function ReportMissingForm() {
             <InputLabel id="demo-simple-select-label">Gender</InputLabel>
             <Select
               labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              id="gender"
+              name='gender'
               value={gender}
               label="Gender"
               onChange={handleChange}
@@ -160,7 +163,7 @@ export default function ReportMissingForm() {
                 <TextField
                   required
                   fullWidth
-                  name="Aadhar Number"
+                  name="aadhar"
                   label="Aadhar Number"
                   id="aadhar"
                   autoComplete="ano"
@@ -171,7 +174,7 @@ export default function ReportMissingForm() {
                   required
                   fullWidth
                   name="Guardian"
-                  label="Guardian"
+                  label="Guardian Name"
                   type="Guardian"
                   id="Guardian"
                   autoComplete="Guardian"
@@ -182,7 +185,7 @@ export default function ReportMissingForm() {
                   required
                   fullWidth
                   name="Contact"
-                  label="Contact"
+                  label="Contact Number"
                   id="Contact"
                   autoComplete="Contact"
                 />
@@ -201,6 +204,7 @@ export default function ReportMissingForm() {
               <Grid item xs={12} sm={6}>
               <DesktopDatePicker
                 label="Missing Date"
+                id="dom"
                 inputFormat="DD/MM/YYYY"
                 value={missValue}
                 onChange={handleChangeMissingDate}

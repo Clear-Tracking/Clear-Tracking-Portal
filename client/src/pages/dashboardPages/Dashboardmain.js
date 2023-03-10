@@ -9,6 +9,8 @@ import CardCasesPolice from '../../Components/CardCasesPolice';
 import Typography from '@mui/material/Typography';
 import MapchartDasbboard from '../../Components/MapchartDashboard';
 import { Container } from '@mui/material';
+import Userformdata from "../../assets/data/userformdata.json"
+import AllMissingPeopleData from "../../assets/data/missingPeopleDataset.json"
 
 export default function Dashboardmain() {
   return (
@@ -22,26 +24,30 @@ export default function Dashboardmain() {
                   Just Now
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={4} >
-                <CardJustNowPolice />
-              </Grid>
-              <Grid item xs={12} md={4} >
-                <CardJustNowPolice />
-              </Grid>
-              <Grid item xs={12} md={4} >
-                <CardJustNowPolice />
-              </Grid>
+              {
+                Userformdata.map(formdata => {
+                  return (
+                    <Grid item xs={12} md={4} >
+                      <CardJustNowPolice personimage={formdata.personpic} personfirstname={formdata.firstName} personlastname={formdata.lastName} gender={formdata.gender} dateofmissing={formdata.dom} />
+                    </Grid>
+                  )
+                })
+              }
               <Grid item xs={12} md={12} >
                 <Typography gutterBottom variant="h5" component="div" style={{ paddingTop: "20px" }}>
                   Rescent Cases
                 </Typography>
               </Grid>
-              <Grid item xs={12}>
-                <CardCasesPolice />
-              </Grid>
-              <Grid item xs={12}>
-                <CardCasesPolice />
-              </Grid>
+              {
+                AllMissingPeopleData.map(allmissingpeople => {
+                  return (
+                    <Grid item xs={12}>
+                      <CardCasesPolice missingpersonfirstname={allmissingpeople.firstName} missingpersonlastname={allmissingpeople.lastName} missingpersonimage={allmissingpeople.personpic}
+                      missingpersongender={allmissingpeople.gender} missingpersondom={allmissingpeople.dom} />
+                    </Grid>
+                  )
+                })
+              }
             </Grid>
           </Box>
         </Grid>
