@@ -8,7 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
 
-export default function ViewDetails() {
+export default function ViewDetails(params) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -34,14 +34,16 @@ export default function ViewDetails() {
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         <Box style={{minWidth: "400px"}}>
-                            <center><img src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"
+                            <center><img src={params.personpicture}
                                 style={{ borderRadius: "50%", height: "150px", width: "150px", marginTop: "30px" }} /></center>
                             <Typography gutterBottom variant="h5" component="div" textAlign="center">
-                                Charlie Puth
+                                {params.personfirstname + " "+ params.personlastname}
                             </Typography>
-                            <center>Male</center>
+                            <center>
+                                {params.gender}
+                            </center>
                             <Typography variant="body2" color="text.secondary" textAlign="center" style={{ marginTop: "20px", paddingBottom: "30px" }}>
-                                Missing Date
+                                {"Missing Date: "+params.personmissing}
                             </Typography>
 
                         </Box>
