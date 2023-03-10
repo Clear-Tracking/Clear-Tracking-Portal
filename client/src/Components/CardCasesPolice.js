@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
+import { lineHeight } from '@mui/system';
 
 export default function CardCasesPolice(props) {
     return (
@@ -16,24 +17,22 @@ export default function CardCasesPolice(props) {
                     </Grid>
                     <Grid item sx={6} md={6}>
                         <div style={{ paddingTop: "9%" }}>
-                            <Typography gutterBottom variant="h5" component="div">
-                                {props.missingpersonfirstname +" "+ props.missingpersonlastname}
-                                <span style={{ background: "#1976d2", marginLeft: "30px", fontSize: "1.2rem", borderRadius: "3px", padding: "3px" }}> Missing</span>
+                            <Typography gutterBottom variant="h5" component="div" style={{fontFamily:"Poppins",fontStyle:'normal',fontWeight:"600",lineHeight:"143%",letterSpacing:"-0.03rem",color:"black"}}>
+                            {props.missingpersonfirstname +" "+ props.missingpersonlastname}
                             </Typography>
-
-                            <Typography variant="body2" color="text.secondary" style={{ marginTop: "20px", paddingBottom: "30px" }}>
-                                {"Missing Date "+ props.missingpersondom}
+                            <span style={{ background: "#81D0DF", marginLeft: "10px", fontSize: "16px", borderRadius: "3px", padding: "8px",color:"#ffffff",fontFamily:"Poppins",fontStyle:'normal',fontWeight:"600",lineHeight:"143%",textAlign:"center" }}> MISSING</span>
+                            <Typography variant="body2" color="text.secondary" style={{ marginTop: "20px",marginLeft:"15px", paddingBottom: "30px",fontFamily:"Poppins",fontStyle:"normal",fontWeight:"400",lineHeight:"143%",color:"#8F8F8F" }}>
+                            {"Missing Date "+ props.missingpersondom}
                             </Typography>
                         </div>
                     </Grid>
                     <Grid item xs={6} md={3} style={{ borderLeft: "2px solid #BEBEBE"}}>
-                        <div style={{ paddingTop: "12%", paddingLeft:"20px"}} >
-                            <Typography gutterBottom variant="h4" component="div">
+                        <div style={{ paddingTop: "15%",marginLeft:"30px"}} >
+                            <Typography gutterBottom variant="h4" component="div" style={{fontFamily:"Poppins",fontStyle:'normal',fontWeight:"bold",lineHeight:"143%"}}>
                                 Age 22
                             </Typography>
-
-                            <Typography gutterBottom variant="h5" component="div" color={"green"} fontWeight="bold">
-                                {props.missingpersongender}
+                            <Typography gutterBottom variant="h5" component="div" color={"#4CAF50"} fontWeight="bold" fontFamily={"Poppins"} fontStyle={"normal"}lineHeight="143%"letterSpacing="-0.03rem">
+                            {props.missingpersongender}
                             </Typography>
                         </div>
                     </Grid>

@@ -36,7 +36,7 @@ const columns = [
 export default function Launchedfirdata() {
   return (
     <>
-    <Typography variant='h5' style={{paddingTop:"20px"}}>
+    <Typography variant='h5' style={{paddingTop:"20px",fontFamily:"Poppins",fontStyle:"normal",fontWeight:"bold",lineHeight:"143%"}}>
       Launched FIR Database from this Station
     </Typography>
     <div className='container' style={{height:"80vh", width: '95%', background:"#ffffff", marginTop:"10px" }}>

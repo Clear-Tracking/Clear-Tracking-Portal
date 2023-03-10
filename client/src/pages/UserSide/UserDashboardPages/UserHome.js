@@ -12,14 +12,14 @@ export default function UserHome() {
         <Grid item xs={12} md={3} style={{background:"pink"}}>
           <UserMainDisplayCard/>
         </Grid>
-        <Grid item xs={12} md={3} style={{background:"blue"}}>
-          sh
+        <Grid item xs={12} md={3} style={{background:"pink"}}>
+          <UserMainDisplayCard/>
         </Grid>
-        <Grid item xs={12} md={3} style={{background:"yellow"}}>
-         gjfgj 
+        <Grid item xs={12} md={3} style={{background:"pink"}}>
+        <UserMainDisplayCard/> 
         </Grid>
-        <Grid item xs={12} md={3} style={{background:"green"}}>
-          djg
+        <Grid item xs={12} md={3} style={{background:"pink"}}>
+        <UserMainDisplayCard/> 
         </Grid>
       </Grid>
     </Box>
