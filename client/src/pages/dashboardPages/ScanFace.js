@@ -42,7 +42,7 @@ function ScanFace() {
 
                         {({ getScreenshot }) => (
                             <Button
-                                style={{ display: 'block', padding: '20px' }}
+                                style={{ display: 'block', padding: '20px',fontFamily:"Poppins",fontWeight:"bold",color:"black" }}
                                 onClick={() => {
                                     const imageSrc = getScreenshot();
                                     console.log(imageSrc);
@@ -56,7 +56,7 @@ function ScanFace() {
                     <img src={imageSrc} width={360} height={480} style={{ padding: '20px' }} />
                 </div>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: `${40}px` }}>
-                        <Button onClick={() => navigate("/matchres", { state: { img: imageSrc } })}
+                        <Button onClick={() => navigate("/matchres", { state: { img: imageSrc } })} style={{color:"black",fontFamily:"Poppins",fontWeight:"bold"}}
                         >
                             Search
                         </Button>

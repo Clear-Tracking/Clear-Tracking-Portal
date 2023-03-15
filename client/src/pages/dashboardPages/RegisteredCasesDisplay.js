@@ -1,11 +1,14 @@
 import React from 'react'
 import UserRegisteredCard from '../../Components/UserRegisteredCard'
 import Userformdata from "../../assets/data/userformdata.json"
-
+import Typography from '@mui/material/Typography';
 export default function RegisteredCasesDisplay() {
   return (
-    <div style={{ marginTop: "30px" }}>
-      <div style={{ fontSize: "2.8rem", fontWeight: "bold", paddingBottom: "40px" }}>Registered Via APP</div>
+    
+    <div>
+      <Typography variant='h5' style={{marginTop:"30px",letterSpacing:"0.03rem", fontFamily:"Poppins",fontStyle:"normal",fontWeight:"bold",lineHeight:"143%"}}>
+      Registered Via App
+    </Typography>
       {
         Userformdata.map(formdata => {
           return (
@@ -17,9 +20,14 @@ export default function RegisteredCasesDisplay() {
           )
         })
       }
+      
     </div>
+    
   )
 }
+
+
+
 // {
 //   Userformdata.map(formdata => {
 //     return (
