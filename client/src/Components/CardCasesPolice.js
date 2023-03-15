@@ -22,7 +22,7 @@ export default function CardCasesPolice(props) {
                             <Typography gutterBottom variant="h5" component="div" sx={{ fontFamily: "Poppins", fontStyle: 'normal', fontWeight: 600,  color: "black" }}>
                                 {props.missingpersonfirstname + " " + props.missingpersonlastname}
                             </Typography>
-                        <Box> <Button variant="contained" sx={{background:"#81D0DF"}}>Missing</Button></Box>  
+                        <Box> <Button variant="contained" sx={{background:"#81D0DF"}} disableRipple disableFocusRipple disableTouchRipple disableElevation>Missing</Button></Box>  
                             <Typography variant="body1" sx={{ mt:1,fontFamily: "Poppins", fontStyle: "normal", fontWeight: 400 }}>
                                 {"Missing Date " + props.missingpersondom}
                             </Typography>

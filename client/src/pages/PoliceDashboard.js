@@ -157,7 +157,7 @@ function PoliceDashboard() {
                     }}
                 >
                     <Toolbar />
-                    <Box>
+                    <Box sx={{minHeight:"84vh"}}>
                     <Outlet/>
                     </Box>
                         
