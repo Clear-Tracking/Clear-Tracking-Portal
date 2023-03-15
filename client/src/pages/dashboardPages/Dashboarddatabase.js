@@ -3,79 +3,86 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Typography } from '@mui/material';
 import ViewDetails from '../../Components/ViewDetails';
 import allmissingpeople from "../../assets/data/missingPeopleDataset.json"
-
+import Box from '@mui/material/Box';
 const columns = [
-  { field: 'id', headerName: 'ID', width: 70,headerClassName: 'super-app-theme--header'
-   },
-  { field: 'personpic', headerName: 'Photo',headerClassName: 'super-app-theme--header',
-  width: 200, renderCell:(params)=><img src={params.value} height="100px" width="100px" style={{borderRadius:"50%"}}/> },
+  {
+    field: 'id', headerAlign: "center", align: "center", headerName: 'ID', width: 75, headerClassName: 'super-app-theme--header'
+  },
+  {
+    field: 'personpic', headerAlign: "center", headerName: 'Photo', headerClassName: 'super-app-theme--header', align: "center",
+    width: 150, renderCell: (params) => <img src={params.value} height="50px" width="50px" style={{ borderRadius: "50%" }} />
+  },
   {
     field: 'fullName',
     headerName: 'Name',
     description: 'This column has a value getter and is not sortable.',
-    sortable: false,
+    sortable: false, headerAlign: "center",
     headerClassName: 'super-app-theme--header',
-    width: 160,
+    width: 300, align: "center",
     valueGetter: (params) =>
       `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   },
-  { field: 'missingdays', headerName: 'Missing Days',headerClassName: 'super-app-theme--header',type: 'number', width: 130  },
+  { field: 'missingdays', headerName: 'Missing Days', headerAlign: "center", headerClassName: 'super-app-theme--header', align: "center", type: 'number', width: 200 },
   {
     field: 'age',
-    headerName: 'Age',
+    headerName: 'Age', align: "center",
     headerClassName: 'super-app-theme--header',
-    type: 'number',
+    type: 'number', headerAlign: "center",
     width: 90
-    
+
   },
-  
-  { field: 'place', headerName: 'Place', headerClassName: 'super-app-theme--header',width: 130, valueGetter: (params)=>
-  `${params.row.pom}` },
-  { field: 'view', headerName: 'View', headerClassName: 'super-app-theme--header',width: 90 ,renderCell:(params)=><ViewDetails personpicture={params.row.personpic}
-  personfirstname={params.row.firstName} personlastname={params.row.lastName} personmissing={params.row.dom}
-  gender={params.row.gender}/>},
-  
+
+  {
+    field: 'place', headerName: 'Place', headerAlign: "center", headerClassName: 'super-app-theme--header', align: "center", width: 200, valueGetter: (params) =>
+      `${params.row.pom}`
+  },
+  {
+    field: 'view', headerName: 'View', align: "center", headerAlign: "center", headerClassName: 'super-app-theme--header', width: 200, renderCell: (params) => <ViewDetails personpicture={params.row.personpic}
+      personfirstname={params.row.firstName} personlastname={params.row.lastName} personmissing={params.row.dom}
+      gender={params.row.gender} />
+  },
+
 ];
 
 
 export default function Dashboarddatabase() {
   return (
-    <>
-    <div style={{background:"white"}}>
-    <Typography variant='h5' style={{marginTop:"30px", fontFamily:"Poppins",fontStyle:"normal",fontWeight:"bold",letterSpacing:"0.03rem",lineHeight:"143%"}}>
-      Database
-    </Typography>
-    <div className='container' style={{height:"80vh", width: '80%', background:"#ffffff", marginTop:"10px",marginLeft:"50px" }}>
-      
-      <DataGrid
-        rows={allmissingpeople}
-        columns={columns}
-        pageSize={6}
-        rowsPerPageOptions={[5]}
-        rowHeight={120}
-        sx={{
-          boxShadow: 2,
-          border: 2,
-          borderColor: 'primary.light',
-          '& .MuiDataGrid-cell:hover': {
-            color: 'primary.main'},
-            '& .super-app-theme--header': {
-       textTransform:"uppercase"
-            },
-            '& .css-1jbbcbn-MuiDataGrid-columnHeaderTitle' :
-            {
-              fontWeight : "bold"
-            },
-            '& .MuiDataGrid-cellContent':
-                  {
-                      fontFamily:"Poppins",fontSize:"18px"
-                  }
-            
-        }}
-      />
-    </div>
-    </div>
-    </>
+    
+      <Box sx={{p:4}}>
+        <Typography variant='h5' style={{ fontFamily: "Poppins", fontStyle: "normal", fontWeight: "bold", letterSpacing: "0.03rem", lineHeight: "143%" }}>
+          Database
+        </Typography>
+        <div className='container' style={{ marginTop:"1rem",height: "80vh",  background: "#ffffff" }}>
+
+          <DataGrid
+            rows={allmissingpeople}
+            columns={columns}
+            pageSize={6}
+            rowsPerPageOptions={[5]}
+            rowHeight={60}
+            sx={{
+              boxShadow: 2,
+              border: 2,
+              borderColor: 'primary.light',
+              '& .MuiDataGrid-cell:hover': {
+                color: 'primary.main'
+              },
+              '& .super-app-theme--header': {
+                textTransform: "uppercase"
+              },
+              '& .css-1jbbcbn-MuiDataGrid-columnHeaderTitle':
+              {
+                fontWeight: "bold"
+              },
+              '& .MuiDataGrid-cellContent':
+              {
+                fontFamily: "Poppins", fontSize: "18px"
+              }
+
+            }}
+          />
+        </div>
+      </Box>
   );
 
 }

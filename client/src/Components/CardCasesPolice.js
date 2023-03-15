@@ -10,31 +10,33 @@ export default function CardCasesPolice(props) {
         <div>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container
-                    style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", background: "#ffffff", borderRadius: "20px"}}>
-                    <Grid item xs={12} md={2} style={{paddingBottom:"18px"}}>
-                        <center><img src={props.missingpersonimage}
-                            style={{ borderRadius: "50%", height: "120px", width: "120px", marginTop: "30px" }} /></center>
+                    sx={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", background: "#ffffff", borderRadius: "20px", padding: "1rem" }}>
+                    <Grid item xs={12} md={2}>
+                        <Box sx={{display:"flex",alignItems:"center",justifyContent:"center",height:"100%"}}>
+                            <img src={props.missingpersonimage}
+                            style={{ borderRadius: "50%", height: "120px", width: "120px" }} />
+                        </Box>
                     </Grid>
-                    <Grid item sx={6} md={6}>
-                        <div style={{ paddingTop: "9%" }}>
-                            <Typography gutterBottom variant="h5" component="div" style={{fontFamily:"Poppins",fontStyle:'normal',fontWeight:"600",lineHeight:"143%",letterSpacing:"-0.03rem",color:"black"}}>
-                            {props.missingpersonfirstname +" "+ props.missingpersonlastname}
+                    <Grid item xs={9} md={7}>
+                        <Box sx={{display:"flex",justifyContent:"center",ml:1,height:"100%",flexDirection:"column"}}>
+                            <Typography gutterBottom variant="h5" component="div" sx={{ fontFamily: "Poppins", fontStyle: 'normal', fontWeight: 600,  color: "black" }}>
+                                {props.missingpersonfirstname + " " + props.missingpersonlastname}
                             </Typography>
-                            <span style={{ background: "#81D0DF", marginLeft: "10px", fontSize: "16px", borderRadius: "3px", padding: "8px",color:"#ffffff",fontFamily:"Poppins",fontStyle:'normal',fontWeight:"600",lineHeight:"143%",textAlign:"center" }}> MISSING</span>
-                            <Typography variant="body2" color="text.secondary" style={{ marginTop: "20px",marginLeft:"15px", paddingBottom: "30px",fontFamily:"Poppins",fontStyle:"normal",fontWeight:"400",lineHeight:"143%",color:"#8F8F8F" }}>
-                            {"Missing Date "+ props.missingpersondom}
+                        <Box> <Button variant="contained" sx={{background:"#81D0DF"}}>Missing</Button></Box>  
+                            <Typography variant="body1" sx={{ mt:1,fontFamily: "Poppins", fontStyle: "normal", fontWeight: 400 }}>
+                                {"Missing Date " + props.missingpersondom}
                             </Typography>
-                        </div>
+                        </Box>
                     </Grid>
-                    <Grid item xs={6} md={3} style={{ borderLeft: "2px solid #BEBEBE"}}>
-                        <div style={{ paddingTop: "15%",marginLeft:"30px"}} >
-                            <Typography gutterBottom variant="h4" component="div" style={{fontFamily:"Poppins",fontStyle:'normal',fontWeight:"bold",lineHeight:"143%"}}>
+                    <Grid item xs={3} md={3} sx={{ borderLeft: "1px solid #BEBEBE" }}>
+                        <Box sx={{display:"flex",alignItems:"center",justifyContent:"center",height:"100%",flexDirection:"column"}} >
+                            <Typography gutterBottom variant="h5" component="div" textAlign="center" sx={{ fontFamily: "Poppins", fontStyle: 'normal', fontWeight: "bold" }}>
                                 Age 22
                             </Typography>
-                            <Typography gutterBottom variant="h5" component="div" color={"#4CAF50"} fontWeight="bold" fontFamily={"Poppins"} fontStyle={"normal"}lineHeight="143%"letterSpacing="-0.03rem">
-                            {props.missingpersongender}
+                            <Typography gutterBottom variant="h5" component="div" textAlign="center" color={"#4CAF50"} fontWeight="bold" fontFamily={"Poppins"} fontStyle={"normal"}>
+                                {props.missingpersongender}
                             </Typography>
-                        </div>
+                        </Box>
                     </Grid>
 
                 </Grid>

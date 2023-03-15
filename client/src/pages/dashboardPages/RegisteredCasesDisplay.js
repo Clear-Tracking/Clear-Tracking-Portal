@@ -2,11 +2,12 @@ import React from 'react'
 import UserRegisteredCard from '../../Components/UserRegisteredCard'
 import Userformdata from "../../assets/data/userformdata.json"
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 export default function RegisteredCasesDisplay() {
   return (
     
-    <div>
-      <Typography variant='h5' style={{marginTop:"30px",letterSpacing:"0.03rem", fontFamily:"Poppins",fontStyle:"normal",fontWeight:"bold",lineHeight:"143%"}}>
+    <Box sx={{p:4}}>
+      <Typography variant='h5' style={{letterSpacing:"0.03rem", fontFamily:"Poppins",fontStyle:"normal",fontWeight:"bold",lineHeight:"143%"}}>
       Registered Via App
     </Typography>
       {
@@ -21,7 +22,7 @@ export default function RegisteredCasesDisplay() {
         })
       }
       
-    </div>
+    </Box>
     
   )
 }

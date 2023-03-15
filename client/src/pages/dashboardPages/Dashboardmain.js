@@ -16,8 +16,8 @@ import { textAlign } from '@mui/system';
 export default function Dashboardmain() {
   return (
     <Box sx={{ flexGrow: 1}}>
-      <Grid container spacing={6} style={{background:"white"}} >
-        <Grid item xs={12} md={8} style={{ paddingTop: "50px"}}>
+      <Grid container >
+        <Grid item xs={12} md={8} sx={{pb:4,px:3}}>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -53,13 +53,14 @@ export default function Dashboardmain() {
           </Box>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} style={{ background: "#DFEEF7" }}>
-                <div style={{ marginTop: "30px",color:"#087592"}}><center><MiniCalendar h='100%' minW='90%' selectRange={false} /></center></div>
+          <Box sx={{ flexGrow: 1,height:"100%",background: "#f1f8fd" }}>
+            <Grid container >
+              <Grid item xs={12} >
+                <MiniCalendar h='100%' minW='90%' selectRange={false} />
               </Grid>
-              <Grid item xs={12} style={{ background: "#DFEEF7", height: "100vh",paddingTop:"100px" }}>
-                <div><MapchartDasbboard /></div>
+              <Grid item xs={12} sx={{ mt:4 }}>
+               <Typography variant="h6" textAlign="center"sx={{fontWeight:600}}>OCs Deployed per State in India</Typography> 
+               <MapchartDasbboard />
               </Grid>
             </Grid>
           </Box>
