@@ -19,6 +19,7 @@ import UserApplication from './pages/UserSide/UserApplication';
 import UserHome from './pages/UserSide/UserDashboardPages/UserHome';
 import MissingPersonProfile from './pages/UserSide/UserDashboardPages/MissingPersonProfile';
 import ReportMissing from './pages/UserSide/UserDashboardPages/ReportMissing';
+import DatabaseViewProfile from './Components/DatabaseViewProfile';
 
 function App() {
   return (
@@ -33,8 +34,14 @@ function App() {
             <Route path="caseregister" element={<RegisteredCasesDisplay />} />
             <Route path="launchedfirdata" element={<Launchedfirdata />} />
             <Route path="database" element={<Dashboarddatabase />} />
+            {/*on click to view comlete profile from tables of faunched fir and database*/}
+            <Route path="viewpersondetail/:missingpersonid" element={<DatabaseViewProfile/>}/>
+
+
             <Route path="scanface" element={<ScanFace />} />
+            {/*on click of caseregistered*/}
             <Route path="usersubmitdata" element={<UserSubmittedData />} />
+
             <Route path="policeprofile" element={<PoliceProfile />} />
 
           </Route>

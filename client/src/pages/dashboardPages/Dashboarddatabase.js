@@ -31,7 +31,7 @@ const columns = [
   
   { field: 'place', headerName: 'Place',headerAlign: 'center', headerClassName: 'super-app-theme--header',width: 130, valueGetter: (params)=>
   `${params.row.pom}` },
-  { field: 'view', headerName: 'View',headerAlign: 'center', headerClassName: 'super-app-theme--header',width: 130 ,renderCell:(params)=><ViewDetails personpicture={params.row.personpic}
+  { field: 'view', headerName: 'View',headerAlign: 'center', headerClassName: 'super-app-theme--header',width: 130 ,renderCell:(params)=><ViewDetails  perid={params.row.id} personpicture={params.row.personpic}
   personfirstname={params.row.firstName} personlastname={params.row.lastName} personmissing={params.row.dom}
   gender={params.row.gender}/>},
   
