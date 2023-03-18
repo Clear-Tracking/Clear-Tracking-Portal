@@ -22,6 +22,7 @@ import ReportMissing from './pages/UserSide/UserDashboardPages/ReportMissing';
 import DatabaseViewProfile from './Components/DatabaseViewProfile';
 
 function App() {
+
   return (
     <>
       <BrowserRouter>

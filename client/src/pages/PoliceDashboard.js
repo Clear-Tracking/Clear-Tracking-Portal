@@ -17,7 +17,7 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from '../Components/ListItems';
+import { MainListItems, secondaryListItems } from '../Components/ListItems';
 import Dashboarddatabase from './dashboardPages/Dashboarddatabase';
 import Dashboardmain from './dashboardPages/Dashboarddatabase';
 import { Routes, Route, BrowserRouter, Outlet } from 'react-router-dom';
@@ -142,7 +142,7 @@ function PoliceDashboard() {
                     </Toolbar>
                     <Divider />
                     <List component="nav">
-                        {mainListItems}
+                        <MainListItems/>
                         <Divider sx={{ my: 1 }} />
                         {secondaryListItems}
                     </List>

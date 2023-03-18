@@ -131,7 +131,7 @@ export default function ReportMissingForm() {
               id="dob"
               name="dob"
                 label="Date of Birth"
-                inputFormat="DD/MM/YYYY"
+                inputFormat="DD-MM-YYYY"
                 value={value}
                 onChange={handleChangeDate}
                 renderInput={(params) => <TextField {...params} />}
@@ -220,7 +220,7 @@ export default function ReportMissingForm() {
               <DesktopDatePicker
                 label="Missing Date"
                 id="dom"
-                inputFormat="DD/MM/YYYY"
+                inputFormat="DD-MM-YYYY"
                 value={missValue}
                 onChange={handleChangeMissingDate}
                 renderInput={(params) => <TextField {...params} />}

@@ -19,23 +19,53 @@ function datediff(dateinput,outputreq) {
 
 
 
-    var from = dateinput.split("-");
-    var birthdateTimeStamp = new Date(from[2], from[1] - 1, from[0]);
-    var cur = new Date();
-    var diff = cur - birthdateTimeStamp;
-    // This is the difference in milliseconds
-    var currentAge = Math.round(diff / 31557600000);
-    // Divide by 1000*60*60*24*365.25
+    // var from = dateinput.split("-");
+    // var birthdateTimeStamp = new Date(from[2], from[1] - 1, from[0]);
+    // var cur = new Date();
+    // var diff = cur - birthdateTimeStamp;
+    // // This is the difference in milliseconds
+    // var currentAge = Math.round(diff / 31557600000);
+    // // Divide by 1000*60*60*24*365.25
 
-    var daysmissing=currentAge*365
-    console.log(currentAge);
+    // var daysmissing=currentAge*365
+    // console.log(currentAge);
+    let temp = dateinput.split("-") 
+    var d1 = Date.parse(`${temp[1]}-${temp[0]}-${temp[2]}`)
+    var d2 = Date.now()
 
-if(outputreq=="age"){
-    return currentAge
-}
-if(outputreq=="missingdays"){
-    return daysmissing
-}
+    var diff = d2 - d1;
+
+    const milliseconds = diff;
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+    const month = day * 30;
+    const year = day * 365;
+
+    var years = Math.round(milliseconds / year);
+    var months = Math.round(milliseconds / month);
+    var days = Math.round(milliseconds / day);
+    var hours = Math.round(milliseconds / hour);
+    var minutes = Math.round(milliseconds / minute);
+    var seconds = Math.round(milliseconds / second);
+
+    let res = "";
+    if(years) res += years + " Years ";
+    else if(months) res += months + " Months ";
+    else if(days) res += days + " Days ";
+    else if(hours) res += hours + " Hours ";
+    else if(minutes) res += minutes + " Minutes ";
+    else if(seconds) res += seconds + " Seconds ";
+
+    return res;
+    //console.log(currentDate); // "2022-06-17"
+// if(outputreq=="age"){
+//     return years
+// }
+// if(outputreq=="missingdays"){
+//     return days
+// }
 
 
 
@@ -43,28 +73,7 @@ if(outputreq=="missingdays"){
 
 
     // console.log(startdate)
-    // var d1 = Date.parse(startdate)
-    // var d2 = Date.now()
-
-    // var diff = d2 - d1;
-
-    // var milliseconds = diff;
-    // var second = 1000;
-    // var minute = second * 60;
-    // var hour = minute * 60;
-    // var day = hour * 24;
-    // var month = day * 30;
-    // var year = day * 365;
-
-    // var years = Math.round(milliseconds / year);
-    // var months = years * 12;
-    // var days = years * 365;
-    // var hours = Math.round(milliseconds / hour);
-    // var seconds = Math.round(milliseconds / second);
-
-    // console.log(years)
-    // let currentDate = new Date().toJSON().slice(0, 10);
-    // console.log(currentDate); // "2022-06-17"
+    
 
     //return currentAge
 }

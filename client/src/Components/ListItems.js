@@ -15,60 +15,86 @@ import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import PieChartIcon from '@mui/icons-material/PieChart';
+import { useState } from 'react';
 
-export const mainListItems = (
-    <React.Fragment>
-        <ListItemButton to="/dashboard/">
-            <ListItemIcon>
-                <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-        </ListItemButton>
-        <ListItemButton to="/dashboard/caseregister">
-            <ListItemIcon>
-                <AppRegistrationIcon />
-            </ListItemIcon>
-            <ListItemText primary="Registered Cases" />
-        </ListItemButton>
-        <ListItemButton to="/dashboard/launchedfirdata">
-            <ListItemIcon>
-                <HowToRegIcon />
-            </ListItemIcon>
-            <ListItemText primary="Launched FIR Data" />
-        </ListItemButton>
-        <ListItemButton to="/dashboard/database">
-            <ListItemIcon>
-                <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Data Base" />
-        </ListItemButton>
-        <ListItemButton to="/dashboard/scanface">
-            <ListItemIcon>
-                <CameraAltIcon />
-            </ListItemIcon>
-            <ListItemText primary="Scan Face" />
-        </ListItemButton>
-        <ListItemButton to="">
-            <ListItemIcon>
-                <FingerprintIcon />
-            </ListItemIcon>
-            <ListItemText primary="Biometric Scan" />
-        </ListItemButton>
-        <ListItemButton to="">
-            <ListItemIcon>
-                <CrisisAlertIcon />
-            </ListItemIcon>
-            <ListItemText primary="Alert" />
-        </ListItemButton>
+export function MainListItems(props) {
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const handleListItemClick = (event, index) => {
+        setSelectedIndex(index);
+      };
+    return (
+        
+        <React.Fragment>
+            <ListItemButton to="/dashboard/"
+            selected={selectedIndex === 0}
+            onClick={(event) => handleListItemClick(event, 0)}>
+                <ListItemIcon>
+                    <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+            </ListItemButton>
+            <ListItemButton to="/dashboard/caseregister" 
+            selected={selectedIndex === 1}
+            onClick={(event) => handleListItemClick(event, 1)}>
+                <ListItemIcon>
+                    <AppRegistrationIcon />
+                </ListItemIcon>
+                <ListItemText primary="Registered Cases" />
+            </ListItemButton>
+            <ListItemButton to="/dashboard/launchedfirdata"
+            selected={selectedIndex === 2}
+            onClick={(event) => handleListItemClick(event, 2)}>
+                <ListItemIcon>
+                    <HowToRegIcon />
+                </ListItemIcon>
+                <ListItemText primary="Launched FIR Data" />
+            </ListItemButton>
+            <ListItemButton to="/dashboard/database"
+            selected={selectedIndex === 3}
+            onClick={(event) => handleListItemClick(event, 3)}>
+                <ListItemIcon>
+                    <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Data Base" />
+            </ListItemButton>
+            <ListItemButton to="/dashboard/scanface"
+            selected={selectedIndex === 4}
+            onClick={(event) => handleListItemClick(event, 4)}>
+                <ListItemIcon>
+                    <CameraAltIcon />
+                </ListItemIcon>
+                <ListItemText primary="Scan Face" />
+            </ListItemButton>
+            <ListItemButton to=""
+            selected={selectedIndex === 5}
+            onClick={(event) => handleListItemClick(event, 5)}>
+                <ListItemIcon>
+                    <FingerprintIcon />
+                </ListItemIcon>
+                <ListItemText primary="Biometric Scan" />
+            </ListItemButton>
+            <ListItemButton to=""
+            selected={selectedIndex === 6}
+            onClick={(event) => handleListItemClick(event, 6)}>
+                <ListItemIcon>
+                    <CrisisAlertIcon />
+                </ListItemIcon>
+                <ListItemText primary="Alert" />
+            </ListItemButton>
 
-        <ListItemButton>
-            <ListItemIcon>
-                <LayersIcon />
-            </ListItemIcon>
-            <ListItemText primary="Logout" />
-        </ListItemButton>
-    </React.Fragment>
-);
+            <ListItemButton 
+            selected={selectedIndex === 7}
+            onClick={(event) => handleListItemClick(event, 7)}>
+                <ListItemIcon>
+                    <LayersIcon />
+                </ListItemIcon>
+                <ListItemText primary="Logout" />
+            </ListItemButton>
+        </React.Fragment>
+    );
+}
+
+
 
 export const secondaryListItems = (
     <React.Fragment>
@@ -95,3 +121,4 @@ export const secondaryListItems = (
         </ListItemButton>
     </React.Fragment>
 );
+

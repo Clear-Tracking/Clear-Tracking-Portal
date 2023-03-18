@@ -122,7 +122,7 @@ const MapchartDasbboard = () => {
         }}
         mapLayout={{
           // title: "OCs Deployed per State in India",
-          legendTitle: "Number of OCs",
+          legendTitle: "Number of missing people",
           startColor: "#b3d1ff",
           endColor: "#005ce6",
           hoverTitle: "Count",
