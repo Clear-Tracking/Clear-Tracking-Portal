@@ -37,10 +37,11 @@ const columns = [
       `${params.row.pom}`
   },
   {
-    field: 'view', headerName: 'View', align: "center", headerAlign: "center", headerClassName: 'super-app-theme--header', width: 200, renderCell: (params) => <ViewDetails personpicture={params.row.personpic}
+    field: 'view', headerName: 'View', align: "center", headerAlign: "center", headerClassName: 'super-app-theme--header', width: 200, renderCell: (params) => <ViewDetails  perid={params.row.id} personpicture={params.row.personpic}
       personfirstname={params.row.firstName} personlastname={params.row.lastName} personmissing={params.row.dom}
       gender={params.row.gender} />
   },
+
 
 ];
 
