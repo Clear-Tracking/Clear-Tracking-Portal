@@ -90,21 +90,17 @@ export default function ReportMissingForm() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m:1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography variant="h5"style={{fontFamily:"Poppins",fontWeight:"bold",fontStyle:"normal",lineHeight:"143%"}}>
             Form
           </Typography>
-          <Stack direction="row" alignItems="left" spacing={2}>
-      <Button variant="contained" component="label" style={{alignItems:"left"}}>
+          <Stack direction="row"  spacing={2}>
+      <Button variant="contained" component="label" style={{right:"50%",marginTop:"80px"}}>
         Upload Photo
         <input hidden accept="image/*" multiple type="file" />
       </Button>
-      <IconButton color="primary" aria-label="upload picture" component="label">
-        <input hidden accept="image/*" type="file" />
-        <PhotoCamera/>
-        </IconButton>
         </Stack>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>

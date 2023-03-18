@@ -1,12 +1,12 @@
 .react-calendar {
-  
+  border-radius:21px;
   max-width: 100%;
   background: white;
   border: 1px solid #087592;
-  font-family: Poppins;
+  font-family: 'Poppins';
   font-style: normal;
   line-height: 1.125em;
-}
+} 
 .react-calendar--doubleView {
   width: 700px;
 }
@@ -40,8 +40,22 @@
   margin-bottom: 1em;
 }
 .react-calendar__navigation button {
-  min-width: 44px;
+  min-width: 50px;
   background: none;
+  font-size:16px;
+  padding-left: 25px;
+  padding-top: 10px;
+  font-weight: bold;
+  color:#087592;
+  text-transform: uppercase;
+  font-style: normal;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.21em;
+
+
 }
 .react-calendar__navigation button:disabled {
   background-color: #f0f0f0;
@@ -55,6 +69,7 @@
   text-transform: uppercase;
   font-weight: bold;
   font-size: 0.75em;
+  font-family: 'Poppins';
 }
 .react-calendar__month-view__weekdays__weekday {
   padding: 0.5em;
@@ -119,3 +134,8 @@
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
 }
+ .react-calendar *{
+  box-sizing: border-box;
+  font-family: cursive;
+  font-weight: bold;
+} 

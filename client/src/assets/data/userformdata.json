@@ -11,6 +11,8 @@
         "Contact":"123456789",
         "pom":"Mumbai",
         "dom":"12-3-23",
+        "missingdays":25,
+        "age":50,
         "complexion":"fair",
         "Eye":"blue",
         "Hair":"Blond",
@@ -33,6 +35,8 @@
         "Contact":"123456789",
         "pom":"Mumbai",
         "dom":"12-3-23",
+        "missingdays":25,
+        "age":50,
         "complexion":"fair",
         "Eye":"blue",
         "Hair":"Blond",
@@ -43,4 +47,5 @@
         "neareststation":"samta nagar",
         "personpic":"https://i.pinimg.com/originals/bc/2c/8c/bc2c8cb444aa38c9617e50c1c8349efc.jpg"
     }
+    
 ]

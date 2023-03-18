@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,36 +11,48 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { Button } from '@mui/material';
-
 export default function UserRegisteredCard(props) {
- 
+
     function viewProfileClicked() {
         console.log(props.id)
-       
+
     }
 
 
     return (
-        <Card sx={{ display: 'flex' }} style={{ justifyContent: 'space-between', maxWidth: "80vw", marginBottom: "30px" }}>
-            <Box sx={{ display: 'flex' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <img src={props.personimage}
-                        style={{ height: "250px", width: "250px", borderRadius: "50%", padding: "20px", marginLeft: "40px" }} />
-                </Box>
-                <Box>
-                    <div style={{ paddingTop: "40px", paddingLeft: "60px" }}>
-                        <span style={{ fontSize: "2.5rem", fontWeight: "bold" }}>{props.personfirstname + " " + props.personlastname}</span><span style={{ paddingLeft: "25px", funtSize: "1.2rem", background: "blue", padding: "3px", borderRadius: "25px", color: "#ffffff" }}>Missing</span> <br />
-                        <span style={{ fontSize: "1.5rem", marginTop: "30px" }}>{"Missing Date: " + props.dateofmissing}</span><br />
-                        <span style={{ fontSize: "1.5rem", marginTop: "20px" }}>{props.persondob}</span><br />
-                        <span style={{ fontSize: "1.5rem", marginTop: "20px" }}>{props.gender}</span><br />
-                    </div>
+        
+            <Box sx={{ flexGrow: 1, display:"flex",alignItems: "center",flexDirection:"column",boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",width:"100%",borderRadius:2,padding:2 }}>
+                
+                    
+                        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
+                            <img src={props.personimage}
+                                style={{ borderRadius: "50%", height: "120px", width: "120px" }} />
+                        </Box>
+                    
+                    
+                        <Box sx={{ display: "flex", justifyContent: "center",mt:1, height: "100%", flexDirection: "column" }}>
+                            <Typography gutterBottom variant="h5" component="div" sx={{ fontFamily: "Poppins", fontStyle: 'normal', fontWeight: 600, color: "black" }}>
+                                {props.personfirstname + " " + props.personlastname}
+                            </Typography>
+                            <Typography variant="body1" sx={{ fontFamily: "Poppins", fontStyle: "normal", fontWeight: 400 }}>
+                                {"Missing Date: " + props.dateofmissing}
+                            </Typography>
+                        </Box>
+                    
+                    
+                        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", flexDirection: "column" }} >
+                            <Typography gutterBottom variant="body1" component="div" textAlign="center" sx={{ fontFamily: "Poppins", fontStyle: 'normal', fontWeight: 400 }}>
+                                {"Date of Birth: " +props.persondob}
+                            </Typography>
+                            <Typography gutterBottom variant="h6" component="div" textAlign="center" color={"#4CAF50"} fontWeight="bold" fontFamily={"Poppins"} fontStyle={"normal"}>
+                                {props.gender}
+                            </Typography>
+                            <Button variant='contained' onClick={viewProfileClicked} style={{ padding: "10px", borderRadius: "10px" }}>View Profile</Button>
+                        </Box>
+                    
 
-                </Box>
+                
             </Box>
-            <Box>
-                <Button variant='contained' onClick={viewProfileClicked}
-                    style={{ padding: "10px", borderRadius: "22px", marginTop: "110px", right: "30px" }}>View Profile</Button>
-            </Box>
-        </Card>
+        
     );
 }

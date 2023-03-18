@@ -1,9 +1,10 @@
+import { padding } from "@mui/system";
 import React from "react";
 import DatamapsIndia from "react-datamaps-india";
 
 const MapchartDasbboard = () => {
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative",marginTop:"-2rem",fontWeight:600,fontSize:"16px",lineHeight:"143%",letterSpacing:"0.02em",color:"black"}}>
       <DatamapsIndia
         style={{ postion: "relative", left: "25%" }}
         regionData={{
@@ -120,7 +121,7 @@ const MapchartDasbboard = () => {
           );
         }}
         mapLayout={{
-          title: "OCs Deployed per State in India",
+          // title: "OCs Deployed per State in India",
           legendTitle: "Number of OCs",
           startColor: "#b3d1ff",
           endColor: "#005ce6",
@@ -130,9 +131,11 @@ const MapchartDasbboard = () => {
           hoverColor: "blue",
           hoverBorderColor: "green",
           height: 700,
-          weight: 650
+          weight: 650,
         }}
+        
       />
+      
     </div>
   );
 };

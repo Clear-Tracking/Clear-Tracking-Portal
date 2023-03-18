@@ -150,19 +150,16 @@ function PoliceDashboard() {
                 <Box
                     component="main"
                     sx={{
-                        backgroundColor: (theme) =>
-                            theme.palette.mode === 'light'
-                                ? theme.palette.grey[100]
-                                : theme.palette.grey[900],
+                        backgroundColor:"white",
                         flexGrow: 1,
                         height: '100vh',
                         overflow: 'auto',
                     }}
                 >
                     <Toolbar />
-                    <div style={{paddingLeft:"50px"}}>
+                    <Box sx={{minHeight:"84vh"}}>
                     <Outlet/>
-                    </div>
+                    </Box>
                         
                         <Copyright sx={{ pt: 4 }} />
                    
