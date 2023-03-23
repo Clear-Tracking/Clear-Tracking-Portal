@@ -37,11 +37,12 @@ function App() {
             <Route path="database" element={<Dashboarddatabase />} />
             {/*on click to view comlete profile from tables of faunched fir and database*/}
             <Route path="viewpersondetail/:missingpersonid" element={<DatabaseViewProfile/>}/>
+            <Route path="firdetails/:missingpersonid" element={<UserSubmittedData />}/>
 
 
             <Route path="scanface" element={<ScanFace />} />
             {/*on click of caseregistered*/}
-            <Route path="usersubmitdata" element={<UserSubmittedData />} />
+            {/* <Route path="usersubmitdata" element={<UserSubmittedData />} /> */}
 
             <Route path="policeprofile" element={<PoliceProfile />} />
 

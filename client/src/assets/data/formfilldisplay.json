@@ -1,0 +1,25 @@
+
+    {
+        "id":"1",
+        "firstName": "Alec ",
+        "lastName":"Benjamin",
+        "dob":"12-12-2010",
+        "gender":"Male",
+        "Address":"1234, PQR Building, Thakur complex, Kandivali East",
+        "aadhar":"1234567890",
+        "Guardian":"Taylor Swift",
+        "Contact":"123456789",
+        "pom":"Mumbai",
+        "dom":"12-3-23",
+        "complexion":"fair",
+        "Eye":"blue",
+        "Hair":"Blond",
+        "Face":"NA",
+        "aod":"NA",
+        "Height":"180",
+        "Weight":"68",
+        "neareststation":"samta nagar",
+        "personpic":"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"
+    }
+    
+

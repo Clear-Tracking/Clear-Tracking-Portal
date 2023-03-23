@@ -11,13 +11,14 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
 export default function UserRegisteredCard(props) {
 
-    function viewProfileClicked() {
-        console.log(props.id)
-
-    }
-
+    const navigate = useNavigate();
+    
+    
+  const viewProfileClicked = () => navigate('/dashboard/firdetails/'+props.perid)
 
     return (
         
@@ -47,7 +48,7 @@ export default function UserRegisteredCard(props) {
                             <Typography gutterBottom variant="h6" component="div" textAlign="center" color={"#4CAF50"} fontWeight="bold" fontFamily={"Poppins"} fontStyle={"normal"}>
                                 {props.gender}
                             </Typography>
-                            <Button variant='contained' onClick={viewProfileClicked} style={{ padding: "10px", borderRadius: "10px" }}>View Profile</Button>
+                            <Button variant='contained'  onClick={viewProfileClicked} autoFocus style={{ padding: "10px", borderRadius: "10px" }}>View Profile</Button>
                         </Box>
                     
 
