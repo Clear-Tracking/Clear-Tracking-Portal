@@ -95,7 +95,8 @@ function UserApplication() {
                 <AppBar position="absolute" open={open}>
                     <Toolbar
                         sx={{
-                            pr: '24px', // keep right padding when drawer closed
+                            pr: '24px',
+                            backgroundColor: "pink" // keep right padding when drawer closed
                         }}
                     >
                         <IconButton
@@ -113,7 +114,7 @@ function UserApplication() {
                         <Typography
                             component="h1"
                             variant="h6"
-                            color="inherit"
+                            color="black"
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
@@ -133,6 +134,7 @@ function UserApplication() {
                             alignItems: 'center',
                             justifyContent: 'flex-end',
                             px: [1],
+                            
                         }}
                     >
                         <IconButton onClick={toggleDrawer}>
@@ -145,26 +147,23 @@ function UserApplication() {
                         <Divider sx={{ my: 1 }} />
                         {secondaryListItems}
                     </List>
-                </Drawer>
+                </Drawer> 
                 <Box
                     component="main"
                     sx={{
-                        backgroundColor: (theme) =>
-                            theme.palette.mode === 'light'
-                                ? theme.palette.grey[100]
-                                : theme.palette.grey[900],
+                        backgroundColor: "white",
                         flexGrow: 1,
                         height: '100vh',
                         overflow: 'auto',
                     }}
                 >
                     <Toolbar />
-                    <div style={{paddingLeft:"10px", marginRight: "10px"}}>
-                    <Outlet/>
-                    </div>
-                        
-                        <Copyright sx={{ pt: 4 }} />
-                   
+                    <Box sx={{minHeight:"84vh",padding:2}} >
+                        <Outlet />
+                    </Box>
+
+                    <Copyright sx={{ pt: 4 }} />
+
                 </Box>
             </Box>
         </ThemeProvider>

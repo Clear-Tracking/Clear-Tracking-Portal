@@ -14,31 +14,39 @@ export default function MissingPersonProfileCard() {
 
 
     return (
-        <>
-        <Typography variant="h3" pt={2}>
-            Profile
-            </Typography>
-            <Card sx={{ maxWidth: 345 }} style={{marginTop:"30px",marginBottom:"30px",marginLeft:"10px"}}>
-            <CardMedia
-                component="img"
-                sx={{ width: 345 ,height:280 }}
-                image="http://www.messagescollection.com/wp-content/uploads/2015/04/cute-cat-profile-for-facebook.jpg"
-                alt="Live from space album cover"
-            />
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <CardContent sx={{ flex: '1 0 auto' }}>
-                <Typography gutterBottom variant="h5" component="div" textAlign={"center"} color="black"  fontWeight="bold" fontFamily={"Poppins"} fontStyle={"normal"}lineHeight="143%"letterSpacing="-0.03rem">
-          Charlie Puth
-        </Typography>
-        <Typography variant="body2" color="#555555" textAlign={"center"} fontWeight="600" padding="8px" background="#81D0DF" fontFamily={"Poppins"} fontStyle={"normal"}lineHeight="143%"letterSpacing="-0.03rem" textTransform={"uppercase"}>
-          Male
-          </Typography>
-                </CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1, textAlign:"center" }}>
-                    Other Details
+        
+        <Box sx={{ flexGrow: 1, display:"flex",alignItems: "center",flexDirection:"column",boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",width:"100%",borderRadius:2,padding:2 }}>
+                
+                    
+                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
+                    <img src='https://tse4.mm.bing.net/th?id=OIP.A9DM3XbwBejOWI0WBcMcSgHaLG&pid=Api&P=0'
+                        style={{ borderRadius: "50%", height: "120px", width: "120px" }} />
                 </Box>
-            </Box>            
-        </Card>
-        </>
+                
+                
+                <Box sx={{ display: "flex", justifyContent: "center",mt:1, height: "100%", flexDirection: "column" }}>
+                    <Typography gutterBottom variant="h5" component="div" align="center" sx={{ fontFamily: "Poppins", fontStyle: 'normal', fontWeight: 600, color: "black" }}>
+                        Charlie Puth
+                    </Typography>
+                    <Typography variant="body2" align="center" sx={{ fontFamily: "Poppins", fontStyle: "normal", fontWeight: 400 }}>
+                        {"Missing Date: " + "12-3-23"}
+                    </Typography>
+                </Box>
+                
+                
+                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", flexDirection: "column" }} >
+                    <Typography gutterBottom variant="body2" component="div" align="center" sx={{ fontFamily: "Poppins", fontStyle: 'normal', fontWeight: 400 }}>
+                        {"Date of Birth: " +"1-3-20"}
+                    </Typography>
+                    <Typography gutterBottom variant="h6" component="div" align="center" color={"#4CAF50"} fontWeight="bold" fontFamily={"Poppins"} fontStyle={"normal"}>
+                        Male
+                    </Typography>
+                    {/* <Button variant='contained' onClick={viewProfileClicked} style={{ padding: "10px", borderRadius: "10px" }}>View Profile</Button> */}
+                </Box>
+                
+                
+                
+                </Box>
+        
     );
 }

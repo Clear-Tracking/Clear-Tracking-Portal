@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ShareIcon from '@mui/icons-material/Share';
@@ -33,5 +34,7 @@ export default function UserMainDisplayCard() {
         <Button size="small" style={{borderRadius:"15px",marginBottom:"10px",background:"#81D0DF",marginRight:'50px',padding:"8px", color:"#ffffff"}}>Learn More</Button>
       </CardActions>
     </Card>
+
+
   );
 }
