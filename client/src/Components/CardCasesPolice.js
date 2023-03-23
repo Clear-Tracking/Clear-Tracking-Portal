@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import { lineHeight } from '@mui/system';
+import {datediff} from "../util"
 
 export default function CardCasesPolice(props) {
     return (
@@ -28,10 +29,12 @@ export default function CardCasesPolice(props) {
                             </Typography>
                         </Box>
                     </Grid>
+
                     <Grid item xs={3} md={3} sx={{ borderLeft: "1px solid #BEBEBE" }}>
                         <Box sx={{display:"flex",alignItems:"center",justifyContent:"center",height:"100%",flexDirection:"column"}} >
                             <Typography gutterBottom variant="h5" component="div" textAlign="center" sx={{ fontFamily: "Poppins", fontStyle: 'normal', fontWeight: "bold" }}>
-                                Age 22
+                                 Age {datediff("8-3-2023","missingdays")}
+
                             </Typography>
                             <Typography gutterBottom variant="h5" component="div" textAlign="center" color={"#4CAF50"} fontWeight="bold" fontFamily={"Poppins"} fontStyle={"normal"}>
                                 {props.missingpersongender}
