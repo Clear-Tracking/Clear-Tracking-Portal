@@ -15,7 +15,7 @@ export default function RegisteredCasesDisplay() {
       {
         Userformdata.map(formdata => {
           return (
-          <Grid item xs={3}>  <UserRegisteredCard personimage={formdata.personpic} personfirstname={formdata.firstName} 
+          <Grid item md={3} xs={12} sm={6}>  <UserRegisteredCard personimage={formdata.personpic} personfirstname={formdata.firstName} 
             personlastname={formdata.lastName} gender={formdata.gender} dateofmissing={formdata.dom}
             persondob={formdata.dob}
             id={formdata.id}

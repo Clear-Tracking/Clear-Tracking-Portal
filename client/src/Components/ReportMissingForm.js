@@ -79,32 +79,48 @@ export default function ReportMissingForm() {
   return (
     <ThemeProvider theme={theme}>
       
-      <Container component="main" maxWidth="xs" style={{background:"white",borderRadius:15}}>
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         
         <Box
           sx={{
+            padding:"5%",
+            borderRadius:10,
+            border:2,borderColor:"pink",
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            //  alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m:1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography variant="h5"style={{fontFamily:"Poppins",fontWeight:"bold",fontStyle:"normal",lineHeight:"143%"}}>
-            Form
-          </Typography>
-          <Stack direction="row"  spacing={2}>
-      <Button variant="contained" component="label" style={{right:"50%",marginTop:"80px"}}>
-        Upload Photo
-        <input hidden accept="image/*" multiple type="file" />
-      </Button>
-        </Stack>
+          
+          
+          
+          
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Grid container spacing={2}>
+            
+              <Grid item xs={12} >
+              <Typography variant="h5"style={{textAlign:"center",fontFamily:"Poppins",fontWeight:"bold",fontStyle:"normal",lineHeight:"143%"}}>
+            Registeration Form
+          </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="aadhar"
+                  label="Aadhar Number"
+                  id="aadhar"
+                  type="number"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  autoComplete="ano"
+                />
+              </Grid>
+              
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
@@ -156,8 +172,10 @@ export default function ReportMissingForm() {
           </FormControl>
           </Box>
           </Grid>
-                
-              <Grid item xs={12}>
+          <Grid item xs={3} >
+                <img src="https://tse2.mm.bing.net/th?id=OIP.UJewJHqS1HF431mLgpRPFQHaHa&pid=Api&P=0" style={{height:"100%",width:"100%",border:"1px solid #eeeeee"}}/>
+              </Grid>  
+              <Grid item xs={9}>
                 <TextField
                   required
                   fullWidth
@@ -169,20 +187,7 @@ export default function ReportMissingForm() {
                   multiline rows={(4)}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="aadhar"
-                  label="Aadhar Number"
-                  id="aadhar"
-                  type="number"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  autoComplete="ano"
-                />
-              </Grid>
+              
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -227,7 +232,7 @@ export default function ReportMissingForm() {
               />
               </Grid>
               <Typography variant="h5" style={{marginTop:10,fontFamily:"Poppins",fontWeight:"bold",fontStyle:"normal",lineHeight:"143%"}}>
-              Physical features
+              Physical Features
           </Typography>
               <Grid item xs={12}>
                 <TextField
