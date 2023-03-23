@@ -44,7 +44,7 @@ export default function Dashboardmain() {
                   return (
                     <Grid item xs={12}>
                       <CardCasesPolice missingpersonfirstname={allmissingpeople.firstName} missingpersonlastname={allmissingpeople.lastName} missingpersonimage={allmissingpeople.personpic}
-                      missingpersongender={allmissingpeople.gender} missingpersondom={allmissingpeople.dom} />
+                      missingpersongender={allmissingpeople.gender} missingpersondom={allmissingpeople.dom} missingdob={allmissingpeople.dob}/>
                     </Grid>
                   )
                 })
@@ -59,7 +59,7 @@ export default function Dashboardmain() {
                 <MiniCalendar h='100%' minW='90%' selectRange={false} />
               </Grid>
               <Grid item xs={12} sx={{ mt:4 }}>
-               <Typography variant="h6" textAlign="center"sx={{fontWeight:600}}>OCs Deployed per State in India</Typography> 
+               <Typography variant="h6" textAlign="center"sx={{fontWeight:600}}>Missing people per State in India</Typography> 
                <MapchartDasbboard />
               </Grid>
             </Grid>

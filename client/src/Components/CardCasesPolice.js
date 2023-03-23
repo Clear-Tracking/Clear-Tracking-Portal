@@ -26,6 +26,7 @@ export default function CardCasesPolice(props) {
                         <Box> <Button variant="contained" sx={{background:"#81D0DF"}} disableRipple disableFocusRipple disableTouchRipple disableElevation>Missing</Button></Box>  
                             <Typography variant="body1" sx={{ mt:1,fontFamily: "Poppins", fontStyle: "normal", fontWeight: 400 }}>
                                 {"Missing Date " + props.missingpersondom}
+                                <span style={{paddingLeft:"30px"}}>Missing since: {datediff(props.missingpersondom)}</span>
                             </Typography>
                         </Box>
                     </Grid>
@@ -33,7 +34,7 @@ export default function CardCasesPolice(props) {
                     <Grid item xs={3} md={3} sx={{ borderLeft: "1px solid #BEBEBE" }}>
                         <Box sx={{display:"flex",alignItems:"center",justifyContent:"center",height:"100%",flexDirection:"column"}} >
                             <Typography gutterBottom variant="h5" component="div" textAlign="center" sx={{ fontFamily: "Poppins", fontStyle: 'normal', fontWeight: "bold" }}>
-                                 Age {datediff("8-3-2023","missingdays")}
+                                 Age: {datediff(props.missingdob)}
 
                             </Typography>
                             <Typography gutterBottom variant="h5" component="div" textAlign="center" color={"#4CAF50"} fontWeight="bold" fontFamily={"Poppins"} fontStyle={"normal"}>
