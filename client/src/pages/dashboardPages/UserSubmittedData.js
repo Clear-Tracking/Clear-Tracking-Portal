@@ -37,6 +37,7 @@ export default function UserSubmittedData() {
                             id="outlined-required"
                             label="Name"
                             defaultValue={formfilldisplay.firstName + " " + formfilldisplay.lastName}
+                            inputProps={{readOnly:true}}
                         />
                         <TextField
                         style={{width:"48%"}}
