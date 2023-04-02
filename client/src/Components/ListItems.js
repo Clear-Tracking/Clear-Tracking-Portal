@@ -66,8 +66,8 @@ export function MainListItems(props) {
             <ListItemButton to="/dashboard/" sx={{borderRadius:3}}
             selected={selectedIndex === 0}
             onClick={(event) => handleListItemClick(event, 0)}>
-                <ListItemIcon>
-                    <DashboardIcon />
+                <ListItemIcon >
+                    <DashboardIcon  />
                 </ListItemIcon>
                 <ListItemText primary="Dashboard" />
             </ListItemButton>

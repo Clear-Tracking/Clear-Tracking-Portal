@@ -13,7 +13,7 @@ import { shadows } from '@mui/system';
 export default function CardJustNowPolice(props) {
     return (
         <div>
-            <Box className="CardCasesPolice_display" component={Grid} boxShadow = {"rgba(0, 0, 0, 0.35) 0px 5px 15px"} style={{ background:"#ffffff", borderRadius:"20px", maxWidth:"390px"}}>
+            <Box className="CardCasesPolice_display" component={Grid} boxShadow = {"0px 2px 0px -1px rgba(0,0,0,0.2), 0px 4px 0px -1px rgba(0,0,0,0.14), 0px 1px 0px -1px rgba(0,0,0,0.12)"}  style={{ background:"#ffffff", borderRadius:"20px", border: "1px solid #0077ff", maxWidth:"390px"}}>
             <center><img src={props.personimage}
                 style={{borderRadius:"50%", height:"150px", width:"150px", marginTop:"30px"}}/></center>
             <Typography gutterBottom variant="h5" component="div" textAlign="center" fontWeight="600" fontFamily={"Poppins"} fontStyle={"normal"}lineHeight="143%"letterSpacing="-0.03rem">
