@@ -342,11 +342,13 @@ function PoliceDashboard() {
             </IconButton>
           </Toolbar>
           <Divider />
+          <Box sx={{mx:1}}>
           <List component="nav">
             <MainListItems />
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
+          </Box>
         </Drawer>
         <Box
           component="main"
