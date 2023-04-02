@@ -11,7 +11,7 @@ export default function CardCasesPolice(props) {
         <div>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container
-                    sx={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", background: "#ffffff", borderRadius: "20px", padding: "1rem" }}>
+                    sx={{ boxShadow: "0px 2px 0px -1px rgba(0,0,0,0.2), 0px 4px 0px -1px rgba(0,0,0,0.14), 0px 1px 0px -1px rgba(0,0,0,0.12)",border: "1px solid #0077ff", background: "#ffffff", borderRadius: "20px", padding: "1rem" }}>
                     <Grid item xs={12} md={2}>
                         <Box sx={{display:"flex",alignItems:"center",justifyContent:"center",height:"100%"}}>
                             <img src={props.missingpersonimage}
