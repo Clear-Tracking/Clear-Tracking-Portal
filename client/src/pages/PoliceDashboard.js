@@ -96,33 +96,8 @@ function Copyright(props) {
     </Typography>
   );
 }
-// const [anchorEl, setAnchorEl] = React.useState(null);
-// const open = Boolean(anchorEl);
-// const handleClick = (event) => {
-//   setAnchorEl(event.currentTarget);
-// };
-// const handleClose = () => {
-//   setAnchorEl(null);
-// };
-const drawerWidth = 240;
 
-// const AppBar = styled(MuiAppBar, {
-//   shouldForwardProp: (prop) => prop !== 'open',
-// })(({ theme, open }) => ({
-//   zIndex: theme.zIndex.drawer + 1,
-//   transition: theme.transitions.create(['width', 'margin'], {
-//     easing: theme.transitions.easing.sharp,
-//     duration: theme.transitions.duration.leavingScreen,
-//   }),
-//   ...(open && {
-//     marginLeft: drawerWidth,
-//     width: `calc(100% - ${drawerWidth}px)`,
-//     transition: theme.transitions.create(['width', 'margin'], {
-//       easing: theme.transitions.easing.sharp,
-//       duration: theme.transitions.duration.enteringScreen,
-//     }),
-//   }),
-// }));
+const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -173,10 +148,6 @@ function PoliceDashboard() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -188,6 +159,14 @@ function PoliceDashboard() {
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+  const [anchorProfileMenu, setAnchorProfileMenu] = React.useState(null);
+  const openProfileMenu = Boolean(anchorProfileMenu);
+  const handleClick = (event) => {
+    setAnchorProfileMenu(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorProfileMenu(null);
   };
 
   const menuId = 'primary-search-account-menu';
@@ -304,15 +283,28 @@ function PoliceDashboard() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={handleClick}
               color="inherit"
             >
               <AccountCircle />
+              
             </IconButton>
-            <div style={{display: 'flex',     flexDirection: 'column'}}>
+             <Menu
+                id="basic-menu"
+                anchorEl={anchorProfileMenu}
+                open={openProfileMenu}
+                onClose={handleClose}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
+            {/* <div style={{display: 'flex',     flexDirection: 'column'}}>
               <p style={{marginLeft: '20px', marginBottom: '0px', marginTop: '0px'}}>Officer ID</p>
               <p style={{fontSize: '12px', marginLeft: '20px', marginBottom: '0px', marginTop: '3px', color:'#ccc'}}>ID: 123456</p>
-            </div>
+            </div> */}
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
