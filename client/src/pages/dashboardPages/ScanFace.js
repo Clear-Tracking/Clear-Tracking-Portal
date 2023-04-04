@@ -7,18 +7,18 @@ import Button from '@mui/material/Button';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { useState } from 'react';
 
 
 const videoConstraints = {
-    width: 360,
+    width: 480,
     height: 480,
     facingMode: "user"
 };
 
 function ScanFace() {
-    const [imageSrc, setImageSrc] = useState();
+    const [imageSrc, setImageSrc] = useState("/user.jpg");
     const [open, setOpen] = React.useState(true);
 
 
@@ -29,34 +29,34 @@ function ScanFace() {
 
 
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }} >
-                <><div style={{ marginLeft: `${20}px`, marginTop: `${20}px`, display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end' }}>
+                <><div style={{ marginTop: `${20}px`, display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end' }}>
                     <Webcam
                         style={{ padding: '20px' }}
                         audio={false}
                         height={480}
                         screenshotFormat="image/jpeg"
-                        width={360}
+                        width={480}
                         videoConstraints={videoConstraints}
                     >
 
 
                         {({ getScreenshot }) => (
-                            <Button
-                                style={{ display: 'block', padding: '20px',fontFamily:"Poppins",fontWeight:"bold",color:"black" }}
+                            <Button variant="contained"
                                 onClick={() => {
                                     const imageSrc = getScreenshot();
                                     console.log(imageSrc);
                                     setImageSrc(imageSrc);
                                 }}
+                                startIcon={<CameraAltIcon/>}
                             >
-                                Capture photo
+                                Capture
                             </Button>
                         )}
                     </Webcam>
-                    <img src={imageSrc} width={360} height={480} style={{ padding: '20px' }} />
+                    <img src={imageSrc} width={480} height={480} style={{ padding: '20px',border:"1px solid black" }} />
                 </div>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: `${40}px` }}>
-                        <Button onClick={() => navigate("/matchres", { state: { img: imageSrc } })} style={{color:"black",fontFamily:"Poppins",fontWeight:"bold"}}
+                        <Button variant="contained" color="warning" sx={{width:"20vw"}} onClick={() => navigate("/dashboard/matches", { state: { img: imageSrc } })} 
                         >
                             Search
                         </Button>

@@ -20,6 +20,10 @@ import UserHome from './pages/UserSide/UserDashboardPages/UserHome';
 import MissingPersonProfile from './pages/UserSide/UserDashboardPages/MissingPersonProfile';
 import ReportMissing from './pages/UserSide/UserDashboardPages/ReportMissing';
 import DatabaseViewProfile from './Components/DatabaseViewProfile';
+import Analytics from './pages/dashboardPages/Analytics';
+import MatchResults from './pages/dashboardPages/MatchResults';
+import UserProfile from './pages/UserSide/UserDashboardPages/UserProfile';
+import UserAnalytics from './pages/UserSide/UserDashboardPages/UserAnalytics';
 
 function App() {
 
@@ -41,19 +45,22 @@ function App() {
 
 
             <Route path="scanface" element={<ScanFace />} />
+            <Route path="matches" element={<MatchResults />} />
             {/*on click of caseregistered*/}
             {/* <Route path="usersubmitdata" element={<UserSubmittedData />} /> */}
 
             <Route path="policeprofile" element={<PoliceProfile />} />
-
+            <Route path="analytics" element={<Analytics />} />
           </Route>
 
           {/* <Route path="/usersubmitdata" element={<UserSubmittedData />} /> */}
 
           <Route path="/userdashboard" element={<UserApplication />}>
             <Route path="" element={<UserHome />} />
+            <Route path="profile" element={<UserProfile />} />
             <Route path="reportmissing" element={<ReportMissing />} />
             <Route path="missingpersonprofile" element={<MissingPersonProfile />} />
+            <Route path="analytics" element={<UserAnalytics />}/>
 
 
           </Route>

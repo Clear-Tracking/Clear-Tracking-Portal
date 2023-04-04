@@ -14,65 +14,59 @@ import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import Divider from '@mui/material/Divider';
+import {Link} from 'react-router-dom';
 
 export const mainListItems = (
     <React.Fragment>
-        <ListItemButton to="/userdashboard">
+        <Link  style={{ textDecoration: "none", color: "black" }} to="/userdashboard">
+        <ListItemButton >
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
         </ListItemButton>
-        <ListItemButton to="">
+        </Link>
+        <Link  style={{ textDecoration: "none", color: "black" }} to="/userdashboard/profile" >
+        <ListItemButton >
             <ListItemIcon>
                 <AppRegistrationIcon />
             </ListItemIcon>
             <ListItemText primary="Your Profile" />
         </ListItemButton>
-        <ListItemButton to="/userdashboard/reportmissing">
+        </Link>
+        <Link style={{ textDecoration: "none", color: "black" }} to="/userdashboard/reportmissing">
+        <ListItemButton >
             <ListItemIcon>
                 <HowToRegIcon />
             </ListItemIcon>
             <ListItemText primary="Report Missing" />
         </ListItemButton>
-        <ListItemButton to="/userdashboard/missingpersonprofile">
+        </Link>
+        <Link style={{ textDecoration: "none", color: "black" }} to="/userdashboard/missingpersonprofile">
+        <ListItemButton >
             <ListItemIcon>
                 <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Missing Person Profile" />
         </ListItemButton>
-        <ListItemButton to="">
+        </Link>
+        <Link style={{ textDecoration: "none", color: "black" }} to="/userdashboard/">
+        <ListItemButton >
             <ListItemIcon>
                 <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Notification" />
         </ListItemButton>
+        </Link>
         
-        <ListItemButton>
-            <ListItemIcon>
-                <LayersIcon />
-            </ListItemIcon>
-            <ListItemText primary="Logout" />
-        </ListItemButton>
-    </React.Fragment>
-);
-
-export const secondaryListItems = (
-    <React.Fragment>
-        <ListSubheader component="div" inset>
-            Saved reports
-        </ListSubheader>
+        <Link style={{ textDecoration: "none", color: "black" }} to="/userdashboard/analytics">
         <ListItemButton>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Generate report" />
+            <ListItemText primary="Analytics" />
         </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Last quarter" />
-        </ListItemButton>
+        </Link>
     </React.Fragment>
 );

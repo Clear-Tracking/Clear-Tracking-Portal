@@ -52,19 +52,19 @@ export default function UserHome() {
     //   );
     // }
     
-    <Grid container spacing={1} >
+    <Grid container spacing={3} >
       {itemData.map((item) => (
         <Grid item lg={2} md={3} sm={4} xs={6}>
-          <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center", flexDirection: "column", background: "#dedede", borderRadius: 3 }}>
+          <Box sx={{ flexGrow: 1, display: "flex",alignItems:"center",  flexDirection: "column" }}>
 
-            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center",width:"100%" }}>
+            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center",width:"100%",borderRadius: 3 }}>
               <img src={item.img}
-                style={{ height: "10rem", width: "100%",objectFit: "cover"}} />
+                style={{ height: "10rem", width: "100%",objectFit: "cover",borderRadius:15}} />
             </Box>
 
 
-            <Box sx={{ display: "flex", justifyContent: "center", mt: 1, height: "100%", flexDirection: "column" }}>
-              <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: "center", fontFamily: "Poppins", fontStyle: 'normal', fontWeight: 600, color: "black" }}>
+            <Box sx={{ display: "flex", mt: 1, height: "100%" }}>
+              <Typography gutterBottom variant="body1" component="div" sx={{ textAlign:"center",fontWeight:600,fontFamily: "Poppins", fontStyle: 'normal',  color: "black" }}>
                 {item.title}
               </Typography>
             </Box>
