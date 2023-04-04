@@ -17,8 +17,8 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from '../../Components/UserApplicationList';
-
+import { mainListItems } from '../../Components/UserApplicationList';
+import MobileDrawer from '../../Components/MobileDrawer';
 import { Outlet } from 'react-router-dom';
 
 function Copyright(props) {
@@ -43,15 +43,7 @@ const AppBar = styled(MuiAppBar, {
     transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
-    }),
-    ...(open && {
-        marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    }),
+    })
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -94,10 +86,7 @@ function UserApplication() {
                 <CssBaseline />
                 <AppBar position="absolute" open={open}>
                     <Toolbar
-                        sx={{
-                            pr: '24px',
-                            backgroundColor: "pink" // keep right padding when drawer closed
-                        }}
+                        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
                     >
                         <IconButton
                             edge="start"
@@ -106,7 +95,7 @@ function UserApplication() {
                             onClick={toggleDrawer}
                             sx={{
                                 marginRight: '36px',
-                                ...(open && { display: 'none' }),
+
                             }}
                         >
                             <MenuIcon />
@@ -127,27 +116,31 @@ function UserApplication() {
                         </IconButton>
                     </Toolbar>
                 </AppBar>
-                <Drawer variant="permanent" open={open}>
-                    <Toolbar
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'flex-end',
-                            px: [1],
-                            
-                        }}
-                    >
-                        <IconButton onClick={toggleDrawer}>
-                            <ChevronLeftIcon />
-                        </IconButton>
-                    </Toolbar>
-                    <Divider />
-                    <List component="nav">
-                        {mainListItems}
-                        <Divider sx={{ my: 1 }} />
-                        {secondaryListItems}
-                    </List>
-                </Drawer> 
+                {
+                    window.innerWidth > 800 ? (
+                    <Drawer variant="permanent" open={open}>
+                        <Toolbar
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'flex-end',
+                                px: [1],
+
+                            }}
+                        >
+                            <IconButton onClick={toggleDrawer}>
+                                <ChevronLeftIcon />
+                            </IconButton>
+                        </Toolbar>
+                        <Divider />
+                        <List component="nav">
+                            {mainListItems}
+                        </List>
+                    </Drawer>):(
+                        <MobileDrawer open={open} />
+                    )
+                }
+
                 <Box
                     component="main"
                     sx={{
@@ -158,7 +151,7 @@ function UserApplication() {
                     }}
                 >
                     <Toolbar />
-                    <Box sx={{minHeight:"84vh",padding:2}} >
+                    <Box sx={{ minHeight: "84vh", padding: 2 }} >
                         <Outlet />
                     </Box>
 

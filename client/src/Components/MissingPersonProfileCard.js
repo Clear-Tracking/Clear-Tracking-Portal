@@ -15,7 +15,7 @@ export default function MissingPersonProfileCard() {
 
     return (
         
-        <Box sx={{ flexGrow: 1, display:"flex",alignItems: "center",flexDirection:"column",boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",width:"100%",borderRadius:2,padding:2 }}>
+        <Box sx={{ flexGrow: 1, display:"flex",alignItems: "center",flexDirection:"column",boxShadow: "0px 2px 0px -1px rgba(0,0,0,0.2), 0px 4px 0px -1px rgba(0,0,0,0.14), 0px 1px 0px -1px rgba(0,0,0,0.12)",border: "1px solid #0077ff",width:"100%",borderRadius:2,padding:2 }}>
                 
                     
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
