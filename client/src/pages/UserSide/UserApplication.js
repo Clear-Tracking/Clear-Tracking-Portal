@@ -84,7 +84,7 @@ function UserApplication() {
         <ThemeProvider theme={mdTheme}>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <AppBar position="absolute" open={open}>
+                <AppBar position="absolute" open={open} sx={{backgroundColor:"skyblue"}}>
                     <Toolbar
                         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
                     >

@@ -51,7 +51,7 @@ export const mainListItems = (
             <ListItemText primary="Missing Person Profile" />
         </ListItemButton>
         </Link>
-        <Link style={{ textDecoration: "none", color: "black" }} to="/userdashboard/notification">
+        <Link style={{ textDecoration: "none", color: "black" }} to="/userdashboard/">
         <ListItemButton >
             <ListItemIcon>
                 <PeopleIcon />
