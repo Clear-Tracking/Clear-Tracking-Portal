@@ -21,6 +21,8 @@ import MissingPersonProfile from './pages/UserSide/UserDashboardPages/MissingPer
 import ReportMissing from './pages/UserSide/UserDashboardPages/ReportMissing';
 import DatabaseViewProfile from './Components/DatabaseViewProfile';
 import Analytics from './pages/dashboardPages/Analytics';
+import MatchResults from './pages/dashboardPages/MatchResults';
+
 function App() {
 
   return (
@@ -41,6 +43,7 @@ function App() {
 
 
             <Route path="scanface" element={<ScanFace />} />
+            <Route path="matches" element={<MatchResults />} />
             {/*on click of caseregistered*/}
             {/* <Route path="usersubmitdata" element={<UserSubmittedData />} /> */}
 
