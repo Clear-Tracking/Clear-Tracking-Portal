@@ -47,7 +47,7 @@ export default function ViewDetails(params) {
                         <Grid container>
                             <Grid item xs={4}>
                                 <Box sx={{ display: 'flex', height: "100%", flexDirection: "column", justifyContent: "center" }}>
-                                    <img src={formfilldisplay.personpic} style={{ height: "65%" }}
+                                    <img src={formfilldisplay.personpic} style={{ height: "65%",borderRadius:15 }}
                                     />
                                 </Box>
                             </Grid>

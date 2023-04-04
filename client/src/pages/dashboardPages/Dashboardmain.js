@@ -7,7 +7,6 @@ import MiniCalendar from '../../Components/MiniCalendar';
 import CardJustNowPolice from '../../Components/CardJustNowPolice';
 import CardCasesPolice from '../../Components/CardCasesPolice';
 import Typography from '@mui/material/Typography';
-import MapchartDasbboard from '../../Components/MapchartDashboard';
 import { Container } from '@mui/material';
 import Userformdata from "../../assets/data/userformdata.json"
 import AllMissingPeopleData from "../../assets/data/missingPeopleDataset.json"

@@ -28,14 +28,14 @@ export default function MissingPersonProfileCard() {
                     <Typography gutterBottom variant="h5" component="div" align="center" sx={{ fontFamily: "Poppins", fontStyle: 'normal', fontWeight: 600, color: "black" }}>
                         Charlie Puth
                     </Typography>
-                    <Typography variant="body2" align="center" sx={{ fontFamily: "Poppins", fontStyle: "normal", fontWeight: 400 }}>
+                    <Typography variant="body1" align="center" sx={{ fontFamily: "Poppins", fontStyle: "normal", fontWeight: 400 }}>
                         {"Missing Date: " + "12-3-23"}
                     </Typography>
                 </Box>
                 
                 
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", flexDirection: "column" }} >
-                    <Typography gutterBottom variant="body2" component="div" align="center" sx={{ fontFamily: "Poppins", fontStyle: 'normal', fontWeight: 400 }}>
+                    <Typography gutterBottom variant="body1" component="div" align="center" sx={{ fontFamily: "Poppins", fontStyle: 'normal', fontWeight: 400 }}>
                         {"Date of Birth: " +"1-3-20"}
                     </Typography>
                     <Typography gutterBottom variant="h6" component="div" align="center" color={"#4CAF50"} fontWeight="bold" fontFamily={"Poppins"} fontStyle={"normal"}>

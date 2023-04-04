@@ -22,7 +22,7 @@ import ReportMissing from './pages/UserSide/UserDashboardPages/ReportMissing';
 import DatabaseViewProfile from './Components/DatabaseViewProfile';
 import Analytics from './pages/dashboardPages/Analytics';
 import MatchResults from './pages/dashboardPages/MatchResults';
-
+import UserProfile from './pages/UserSide/UserDashboardPages/UserProfile';
 function App() {
 
   return (
@@ -55,6 +55,7 @@ function App() {
 
           <Route path="/userdashboard" element={<UserApplication />}>
             <Route path="" element={<UserHome />} />
+            <Route path="profile" element={<UserProfile />} />
             <Route path="reportmissing" element={<ReportMissing />} />
             <Route path="missingpersonprofile" element={<MissingPersonProfile />} />
 
