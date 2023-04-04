@@ -18,7 +18,7 @@ import PieChartIcon from '@mui/icons-material/PieChart';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
+import Divider from '@mui/material/Divider';
 // const theme = createTheme({
 //   overrides: {
 //     IconButton: {
@@ -63,7 +63,7 @@ export function MainListItems(props) {
 
         <React.Fragment>
             <ThemeProvider theme={theme}>
-                <Link style={{textDecoration:"none",color:"black"}}  to="/dashboard/">
+                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard/">
                     <ListItemButton sx={{ borderRadius: 3 }}
                         selected={selectedIndex === 0}
                         onClick={(event) => handleListItemClick(event, 0)}>
@@ -73,7 +73,7 @@ export function MainListItems(props) {
                         <ListItemText primary="Dashboard" />
                     </ListItemButton>
                 </Link>
-                <Link style={{textDecoration:"none",color:"black"}}  to="/dashboard/caseregister">
+                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard/caseregister">
                     <ListItemButton sx={{ borderRadius: 3 }}
                         selected={selectedIndex === 1}
                         onClick={(event) => handleListItemClick(event, 1)}>
@@ -83,7 +83,7 @@ export function MainListItems(props) {
                         <ListItemText primary="Registered Cases" />
                     </ListItemButton>
                 </Link>
-                <Link style={{textDecoration:"none",color:"black"}}  to="/dashboard/launchedfirdata">
+                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard/launchedfirdata">
                     <ListItemButton sx={{ borderRadius: 3 }}
                         selected={selectedIndex === 2}
                         onClick={(event) => handleListItemClick(event, 2)}>
@@ -93,7 +93,7 @@ export function MainListItems(props) {
                         <ListItemText primary="Launched FIR Data" />
                     </ListItemButton>
                 </Link>
-                <Link style={{textDecoration:"none",color:"black"}}  to="/dashboard/database">
+                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard/database">
                     <ListItemButton sx={{ borderRadius: 3 }}
                         selected={selectedIndex === 3}
                         onClick={(event) => handleListItemClick(event, 3)}>
@@ -103,7 +103,7 @@ export function MainListItems(props) {
                         <ListItemText primary="Data Base" />
                     </ListItemButton>
                 </Link>
-                <Link style={{textDecoration:"none",color:"black"}}  to="/dashboard/scanface">
+                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard/scanface">
                     <ListItemButton sx={{ borderRadius: 3 }}
                         selected={selectedIndex === 4}
                         onClick={(event) => handleListItemClick(event, 4)}>
@@ -113,7 +113,7 @@ export function MainListItems(props) {
                         <ListItemText primary="Scan Face" />
                     </ListItemButton>
                 </Link>
-                <Link style={{textDecoration:"none",color:"black"}}  to="">
+                <Link style={{ textDecoration: "none", color: "black" }} to="">
                     <ListItemButton sx={{ borderRadius: 3 }}
                         selected={selectedIndex === 5}
                         onClick={(event) => handleListItemClick(event, 5)}>
@@ -123,7 +123,7 @@ export function MainListItems(props) {
                         <ListItemText primary="Biometric Scan" />
                     </ListItemButton>
                 </Link>
-                <Link style={{textDecoration:"none",color:"black"}}  to="">
+                <Link style={{ textDecoration: "none", color: "black" }} to="">
                     <ListItemButton sx={{ borderRadius: 3 }}
                         selected={selectedIndex === 6}
                         onClick={(event) => handleListItemClick(event, 6)}>
@@ -133,7 +133,28 @@ export function MainListItems(props) {
                         <ListItemText primary="Alert" />
                     </ListItemButton>
                 </Link>
-                
+                <Divider sx={{ my: 1 }} />
+                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard/policeprofile">
+                    <ListItemButton sx={{ borderRadius: 3 }}
+                        selected={selectedIndex === 7}
+                        onClick={(event) => handleListItemClick(event, 7)}>
+                        <ListItemIcon>
+                            <AssignmentIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Profile" />
+                    </ListItemButton >
+                </Link>
+                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard/analytics">
+                    <ListItemButton sx={{ borderRadius: 3 }}
+                        selected={selectedIndex === 8}
+                        onClick={(event) => handleListItemClick(event, 8)}>
+                        <ListItemIcon>
+                            <PieChartIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Analytics" />
+                    </ListItemButton>
+                </Link>
+
             </ThemeProvider>
         </React.Fragment>
     );
@@ -141,26 +162,5 @@ export function MainListItems(props) {
 
 
 
-export const secondaryListItems = (
-    <React.Fragment>
-        <ThemeProvider theme={theme}>
-            <Link style={{textDecoration:"none",color:"black"}}  to="/dashboard/policeprofile">
-            <ListItemButton  sx={{ borderRadius: 3 }}>
-                <ListItemIcon>
-                    <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Profile" />
-            </ListItemButton >
-            </Link>
-            <Link style={{textDecoration:"none",color:"black"}}  to="/dashboard/analytics">
-            <ListItemButton sx={{ borderRadius: 3 }}>
-                <ListItemIcon>
-                    <PieChartIcon />
-                </ListItemIcon>
-                <ListItemText primary="Analytics" />
-            </ListItemButton>
-            </Link>
-        </ThemeProvider>
-    </React.Fragment>
-);
+
 

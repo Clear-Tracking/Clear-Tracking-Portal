@@ -17,7 +17,7 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { MainListItems, secondaryListItems } from '../Components/ListItems';
+import { MainListItems } from '../Components/ListItems';
 import Dashboarddatabase from './dashboardPages/Dashboarddatabase';
 import Dashboardmain from './dashboardPages/Dashboarddatabase';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -345,8 +345,8 @@ function PoliceDashboard() {
           <Box sx={{mx:1}}>
           <List component="nav">
             <MainListItems />
-            <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            
+            
           </List>
           </Box>
         </Drawer>

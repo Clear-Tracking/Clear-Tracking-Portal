@@ -20,7 +20,7 @@ import UserHome from './pages/UserSide/UserDashboardPages/UserHome';
 import MissingPersonProfile from './pages/UserSide/UserDashboardPages/MissingPersonProfile';
 import ReportMissing from './pages/UserSide/UserDashboardPages/ReportMissing';
 import DatabaseViewProfile from './Components/DatabaseViewProfile';
-
+import Analytics from './pages/dashboardPages/Analytics';
 function App() {
 
   return (
@@ -45,7 +45,7 @@ function App() {
             {/* <Route path="usersubmitdata" element={<UserSubmittedData />} /> */}
 
             <Route path="policeprofile" element={<PoliceProfile />} />
-
+            <Route path="analytics" element={<Analytics />} />
           </Route>
 
           {/* <Route path="/usersubmitdata" element={<UserSubmittedData />} /> */}
