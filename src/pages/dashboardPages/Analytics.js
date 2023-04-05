@@ -12,29 +12,35 @@ export default function Dashboarddatabase() {
     return (
 
         <Box sx={{ p: 4 }}>
-            <Grid container spacing={1}>
-                <Grid item xs={5} >
+            <Grid container spacing={3}>
+                <Grid item xs={5}  >
+                    <Box sx={{backgroundColor:"#f1f6fb",borderRadius:4,p:1}}>
                     <Typography variant='h6'style={{ fontFamily: "Poppins", fontStyle: "normal", fontWeight: "bold", letterSpacing: "0.03rem", lineHeight: "143%" }}>
                         Gender Analytics
                     </Typography>
                     <Box sx={{ height: "40vh" }}>
                         <GenderAnalytics />
                     </Box>
+                    </Box>
                 </Grid>
-                <Grid item xs={7} >
+                <Grid item xs={7}  >
+                <Box sx={{backgroundColor:"#f1f6fb",borderRadius:4,p:1}}>
                     <Typography variant='h6'style={{ fontFamily: "Poppins", fontStyle: "normal", fontWeight: "bold", letterSpacing: "0.03rem", lineHeight: "143%" }}>
                         Region Analytics
                     </Typography>
                     <Box sx={{ height: "40vh" }}>
                         <RegionAnalytics />
                     </Box>
+                    </Box>
                 </Grid>
                 <Grid item xs={12} >
+                <Box sx={{backgroundColor:"#f1f6fb",borderRadius:4,p:1}}>
                     <Typography variant='h6'style={{ fontFamily: "Poppins", fontStyle: "normal", fontWeight: "bold", letterSpacing: "0.03rem", lineHeight: "143%" }}>
                         Yearly Analytics
                     </Typography>
                     <Box sx={{ height: "60vh" }}>
                         <YearlyAnalytics />
+                    </Box>
                     </Box>
                 </Grid>
 
