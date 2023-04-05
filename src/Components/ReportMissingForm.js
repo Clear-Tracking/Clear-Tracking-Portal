@@ -130,6 +130,7 @@ export default function ReportMissingForm() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  inputProps={{ readOnly: true }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -140,35 +141,33 @@ export default function ReportMissingForm() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  inputProps={{ readOnly: true }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-              <DesktopDatePicker
-              id="dob"
-              name="dob"
-                label="Date of Birth"
-                inputFormat="DD-MM-YYYY"
-                value={value}
-                onChange={handleChangeDate}
-                renderInput={(params) => <TextField {...params} />}
-              />
+              <TextField
+                  required
+                  fullWidth
+                  id="dob"
+                  label="Date of Birth"
+                  name="dob"
+                  autoComplete="dob"
+                  inputProps={{ readOnly: true }}
+                />
               </Grid>
               <Grid item xs={12} sm={6}>
               <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Gender</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="gender"
-              name='gender'
-              value={gender}
-              label="Gender"
-              onChange={handleChange}
-            >
-              <MenuItem value={10}>Male</MenuItem>
-              <MenuItem value={20}>Female</MenuItem>
-              <MenuItem value={30}>Others</MenuItem>
-            </Select>
+            
+            <TextField
+                  required
+                  fullWidth
+                  id="gender"
+                  label="Gender"
+                  name="gender"
+                  autoComplete="gender"
+                  inputProps={{ readOnly: true }}
+                />
           </FormControl>
           </Box>
           </Grid>
@@ -185,6 +184,7 @@ export default function ReportMissingForm() {
                   id="Address"
                   autoComplete="Address"
                   multiline rows={(4)}
+                  inputProps={{ readOnly: true }}
                 />
               </Grid>
               
@@ -197,6 +197,7 @@ export default function ReportMissingForm() {
                   type="Guardian"
                   id="Guardian"
                   autoComplete="Guardian"
+                  inputProps={{ readOnly: true }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -208,6 +209,7 @@ export default function ReportMissingForm() {
                   id="Contact"
                   type="number"
                   autoComplete="Contact"
+                  inputProps={{ readOnly: true }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
