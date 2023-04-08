@@ -1,11 +1,7 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
-import SignUp from './pages/UserSide/SignUp';
-// import PoliceLogin from './pages/PoliceLogin';
-import Login from './pages/UserSide/Login';
-// import Dashboard from './pages/Dashboard';
-// import Form from './pages/Form';
-// import ScanFace from './pages/ScanFace';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 import PoliceDashboard from './pages/PoliceDashboard';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Dashboarddatabase from './pages/dashboardPages/Dashboarddatabase';
@@ -24,8 +20,53 @@ import Analytics from './pages/dashboardPages/Analytics';
 import MatchResults from './pages/dashboardPages/MatchResults';
 import UserProfile from './pages/UserSide/UserDashboardPages/UserProfile';
 import UserAnalytics from './pages/UserSide/UserDashboardPages/UserAnalytics';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer,toast } from 'react-toastify';
+import { useSelector,useDispatch } from 'react-redux';
+
+// Redux Actions
+import { resetRequestStatus } from './store/globalSlice';
+// Constants
+import { REQUEST_STATUS_SUCCEEDED, REQUEST_STATUS_FAILED, REQUEST_STATUS_LOADING } from './constants/Constants';
+
 
 function App() {
+
+    // Redux State
+    const globalState = useSelector((state) => state.global);
+    const dispatch = useDispatch();
+
+   // toaster for Login state
+   useEffect(() => {
+
+    // In case of success
+    if (globalState.requestStatus === REQUEST_STATUS_SUCCEEDED) {
+      toast.success(globalState.message, {
+        position: "bottom-right",
+        hideProgressBar: false,
+        autoClose: 2000,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+      });
+      dispatch(resetRequestStatus());
+    }
+
+    // In case of failure
+    else if (globalState.requestStatus === REQUEST_STATUS_FAILED) {
+      toast.error(globalState.message, {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+      });
+      dispatch(resetRequestStatus());
+    }
+
+  }, [globalState.requestStatus])
+
 
   return (
     <>
@@ -70,6 +111,8 @@ function App() {
         </Routes>
       </BrowserRouter>
 
+      {/* Toast Container */}
+      <ToastContainer position="bottom-right" autoClose={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable={false} theme="dark" />
     </>
   );
 }
