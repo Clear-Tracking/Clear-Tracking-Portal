@@ -11,164 +11,81 @@ import * as API from "../api";
 
 const initialState = {
     requestStatus: REQUEST_STATUS_LOADING,
-    datasetUploadStatus: REQUEST_STATUS_IDLE,
-    availableDatasets: [],
-    selectedDataset: null,
-    datasetCount: 0,
-    message: null
+    stationFirs:[],
+    allFirs:[],
+    message:null
 }
 
-// export const uploadDataset = createAsyncThunk('/upload-dataset', async ({ dataset, updateProgress }) => {
-//     const response = await API.uploadDataset({ dataset, updateProgress });
-//     return response.data; // response.data is your entire object that is seen in postman as the response
-// });
+export const getAllFirsLaunched = createAsyncThunk("/get-all-firs-launched", async (count) => {
+    const response = await API.getAllFirsLaunched(count);
+    return response.data; // response.data is your entire object that is seen in postman as the response
+});
 
-// export const getAllDatasets = createAsyncThunk('/get-all-datasets', async () => {
-//     const response = await API.getAllDatasets();
-//     return response.data; // response.data is your entire object that is seen in postman as the response
-// });
+export const getStationFirsLaunched = createAsyncThunk("/get-station-firs-launched", async (reqParams) => {
+    const response = await API.getStationFirsLaunched(reqParams);
+    return response.data; // response.data is your entire object that is seen in postman as the response
+});
 
-// // export const exportDataset = createAsyncThunk('/export-dataset', async (formData) => {
-// //     const response = await API.exportDataset(formData);
-// //     return response.data ; // response.data is your entire object that is seen in postman as the response
-// // });
+export const getStationFirsNotLaunched = createAsyncThunk("/get-station-firs-not-launched", async (reqParams) => {
+    const response = await API.getStationFirsNotLaunched(reqParams);
+    return response.data; // response.data is your entire object that is seen in postman as the response
+});
 
-// export const deleteDataset = createAsyncThunk('/delete-dataset', async (formData) => {
-//     const response = await API.deleteDataset(formData);
-//     return response.data ; // response.data is your entire object that is seen in postman as the response
-// });
+const policeDashboardSlice = createSlice({
+    name: "policeDashboard",
+    initialState: initialState,
+    reducers: {
+        resetRequestStatus:(state,action) => {
+            state.requestStatus = REQUEST_STATUS_IDLE;
+            state.message = null;
+        },
+    },
+    extraReducers: (builder) => {
+        builder
 
-// export const renameDataset = createAsyncThunk('/rename-dataset', async (formData) => {
-//     const response = await API.renameDataset(formData);
-//     return {...response.data,...formData} ; // response.data is your entire object that is seen in postman as the response
-// });
+            // Get All Firs Launched
+            .addCase(getAllFirsLaunched.pending, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_LOADING;
+            })
+            .addCase(getAllFirsLaunched.fulfilled, (state, action) => { // action.payload is the response.data
+                state.requestStatus = REQUEST_STATUS_SUCCEEDED;
+                state.allFirs = action.payload.data.map((fir) => fir.attributes);
+            })
+            .addCase(getAllFirsLaunched.rejected, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_FAILED;
+                state.message = action.payload.error.message
+            }) 
 
-// const policeDashboardSlice = createSlice({
-//     name: "policeDashboard",
-//     initialState: initialState,
-//     reducers: {
-//         updateSelectedDataset:(state,action) => {
-//             state.selectedDataset = action.payload;
-//         },
-//         resetRequestStatus:(state,action) => {
-//             state.requestStatus = REQUEST_STATUS_IDLE;
-//             state.datasetUploadStatus = REQUEST_STATUS_IDLE;
-//             state.message = null;
-//         },
-//         setRequestStatus:(state,action) =>{
-//             return {...state,...action.payload};
-//         }
-//     },
-//     extraReducers: (builder) => {
-//         builder
+            // Get Station Firs Launched
+            .addCase(getStationFirsLaunched.pending, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_LOADING;
+            })
+            .addCase(getStationFirsLaunched.fulfilled, (state, action) => { // action.payload is the response.data
+                state.requestStatus = REQUEST_STATUS_SUCCEEDED;
+                state.stationFirs = action.payload.data.map((fir) => fir.attributes);
+            })
+            .addCase(getStationFirsLaunched.rejected, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_FAILED;
+                state.message = action.payload.error.message
+            })
 
-            
-//             // Dataset Upload
-//             .addCase(uploadDataset.pending, (state, action) => {
-//                 state.datasetUploadStatus = REQUEST_STATUS_LOADING;
-//             })
-//             .addCase(uploadDataset.fulfilled, (state, action) => { // action.payload is the response.dat
-//                 if (action.payload.status) {
-//                     state.datasetUploadStatus = REQUEST_STATUS_SUCCEEDED;
-//                     state.message = "Dataset Uploaded Successfully";
-//                 } else {
-//                     state.datasetUploadStatus = REQUEST_STATUS_FAILED;
-//                     state.message = action.payload.error; // error sent by us from our backend
-//                 }
-//             })
-//             .addCase(uploadDataset.rejected, (state, action) => {
-//                 state.datasetUploadStatus = REQUEST_STATUS_FAILED;
-//                 state.message = CUSTOM_ERROR_MESSAGE; // unknow error in request
-//             })
+            // Get Station Firs Not Launched
+            .addCase(getStationFirsNotLaunched.pending, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_LOADING;
+            })
+            .addCase(getStationFirsNotLaunched.fulfilled, (state, action) => { // action.payload is the response.data
+                state.requestStatus = REQUEST_STATUS_SUCCEEDED;
+                state.stationFirs = action.payload.data.map((fir) => fir.attributes);
+            })
+            .addCase(getStationFirsNotLaunched.rejected, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_FAILED;
+                state.message = action.payload.error.message
+            })
 
-//             // Get All Datasets
-//             .addCase(getAllDatasets.pending, (state, action) => {
-//                 state.requestStatus = REQUEST_STATUS_LOADING;
-//             })
-//             .addCase(getAllDatasets.fulfilled, (state, action) => { // action.payload is the response.data
-//                 if (action.payload.status) {
-//                     state.requestStatus = REQUEST_STATUS_SUCCEEDED;
-//                     state.availableDatasets = action.payload.data.datasets;
-//                     if(action.payload.data.db_count === 0){
-//                         state.selectedDataset = null;
-//                     }
-//                     else if (action.payload.data.db_count !== state.datasetCount ) {
-//                         state.selectedDataset = action.payload.data.datasets[0]?.name;
-//                     }
-//                     state.datasetCount = action.payload.data.db_count;
-//                     state.message = null;
-//                 } else {
-//                     state.requestStatus = REQUEST_STATUS_FAILED;
-//                     state.message = action.payload.error; // error sent by us from our backend
-//                 }
-//             })
-//             .addCase(getAllDatasets.rejected, (state, action) => {
-//                 state.requestStatus = REQUEST_STATUS_FAILED;
-//                 state.message = CUSTOM_ERROR_MESSAGE; // unknow error in request
-//             })
+    }
 
-//             // ================ Older Approach for Export Datatset using REdux Toolkit ====================
-//             // Export Dataset
-//             // .addCase(exportDataset.pending, (state, action) => {
-//             //     state.requestStatus = REQUEST_STATUS_LOADING;
-//             // })
-//             // .addCase(exportDataset.fulfilled, (state, action) => { // action.payload is the response.data
-//             //     if (action.payload.status) {
-//             //         state.requestStatus = REQUEST_STATUS_SUCCEEDED;
-//             //         state.message = "Dataset Exported Successfully";
-//             //     } else {
-//             //         state.requestStatus = REQUEST_STATUS_FAILED;
-//             //         state.message = action.payload.error; // error sent by us from our backend
-//             //     }
-//             // })
-//             // .addCase(exportDataset.rejected, (state, action) => {
-//             //     state.requestStatus = REQUEST_STATUS_FAILED;
-//             //     state.message = CUSTOM_ERROR_MESSAGE; // unknow error in request
-//             // })
+});
 
-//             // Delete Dataset
-//             .addCase(deleteDataset.pending, (state, action) => {
-//                 state.requestStatus = REQUEST_STATUS_LOADING;
-//             })
-//             .addCase(deleteDataset.fulfilled, (state, action) => { // action.payload is the response.data
-//                 if (action.payload.status) {
-//                     state.requestStatus = REQUEST_STATUS_SUCCEEDED;
-//                     state.message = "Dataset Deleted Successfully";
-//                 } else {
-//                     state.requestStatus = REQUEST_STATUS_FAILED;
-//                     state.message = action.payload.error; // error sent by us from our backend
-//                 }
-//             })
-//             .addCase(deleteDataset.rejected, (state, action) => {
-//                 state.requestStatus = REQUEST_STATUS_FAILED;
-//                 state.message = CUSTOM_ERROR_MESSAGE; // unknow error in request
-//             })
+export const { resetRequestStatus} = policeDashboardSlice.actions;
 
-//             // Rename Dataset
-//             .addCase(renameDataset.pending, (state, action) => {
-//                 state.requestStatus = REQUEST_STATUS_LOADING;
-//             })
-//             .addCase(renameDataset.fulfilled, (state, action) => { // action.payload is the response.data
-//                 if (action.payload.status) {
-//                     state.requestStatus = REQUEST_STATUS_SUCCEEDED;
-//                     if (state.selectedDataset === action.payload.dataset_name){
-//                         state.selectedDataset = action.payload.new_dataset_name;
-//                     }
-//                     state.message = "Dataset Renamed Successfully";
-//                 } else {
-//                     state.requestStatus = REQUEST_STATUS_FAILED;
-//                     state.message = action.payload.error; // error sent by us from our backend
-//                 }
-//             })
-//             .addCase(renameDataset.rejected, (state, action) => {
-//                 state.requestStatus = REQUEST_STATUS_FAILED;
-//                 state.message = CUSTOM_ERROR_MESSAGE; // unknow error in request
-//             })
-
-//     }
-
-// });
-
-// export const {updateSelectedDataset, resetRequestStatus, setRequestStatus} = policeDashboardSlice.actions;
-
-// export default policeDashboardSlice.reducer;
+export default policeDashboardSlice.reducer;

@@ -23,10 +23,16 @@ import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
-
+import {toast} from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+
+// Redux Actions
 import {logout} from '../store/globalSlice';
+import { resetRequestStatus } from '../store/policeDashboardSlice';
+
+// constants
+import { REQUEST_STATUS_FAILED, REQUEST_STATUS_SUCCEEDED,REQUEST_STATUS_LOADING } from '../constants/Constants';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -135,6 +141,8 @@ function PoliceDashboard() {
   // Redux state
   const dispatch = useDispatch();
   const globalState = useSelector((state) => state.global);
+  const policeDashboardState = useSelector((state) => state.policeDashboard);
+
 
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -172,14 +180,49 @@ function PoliceDashboard() {
     dispatch(logout());
   };
 
+  // toaster for Login state
+  useEffect(() => {
+
+    // In case of success
+    if (policeDashboardState.requestStatus === REQUEST_STATUS_SUCCEEDED) {
+      toast.success(policeDashboardState.message, {
+        position: "bottom-right",
+        hideProgressBar: false,
+        autoClose: 2000,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+      });
+      dispatch(resetRequestStatus());
+    }
+
+    // In case of failure
+    else if (policeDashboardState.requestStatus === REQUEST_STATUS_FAILED) {
+      toast.error(policeDashboardState.message, {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+      });
+      dispatch(resetRequestStatus());
+    }
+
+  }, [policeDashboardState.requestStatus])
+
   // When user is loggout, redirect to login page
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('profile'));
     if (!user) {
       navigate('/', { replace: true });
     }
-  }, [globalState.requestStatus]);  
+  }, [globalState.requestStatus]);
 
+
+  // useEffect(() => {
+  //   console.log(policeDashboardState)
+  // }, [policeDashboardState])
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
