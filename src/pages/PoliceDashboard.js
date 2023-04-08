@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { styled, createTheme, ThemeProvider,alpha} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -10,28 +11,28 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { MainListItems } from '../Components/ListItems';
-import Dashboarddatabase from './dashboardPages/Dashboarddatabase';
-import Dashboardmain from './dashboardPages/Dashboarddatabase';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
-import { Routes, Route, BrowserRouter, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import InputBase from '@mui/material/InputBase';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import {toast} from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+
+// Redux Actions
+import {logout} from '../store/globalSlice';
+import { resetRequestStatus } from '../store/policeDashboardSlice';
+
+// constants
+import { REQUEST_STATUS_FAILED, REQUEST_STATUS_SUCCEEDED,REQUEST_STATUS_LOADING } from '../constants/Constants';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -77,9 +78,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
-
-
 
 
 function Copyright(props) {
@@ -138,6 +136,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme();
 
 function PoliceDashboard() {
+
+  const navigate = useNavigate();
+  // Redux state
+  const dispatch = useDispatch();
+  const globalState = useSelector((state) => state.global);
+  const policeDashboardState = useSelector((state) => state.policeDashboard);
+
+
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -168,6 +174,55 @@ function PoliceDashboard() {
   const handleClose = () => {
     setAnchorProfileMenu(null);
   };
+
+  const handleLogout = () => {
+    setAnchorProfileMenu(null);
+    dispatch(logout());
+  };
+
+  // toaster for Login state
+  useEffect(() => {
+
+    // In case of success
+    if (policeDashboardState.requestStatus === REQUEST_STATUS_SUCCEEDED) {
+      toast.success(policeDashboardState.message, {
+        position: "bottom-right",
+        hideProgressBar: false,
+        autoClose: 2000,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+      });
+      dispatch(resetRequestStatus());
+    }
+
+    // In case of failure
+    else if (policeDashboardState.requestStatus === REQUEST_STATUS_FAILED) {
+      toast.error(policeDashboardState.message, {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+      });
+      dispatch(resetRequestStatus());
+    }
+
+  }, [policeDashboardState.requestStatus])
+
+  // When user is loggout, redirect to login page
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('profile'));
+    if (!user) {
+      navigate('/', { replace: true });
+    }
+  }, [globalState.requestStatus]);
+
+
+  // useEffect(() => {
+  //   console.log(policeDashboardState)
+  // }, [policeDashboardState])
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -299,7 +354,7 @@ function PoliceDashboard() {
                 }}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
             {/* <div style={{display: 'flex',     flexDirection: 'column'}}>
               <p style={{marginLeft: '20px', marginBottom: '0px', marginTop: '0px'}}>Officer ID</p>

@@ -1,10 +1,8 @@
-import * as React from 'react';
+import React,{useState,useEffect} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -12,6 +10,15 @@ import Grid from '@mui/material/Grid';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+// Redux Actions
+import { login,resetRequestStatus } from '../store/globalSlice';
+
+// constants
+import { REQUEST_STATUS_FAILED, REQUEST_STATUS_LOADING, REQUEST_STATUS_SUCCEEDED } from '../constants/Constants';
 
 function Copyright(props) {
   return (
@@ -29,14 +36,60 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
+
+  const navigate = useNavigate();
+  // Redux State
+  const dispatch = useDispatch();
+  const globalState = useSelector((state) => state.global);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
+    const formData = {
+      username: data.get('username'),
       password: data.get('password'),
-    });
+    }
+
+    dispatch(login(formData));
+
   };
+
+  // When Login Request is Completed
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("profile"));
+    // If user is logged in
+    if (user) {
+      // If user is police
+      if (user.isPolice) {
+        navigate('/dashboard', { replace: true });
+      }
+      // If user is not police
+      else {
+        navigate('/userdashboard', { replace: true });
+      }
+    }
+
+  }, [globalState.requestStatus]);
+
+  // When user is logged in but tries to access login page
+  useEffect(() => {
+
+    const user = JSON.parse(localStorage.getItem("profile"));
+
+    // If user is logged in 
+    if (user) {
+      // If user is police
+      if (user.isPolice) {
+        navigate('/dashboard', { replace: true });
+      }
+      // If user is not police
+      else {
+        navigate('/userdashboard', { replace: true });
+      }
+    }
+
+  }, []);
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -77,9 +130,9 @@ export default function Login() {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
+                id="username"
+                label="Username or Email"
+                name="username"
                 autoComplete="email"
                 autoFocus
               />
@@ -106,7 +159,7 @@ export default function Login() {
                 Sign In
               </Button>
               <Grid container>
-                
+
                 <Grid item>
                   <Link href="/usersignup" variant="body2">
                     {"Don't have an account? Sign Up"}
