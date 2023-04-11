@@ -28,6 +28,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { resetRequestStatus } from './store/globalSlice';
 // Constants
 import { REQUEST_STATUS_SUCCEEDED, REQUEST_STATUS_FAILED, REQUEST_STATUS_LOADING } from './constants/Constants';
+import PersonFoundData from './pages/dashboardPages/PersonFoundData';
 
 
 function App() {
@@ -78,6 +79,7 @@ function App() {
           <Route path="/dashboard" element={<PoliceDashboard />}>
             <Route path="" element={<Dashboardmain />} />
             <Route path="caseregister" element={<RegisteredCasesDisplay />} />
+            <Route path="alert" element={<PersonFoundData />} />
             <Route path="launchedfirdata" element={<Launchedfirdata />} />
             <Route path="database" element={<Dashboarddatabase />} />
             {/*on click to view comlete profile from tables of faunched fir and database*/}

@@ -20,11 +20,14 @@ const initialState = {
 }
 
 export const login = createAsyncThunk('/login', async (formData) => {
-    const queryParams = `filters[$or][0][email][$eq]=${formData.username}&filters[$or][1][username][$eq]=${formData.username}&filters[password][$eq]=${formData.password}&fields[0]=email&fields[1]=aadharNo&fields[2]=username&fields[3]=isPolice&fields[4]=stationId`;
+    const queryParams = `filters[$or][0][email][$eq]=${formData.username}&filters[$or][1][username][$eq]=${formData.username}&filters[password][$eq]=${formData.password}&fields[0]=email&fields[1]=AadharNo&fields[2]=username&fields[3]=isPolice&fields[4]=stationId`;
     const response = await API.login({queryParams:queryParams});
     return response.data; // response.data is your entire object that is seen in postman as the response
 });
-
+export const signUp = createAsyncThunk('/signup', async (formData) => {
+    const response = await API.signUp(formData);
+    return response.data; // response.data is your entire object that is seen in postman as the response
+});
 
 const globalSlice = createSlice({
     name: "global",
@@ -57,10 +60,11 @@ const globalSlice = createSlice({
                 
                 // If User exits and Correct Credentials
                 if (action.payload.data.length > 0) {
+                   
                     state.requestStatus = REQUEST_STATUS_SUCCEEDED;
                     state.username = action.payload.data[0].attributes.username;
                     state.email = action.payload.data[0].attributes.email;
-                    state.aadharNo = action.payload.data[0].attributes.aadharNo;
+                    state.aadharNo = action.payload.data[0].attributes.AadharNo;
                     state.isPolice = action.payload.data[0].attributes.isPolice;
                     state.stationId = action.payload.data[0].attributes.stationId;
                     state.message = "Login Successful";
@@ -79,6 +83,21 @@ const globalSlice = createSlice({
                 state.requestStatus = REQUEST_STATUS_FAILED;
                 state.message = action.payload.error.message
             })
+
+            //signup
+            .addCase(signUp.pending, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_LOADING;
+            })
+            .addCase(signUp.fulfilled, (state, action) => { // action.payload is the respons
+                
+                state.requestStatus = REQUEST_STATUS_SUCCEEDED;
+                state.message = "Signup Successful"
+            })
+            .addCase(signUp.rejected, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_FAILED;
+                state.message = action.payload.error.message
+            })
+
 
     }
 

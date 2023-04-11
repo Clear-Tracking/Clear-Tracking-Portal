@@ -23,7 +23,7 @@ import { useState } from 'react';
 import { updateFir, getStationFirsNotLaunched } from '../store/policeDashboardSlice';
 
 
-export default function UserRegisteredCard(props) {
+export default function FoundPersonCard(props) {
 
     const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
@@ -38,26 +38,7 @@ export default function UserRegisteredCard(props) {
     const [launchedBy, setLaunchedBy] = useState("")
     const dispatch = useDispatch()
 
-    const handleLaunchFir = async() => {
-        const firObjectUpdate = {... props.firObject, firLaunchedBy: launchedBy, isLaunched:true}
-        delete firObjectUpdate.id;
-        delete firObjectUpdate.createdAt;
-        delete firObjectUpdate.publishedAt;
-        delete firObjectUpdate.updatedAt;
-        delete firObjectUpdate.personpic;
-        //console.log(firObjectUpdate)
-        const formData = {
-            data: firObjectUpdate
-        }
-        await dispatch(updateFir({id: props.firObject.id, formData: formData}));
-        setOpen(false);
-        const stationId = JSON.parse(localStorage.getItem('profile'))?.stationId;
-        if (stationId) {
-            dispatch(getStationFirsNotLaunched({ stationId: stationId,count:25}));
-          }
-        
-    }
-    console.log(props.firObject)
+    
 
     // const viewProfileClicked = () => navigate('/dashboard/firdetails/' + props.firObject.id)
 
@@ -136,6 +117,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Gender"
                                             defaultValue={props.firObject.gender}
+                                            inputProps={{ readOnly: true }}
                                         /><br />
                                         <TextField
                                             style={{ width: "48%" }}
@@ -143,6 +125,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="DOB"
                                             defaultValue={props.firObject.dob}
+                                            inputProps={{ readOnly: true }}
                                         />
                                         <TextField
                                             required
@@ -150,6 +133,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Aadhar Number"
                                             defaultValue={props.firObject.aadhar}
+                                            inputProps={{ readOnly: true }}
                                         />
                                         <br />
 
@@ -159,6 +143,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Place of Missing"
                                             defaultValue={props.firObject.pom}
+                                            inputProps={{ readOnly: true }}
                                         />
                                         <TextField
                                             style={{ width: "48%" }}
@@ -166,6 +151,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Date of Missing"
                                             defaultValue={props.firObject.dom}
+                                            inputProps={{ readOnly: true }}
                                         />
 
 
@@ -176,6 +162,7 @@ export default function UserRegisteredCard(props) {
                                             label="Address"
                                             maxRows={4}
                                             defaultValue={props.firObject.address}
+                                            inputProps={{ readOnly: true }}
                                         />
                                         <br /><span style={{ fontWeight: "bold", marginLeft: "15px", fontSize: "1.1rem", marginTop: "10px" }}>Physical Features</span><br />
                                         <TextField
@@ -184,6 +171,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Height (cm)"
                                             defaultValue={props.firObject.height}
+                                            inputProps={{ readOnly: true }}
                                         />
                                         <TextField
                                             style={{ width: "31%" }}
@@ -191,6 +179,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Weight (Kg)"
                                             defaultValue={props.firObject.weight}
+                                            inputProps={{ readOnly: true }}
                                         />
                                         <TextField
                                             style={{ width: "31%" }}
@@ -198,6 +187,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Complexion"
                                             defaultValue={props.firObject.complexion}
+                                            inputProps={{ readOnly: true }}
                                         />
 
                                         <TextField
@@ -206,6 +196,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Eye Colour"
                                             defaultValue={props.firObject.Eye}
+                                            inputProps={{ readOnly: true }}
                                         />
                                         <TextField
                                             style={{ width: "23%" }}
@@ -213,6 +204,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Hair Colour"
                                             defaultValue={props.firObject.Hair}
+                                            inputProps={{ readOnly: true }}
                                         />
                                         <TextField
                                             style={{ width: "23%" }}
@@ -220,6 +212,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Any face Marks"
                                             defaultValue={props.firObject.Face}
+                                            inputProps={{ readOnly: true }}
                                         />
 
                                         <TextField
@@ -228,6 +221,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Any Disability"
                                             defaultValue={props.firObject.aod}
+                                            inputProps={{ readOnly: true }}
                                         />
                                         <TextField
                                             style={{ width: "31%" }}
@@ -235,6 +229,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Police Station Id"
                                             defaultValue={props.firObject.stationId}
+                                            inputProps={{ readOnly: true }}
                                         />
                                         <TextField
                                             style={{ width: "31%" }}
@@ -242,6 +237,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Guardian Name"
                                             defaultValue={props.firObject.guardian}
+                                            inputProps={{ readOnly: true }}
                                         />
                                         <TextField
                                             style={{ width: "31%" }}
@@ -249,6 +245,7 @@ export default function UserRegisteredCard(props) {
                                             id="outlined-required"
                                             label="Contact Number"
                                             defaultValue={props.firObject.Contact}
+                                            inputProps={{ readOnly: true }}
                                         /><br />
                                         <span style={{ fontWeight: "bold", marginLeft: "15px", fontSize: "1.1rem", marginTop: "10px" }}>Filled by Police</span><br />
                                         <TextField
@@ -256,8 +253,8 @@ export default function UserRegisteredCard(props) {
                                             fullWidth
                                             id="outlined-required"
                                             label="FIR Launched By"
-                                            value={launchedBy} onChange={(e) => setLaunchedBy(e.target.value)}
-
+                                            defaultValue={props.firObject.firLaunchedBy}
+                                            inputProps={{ readOnly: true }}
                                         />
                                     </form>
                                 </Box>
@@ -266,7 +263,7 @@ export default function UserRegisteredCard(props) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions style={{ padding: "20px" }}>
-                    <Button variant="contained" onClick={handleLaunchFir}>Launch FIR</Button>
+                    
                     <Button variant='contained' onClick={handleClose} color="error">Close</Button>
                     {/* <Button variant='contained' onClick={viewdata} autoFocus>
                         View

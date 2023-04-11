@@ -1,16 +1,42 @@
-import React from 'react'
-import MissingPersonProfileCard from '../../../Components/MissingPersonProfileCard'
+
+import * as React from 'react';
+
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-export default function MissingPersonProfile() {
+import { Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import UserRegisteredMissingProfile from '../../../Components/UserRegisteredMissingProfile';
+import { userRegistered } from '../../../store/policeDashboardSlice';
+
+
+export default function MissingPersonProfile(props) {
+  // Redux State
+  const dispatch = useDispatch();
+  const policeDashboardState = useSelector((state) => state.policeDashboard);
+
+  const familyRegisteredAadhar = JSON.parse(localStorage.getItem('profile'))?.AadharNo;
+
+  // Call Backend APIs when Page Loads
+  useEffect(() => {
+    if (familyRegisteredAadhar) {
+      dispatch(userRegistered({ familyRegisteredAadhar: familyRegisteredAadhar, count: 1 }));
+    }
+  }, []);
+  console.log(policeDashboardState)
+
   return (
-    <Box sx={{mx:"2rem"}}>
-      <Grid container spacing={2} sx={{mt:1}}>
-        
-        <Grid item md={4} xs={12} sm={6} lg={3} xl={2}><MissingPersonProfileCard/>
-        </Grid>
-        
-      </Grid>
-    </Box>
-  )
+    <>
+      {
+        policeDashboardState.stationFirs.map(formdata => {
+          //const url= backendURl+formdata.personpic.data.attributes.url
+          //console.log(formdata)
+          return (
+            <UserRegisteredMissingProfile missingObject={formdata} />
+
+          )
+        })
+      }
+    </>
+  );
 }

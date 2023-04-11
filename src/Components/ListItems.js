@@ -123,7 +123,7 @@ export function MainListItems(props) {
                         <ListItemText primary="Biometric Scan" />
                     </ListItemButton>
                 </Link>
-                <Link style={{ textDecoration: "none", color: "black" }} to="">
+                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard/alert">
                     <ListItemButton sx={{ borderRadius: 3 }}
                         selected={selectedIndex === 6}
                         onClick={(event) => handleListItemClick(event, 6)}>
