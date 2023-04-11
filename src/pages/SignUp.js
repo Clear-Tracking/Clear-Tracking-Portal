@@ -10,7 +10,9 @@ import Grid from '@mui/material/Grid';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { signUp } from '../store/globalSlice'
 
 function Copyright(props) {
   return (
@@ -28,23 +30,33 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const dispatch = useDispatch()
+
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
-    event.preventDefault();};
-  
+    event.preventDefault();
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const formData = {
+      data: {
+        email: data.get("email"),
+        AadharNo: data.get("aadhar"),
+        stationId: null,
+        isPolice: false,
+        username: data.get("username"),
+        password: data.get("password")
+      }
+    }
+    dispatch(signUp(formData))
   };
 
-  
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -81,49 +93,15 @@ export default function SignUp() {
               Sign Up
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-            <TextField
+              <TextField
                 margin="normal"
                 required
                 fullWidth
-                id="first_name"
-                label="First Name"
-                name="first_name"
+                id="username"
                 type="text"
-                autoComplete="first_name"
-                autoFocus
-              />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="last_name"
-                label="Last Name"
-                type="text"
-                name="last_name"
-                autoComplete="last_name"
-                
-              />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="phone"
-                label="Phone Number"
-                type="number"
-                name="phone"
-                autoComplete="phone"
-                
-              />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="aadhar"
-                type="number"
-                label="Aadhar Number"
-                name="aadhar"
-                autoComplete="aadhar"
-                
+                label="Username"
+                name="username"
+
               />
               <TextField
                 margin="normal"
@@ -135,7 +113,18 @@ export default function SignUp() {
                 name="email"
                 autoComplete="email"
               />
-             <TextField
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="aadhar"
+                type="number"
+                label="Aadhar Number"
+                name="aadhar"
+                autoComplete="aadhar"
+
+              />
+              <TextField
                 margin="normal"
                 required
                 fullWidth
@@ -144,7 +133,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />              
+              />
               <Button
                 type="submit"
                 fullWidth
@@ -154,7 +143,7 @@ export default function SignUp() {
                 Sign Up
               </Button>
               <Grid container>
-                
+
                 <Grid item>
                   <Link href="/" variant="body2">
                     {"Already have an account? Sign In"}

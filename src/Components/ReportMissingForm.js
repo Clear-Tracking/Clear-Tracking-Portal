@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useNavigate } from "react-router-dom";
-
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,7 +17,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Paper } from '@mui/material';
+import { FormLabel, Input, Paper } from '@mui/material';
 
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -27,7 +26,12 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
-
+import { useDispatch } from 'react-redux';
+import { createFir } from '../store/policeDashboardSlice';
+import { DatePicker } from '@mui/x-date-pickers';
+import { useSelector } from 'react-redux';
+import { checkAadharDetail } from '../store/policeDashboardSlice';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -47,22 +51,78 @@ const theme = createTheme();
 export default function ReportMissingForm() {
 
   let navigate = useNavigate(); 
+  
+  // Redux State
+  const dispatch = useDispatch();
+  const getAadharDataState = useSelector((state) => state.policeDashboard);
+
+  const [nearestStation, setnearestStation] = React.useState('');
+
+  const handleChangeNearestStation = (event) => {
+    setnearestStation(event.target.value);
+  };
+  const todayDate = Date.now()
+  const [domPicked, setDomPicked] = React.useState(dayjs(todayDate));
+  //console.log(domPicked)
+  const [gender, setgender] = React.useState('');
+  const familyRegisteredAadhar = JSON.parse(localStorage.getItem('profile'))?.AadharNo;
+  const handleChange = (event) => {
+    setgender(event.target.value);
+  };
+
+const [aadharFirstName, setaadharFirstName] = useState("")
+
+const checkAadhar = (e)=>{
+  console.log(e.target.value)
+   
+  dispatch(checkAadharDetail({AadharNo: e.target.value}))
+  // setaadharFirstName(getAadharDataState.aadharData.firstName)
+};
+
+
+
+console.log(getAadharDataState.aadharData)
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log("FIR form submitted"/*{
-      email: data.get('email'),
-      password: data.get('password'),
-    }*/);
-    navigate("/dashboard")
-  };
-
-
-  const [gender, setgender] = React.useState('');
-  
-  const handleChange = (event) => {
-    setgender(event.target.value);
+    const reader = new FileReader();
+    reader.onload = () =>{
+      const imageData = reader.result;
+      const formData = {
+        data: {
+          "personpic": imageData,
+          "firstName": data.get("firstName"),
+          "lastName": data.get("lastName"),
+          "dob": data.get("dob"),
+          "gender": data.get("gender"),
+          "address": data.get("Address"),
+          "guardian":  data.get("Guardian"),
+          "Contact": data.get("Contact"),
+          "pom": data.get("pom"),
+          "dom": domPicked.format("YYYY-MM-DD"),
+          "complexion": data.get("complexion"),
+          "Eye": data.get("Eye"),
+          "Hair": data.get("Hair"),
+          "Face": data.get("face"),
+          "aod": data.get("aod"),
+          "height": data.get("Height"),
+          "weight": data.get("Weight"),
+          "isLaunched": false,
+          "firLaunchedBy": " ",
+          "stationId": data.get("nearestPoliceStation"),
+          "aadhar": data.get("aadhar"),
+          "found": false,
+          "familyRegisteredAadhar": familyRegisteredAadhar
+        }
+      }
+      
+      
+      
+      dispatch(createFir(formData))
+    };
+    reader.readAsDataURL(data.get("uploadedpic"))
+    
   };
 
   const [value, setValue] = React.useState('');
@@ -99,13 +159,14 @@ export default function ReportMissingForm() {
           
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Grid container spacing={2}>
+            <Grid container spacing={3}>
             
               <Grid item xs={12} >
               <Typography variant="h5"style={{textAlign:"center",fontFamily:"Poppins",fontWeight:"bold",fontStyle:"normal",lineHeight:"143%"}}>
             Registeration Form
           </Typography>
               </Grid>
+              
               <Grid item xs={12}>
                 <TextField
                   required
@@ -114,6 +175,7 @@ export default function ReportMissingForm() {
                   label="Aadhar Number"
                   id="aadhar"
                   type="number"
+                  onChange={checkAadhar}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -122,15 +184,32 @@ export default function ReportMissingForm() {
               </Grid>
               
               <Grid item xs={12} sm={6}>
+              {/* <TextField
+                required
+                id="firstName"
+                label="Required"
+                // defaultValue={getAadharDataState.aadharData.firstName}
+                inputProps={{
+                  readOnly: true
+                }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              /> */}
                 <TextField
-                  autoComplete="given-name"
                   name="firstName"
                   required
                   fullWidth
                   id="firstName"
                   label="First Name"
                   autoFocus
-                  inputProps={{ readOnly: true }}
+                  value={getAadharDataState.aadharData.firstName}
+                  inputProps={{
+                    readOnly: true
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -141,7 +220,13 @@ export default function ReportMissingForm() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
-                  inputProps={{ readOnly: true }}
+                  value={getAadharDataState.aadharData.lastname}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputProps={{
+                    readOnly: true
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -152,7 +237,13 @@ export default function ReportMissingForm() {
                   label="Date of Birth"
                   name="dob"
                   autoComplete="dob"
-                  inputProps={{ readOnly: true }}
+                  value={getAadharDataState.aadharData.dob}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputProps={{
+                    readOnly: true
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -166,15 +257,19 @@ export default function ReportMissingForm() {
                   label="Gender"
                   name="gender"
                   autoComplete="gender"
-                  inputProps={{ readOnly: true }}
+                  value={getAadharDataState.aadharData.gender}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputProps={{
+                    readOnly: true
+                  }}
                 />
           </FormControl>
           </Box>
           </Grid>
-          <Grid item xs={3} >
-                <img src="https://tse2.mm.bing.net/th?id=OIP.UJewJHqS1HF431mLgpRPFQHaHa&pid=Api&P=0" style={{height:"100%",width:"100%",border:"1px solid #eeeeee"}}/>
-              </Grid>  
-              <Grid item xs={9}>
+          
+              <Grid item xs={12} lg={12}>
                 <TextField
                   required
                   fullWidth
@@ -184,7 +279,13 @@ export default function ReportMissingForm() {
                   id="Address"
                   autoComplete="Address"
                   multiline rows={(4)}
-                  inputProps={{ readOnly: true }}
+                  value={getAadharDataState.aadharData.address}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputProps={{
+                    readOnly: true
+                  }}
                 />
               </Grid>
               
@@ -197,7 +298,13 @@ export default function ReportMissingForm() {
                   type="Guardian"
                   id="Guardian"
                   autoComplete="Guardian"
-                  inputProps={{ readOnly: true }}
+                  value={getAadharDataState.aadharData.fathername}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputProps={{
+                    readOnly: true
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -209,14 +316,27 @@ export default function ReportMissingForm() {
                   id="Contact"
                   type="number"
                   autoComplete="Contact"
-                  inputProps={{ readOnly: true }}
+                  value={getAadharDataState.aadharData.phoneNo}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputProps={{
+                    readOnly: true
+                  }}
                 />
               </Grid>
+              <Grid item xs={2} lg={2} >
+            <FormLabel>Image: </FormLabel>
+            </Grid>
+
+          <Grid item xs={10} lg={10}>
+            <Input type="file" id="uploadedpic" name="uploadedpic" fullWidth/>
+              </Grid>  
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  name="Place of missing"
+                  name="pom"
                   label="Place of missing"
                   type="text"
                   id="pom"
@@ -224,23 +344,37 @@ export default function ReportMissingForm() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-              <DesktopDatePicker
-                label="Missing Date"
-                id="dom"
-                inputFormat="DD-MM-YYYY"
-                value={missValue}
-                onChange={handleChangeMissingDate}
-                renderInput={(params) => <TextField {...params} />}
-              />
+              <DatePicker
+              
+          label="Date of Missing"
+          value={domPicked}
+          onChange={(newValue) => setDomPicked(newValue)}
+        />
+              </Grid>
+              <Grid item xs={12} sm={6} lg={12}>
+              <FormControl fullWidth>
+        <InputLabel id="nearestPoliceStation">Nearest Police Station</InputLabel>
+        <Select
+          labelId="nearestPoliceStation"
+          id="nearestPoliceStation"
+          value={nearestStation}
+          label="nearestPoliceStation"
+          name="nearestPoliceStation"
+          onChange={handleChangeNearestStation}
+        >
+          <MenuItem value={1}>Borivali Police Station</MenuItem>
+          <MenuItem value={2}>Samta Nagar Police Station</MenuItem>
+        </Select>
+      </FormControl>
               </Grid>
               <Typography variant="h5" style={{marginTop:10,fontFamily:"Poppins",fontWeight:"bold",fontStyle:"normal",lineHeight:"143%"}}>
               Physical Features
-          </Typography>
+              </Typography>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="Complexion"
+                  name="complexion"
                   label="Complexion"
                   type="text"
                   id="complexion"
@@ -253,7 +387,7 @@ export default function ReportMissingForm() {
                   fullWidth
                   name="Eye"
                   label="Eye Colour"
-                  type="Eye"
+                  type="text"
                   id="Eye"
                   autoComplete="Eye"
                 />
@@ -264,7 +398,7 @@ export default function ReportMissingForm() {
                   fullWidth
                   name="Hair"
                   label="Hair Colour"
-                  type="Hair"
+                  type="text"
                   id="Hair"
                   autoComplete="Hair"
                 />
@@ -275,16 +409,16 @@ export default function ReportMissingForm() {
                   fullWidth
                   name="face"
                   label="Face Marks (if any)"
-                  type="Face"
-                  id="Face"
-                  autoComplete="Face"
+                  type="text"
+                  id="face"
+                  autoComplete="face"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   
                   fullWidth
-                  name="Any other disability"
+                  name="aod"
                   label="Any other disability (if any)"
                   type="text"
                   id="aod"
@@ -319,12 +453,13 @@ export default function ReportMissingForm() {
                   label="I want to receive updates via email."
                 />
               </Grid>
-            </Grid>
+              </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              
             >
               Submit
             </Button>

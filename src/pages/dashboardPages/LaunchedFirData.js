@@ -5,43 +5,99 @@ import ViewDetails from '../../Components/ViewDetails';
 import userformData from "../../assets/data/userformdata.json"
 import Box from '@mui/material/Box';
 import { datediff } from '../../util';
+import { useSelector, useDispatch } from 'react-redux';
+import { getStationFirsLaunched } from '../../store/policeDashboardSlice';
+import { useEffect } from 'react';
+import { backendURl } from '../../constants/Constants';
 
 const columns = [
-  { field: 'id', headerAlign: "center", align: "center", headerName: 'ID', width: 75, headerClassName: 'super-app-theme--header' },
-  { field: 'personpic', headerAlign: "center", align: "center", headerClassName: 'super-app-theme--header', headerName: 'Photo', width: 150, renderCell: (params) => <img src={params.value} height="50px" width="50px" style={{ borderRadius: "50%" }} /> },
+  {
+    field: 'id',
+    headerAlign: "center",
+    align: "center",
+    headerName: 'ID',
+    width: 75,
+    headerClassName: 'super-app-theme--header'
+  },
+  {
+    field: 'personpic',
+    headerAlign: "center",
+    headerName: 'Photo',
+    headerClassName: 'super-app-theme--header',
+    align: "center",
+    width: 150,
+    renderCell: (params) => <img src={params.row.personpic} height="50px" width="50px" style={{ borderRadius: "50%" }} />
+  },
   {
     field: 'fullName',
-    headerName: 'Full name', headerAlign: "center", align: "center", headerClassName: 'super-app-theme--header',
+    headerName: 'Name',
     description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 300,
+    sortable: false, headerAlign: "center",
+    headerClassName: 'super-app-theme--header',
+    width: 300, align: "center",
     valueGetter: (params) =>
       `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   },
-  { field: 'missingdays', align: "center", headerAlign: "center", headerName: 'Missing Days', type: 'number', headerClassName: 'super-app-theme--header', width: 200, valueGetter: (params) => datediff(params.row.dom) },
+  {
+    field: 'missingdays',
+    headerName: 'Missing Days',
+    headerAlign: "center",
+    headerClassName: 'super-app-theme--header',
+    align: "center",
+    type: 'number',
+    width: 200,
+    valueGetter: (params) => datediff(params.row.dom)
+  },
   {
     field: 'age',
-    headerName: 'Age', align: "center", headerAlign: "center", headerClassName: 'super-app-theme--header',
-    type: 'number',
+    headerName: 'Age', align: "center",
+    headerClassName: 'super-app-theme--header',
+    headerAlign: "center",
     width: 90,
     valueGetter: (params) => datediff(params.row.dob)
   },
-  {
-    field: 'place', align: "center", headerName: 'Place', headerAlign: "center", width: 200, headerClassName: 'super-app-theme--header',
-    valueGetter: (params) =>
-      `${params.row.pom}`
-  },
 
   {
-    field: 'view', align: "center", headerName: 'View', headerAlign: "center", headerClassName: 'super-app-theme--header', width: 200, renderCell: (params) => <ViewDetails perid={params.row.id} personpicture={params.row.personpic}
-      personfirstname={params.row.firstName} personlastname={params.row.lastName} personmissing={params.row.dom}
-      gender={params.row.gender} />
+    field: 'place',
+    headerName: 'Place',
+    headerAlign: "center",
+    headerClassName: 'super-app-theme--header',
+    align: "center",
+    width: 200,
+    valueGetter: (params) => `${params.row.pom}`
+  },
+  {
+    field: 'view',
+    headerName: 'View',
+    align: "center",
+    headerAlign: "center",
+    headerClassName: 'super-app-theme--header',
+    width: 200,
+    renderCell: (params) => <ViewDetails formDataView={params.row} 
+    // perid={params.row.id} personpicture={params.row.personpic}
+    //   personfirstname={params.row.firstName} personlastname={params.row.lastName} personmissing={params.row.dom}
+    //   gender={params.row.gender} 
+      />
   },
 
 
 ];
 
 export default function Launchedfirdata() {
+
+   // Redux State
+   const dispatch = useDispatch();
+   const policeDashboardState = useSelector((state) => state.policeDashboard);
+ 
+   const stationId = JSON.parse(localStorage.getItem('profile'))?.stationId;
+ 
+   // Call Backend APIs when Page Loads
+   useEffect(() => {
+     if (stationId) {
+      dispatch(getStationFirsLaunched({ stationId: stationId,count:25}));
+     }
+   }, []);
+
   return (
     <>
       <Box sx={{ p: 4 }}>
@@ -51,7 +107,7 @@ export default function Launchedfirdata() {
         <div className='container' style={{ marginTop: "1rem", height: "80vh", background: "#ffffff" }}>
 
           <DataGrid
-            rows={userformData}
+            rows={policeDashboardState.stationFirs}
             columns={columns}
             pageSize={6}
             rowsPerPageOptions={[5]}

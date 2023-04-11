@@ -1,4 +1,4 @@
-function datediff(dateinput,outputreq) {
+function datediff(dateinputgiven,outputreq) {
     // var dob = new Date("9/20/2001");  
     // console.log(Date.now())
     // //calculate month difference from current date in time  
@@ -29,6 +29,11 @@ function datediff(dateinput,outputreq) {
 
     // var daysmissing=currentAge*365
     // console.log(currentAge);
+    var dateinputformatted = dateinputgiven.match(/\d+/g),
+  yearformat = dateinputformatted[0].substring(2), // get only two digits
+  monthformat = dateinputformatted[1], dayformat = dateinputformatted[2];
+
+  var dateinput= dayformat+'-'+monthformat+'-'+yearformat;
     let temp = dateinput.split("-") 
     var d1 = Date.parse(`${temp[1]}-${temp[0]}-${temp[2]}`)
     var d2 = Date.now()

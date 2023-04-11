@@ -10,6 +10,7 @@ import MissingPercentage from '../../Components/MissingPercentage';
 import MonthlyStatistics from '../../Components/MonthlyStatistics';
 import { REQUEST_STATUS_LOADING } from '../../constants/Constants';
 import CircularProgress from '@mui/material/CircularProgress';
+import { backendURl } from '../../constants/Constants';
 
 import { useSelector,useDispatch } from 'react-redux';
 import { getStationFirsNotLaunched,getAllFirsLaunched } from '../../store/policeDashboardSlice';
@@ -51,6 +52,7 @@ export default function Dashboardmain() {
                   </Grid>
                 ) : (
                   policeDashboardState.stationFirs.map(formdata => {
+                    //const url= backendURl+formdata.personpic.data.attributes.url;
                     return (
                       <Grid item xs={12} md={4} >
                         <CardJustNowPolice personimage={formdata.personpic} personfirstname={formdata.firstName} personlastname={formdata.lastName} gender={formdata.gender} dateofmissing={formdata.dom} />
@@ -74,6 +76,7 @@ export default function Dashboardmain() {
                   </Grid>
                 ) : (
                   policeDashboardState.allFirs.map(allmissingpeople => {
+                    //const url= backendURl+allmissingpeople.personpic.data.attributes.url;
                     return (
                       <Grid item xs={12}>
                         <CardCasesPolice missingpersonfirstname={allmissingpeople.firstName} missingpersonlastname={allmissingpeople.lastName} missingpersonimage={allmissingpeople.personpic}

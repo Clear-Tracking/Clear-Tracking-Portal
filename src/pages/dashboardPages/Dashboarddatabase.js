@@ -5,6 +5,11 @@ import ViewDetails from '../../Components/ViewDetails';
 import allmissingpeople from "../../assets/data/missingPeopleDataset.json"
 import Box from '@mui/material/Box';
 import { datediff } from '../../util';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllFirsLaunched } from '../../store/policeDashboardSlice';
+import { useEffect } from 'react';
+import { backendURl } from '../../constants/Constants';
+
 const columns = [
   {
     field: 'id',
@@ -21,7 +26,7 @@ const columns = [
     headerClassName: 'super-app-theme--header',
     align: "center",
     width: 150,
-    renderCell: (params) => <img src={params.value} height="50px" width="50px" style={{ borderRadius: "50%" }} />
+    renderCell: (params) => <img src={params.row.personpic} height="50px" width="50px" style={{ borderRadius: "50%" }} />
   },
   {
     field: 'fullName',
@@ -41,7 +46,7 @@ const columns = [
     align: "center",
     type: 'number',
     width: 200,
-    valueGetter:(params)=>datediff(params.row.dom)
+    valueGetter: (params) => datediff(params.row.dom)
   },
   {
     field: 'age',
@@ -49,7 +54,7 @@ const columns = [
     headerClassName: 'super-app-theme--header',
     headerAlign: "center",
     width: 90,
-    valueGetter:(params)=>datediff(params.row.dob)
+    valueGetter: (params) => datediff(params.row.dob)
   },
 
   {
@@ -68,9 +73,11 @@ const columns = [
     headerAlign: "center",
     headerClassName: 'super-app-theme--header',
     width: 200,
-    renderCell: (params) => <ViewDetails perid={params.row.id} personpicture={params.row.personpic}
-      personfirstname={params.row.firstName} personlastname={params.row.lastName} personmissing={params.row.dom}
-      gender={params.row.gender} />
+    renderCell: (params) => <ViewDetails formDataView={params.row} 
+    // perid={params.row.id} personpicture={params.row.personpic}
+    //   personfirstname={params.row.firstName} personlastname={params.row.lastName} personmissing={params.row.dom}
+    //   gender={params.row.gender} 
+    />
   },
 
 
@@ -78,6 +85,18 @@ const columns = [
 
 
 export default function Dashboarddatabase() {
+  // Redux State
+  const dispatch = useDispatch();
+
+  const policeDashboardState = useSelector((state) => state.policeDashboard);
+  const stationId = JSON.parse(localStorage.getItem('profile'))?.stationId;
+  useEffect(() => {
+
+    dispatch(getAllFirsLaunched());
+
+  }, []);
+  //console.log(policeDashboardState.allFirs)
+
   return (
 
     <Box sx={{ p: 4 }}>
@@ -87,7 +106,7 @@ export default function Dashboarddatabase() {
       <div className='container' style={{ marginTop: "1rem", height: "80vh", background: "#ffffff" }}>
 
         <DataGrid
-          rows={allmissingpeople}
+          rows={policeDashboardState.allFirs}
           columns={columns}
           pageSize={6}
           rowsPerPageOptions={[5]}

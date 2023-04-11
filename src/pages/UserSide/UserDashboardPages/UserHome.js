@@ -7,9 +7,26 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import UserMainDisplayCard from '../../../Components/UserMainDisplayCars';
+import UserMainDisplayCard from '../../../Components/UserHomePageDisplay';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getStationFirsNotLaunched, getAllFirsLaunched } from '../../../store/policeDashboardSlice';
+import { REQUEST_STATUS_LOADING } from '../../../constants/Constants';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function UserHome() {
+  // Redux State
+  const dispatch = useDispatch();
+  const viewAllCards = useSelector((state) => state.policeDashboard);
+
+  const useremail = JSON.parse(localStorage.getItem('profile'))?.email;
+
+  // Call Backend APIs when Page Loads
+  useEffect(() => {
+    if (useremail) {
+      dispatch(getAllFirsLaunched(25));
+    }
+  }, []);
   return (
     //     /*<Box sx={{ flexGrow: 1 }}>
     //       <Grid container spacing={2}>
@@ -51,20 +68,39 @@ export default function UserHome() {
     //     </ImageList>
     //   );
     // }
-    
-    <Grid container spacing={3} >
-      {itemData.map((item) => (
-        <Grid item lg={2} md={3} sm={4} xs={6}>
-          <Box sx={{ flexGrow: 1, display: "flex",alignItems:"center",  flexDirection: "column" }}>
 
-            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center",width:"100%",borderRadius: 3 }}>
+    <Grid container spacing={3} >
+      {
+        viewAllCards.requestStatus === REQUEST_STATUS_LOADING ? (
+          // false? (
+          <Grid item xs={12}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+              <CircularProgress />
+            </Box>
+          </Grid>
+        ) : (
+          viewAllCards.allFirs.map(formdata => {
+            //const url= backendURl+formdata.personpic.data.attributes.url;
+            return (
+              <Grid item lg={2} md={3} sm={4} xs={6}>
+                <UserMainDisplayCard userSideCardDisplay={formdata}/>
+              </Grid>
+            )
+          })
+        )
+      }
+      {/* {itemData.map((item) => (
+        <Grid item lg={2} md={3} sm={4} xs={6}>
+          <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center", flexDirection: "column" }}>
+
+            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", borderRadius: 3 }}>
               <img src={item.img}
-                style={{ height: "10rem", width: "100%",objectFit: "cover",borderRadius:15}} />
+                style={{ height: "10rem", width: "100%", objectFit: "cover", borderRadius: 15 }} />
             </Box>
 
 
             <Box sx={{ display: "flex", mt: 1, height: "100%" }}>
-              <Typography gutterBottom variant="body1" component="div" sx={{ textAlign:"center",fontWeight:600,fontFamily: "Poppins", fontStyle: 'normal',  color: "black" }}>
+              <Typography gutterBottom variant="body1" component="div" sx={{ textAlign: "center", fontWeight: 600, fontFamily: "Poppins", fontStyle: 'normal', color: "black" }}>
                 {item.title}
               </Typography>
             </Box>
@@ -73,7 +109,7 @@ export default function UserHome() {
 
           </Box>
         </Grid>
-      ))}
+      ))} */}
     </Grid>
   );
 }
@@ -98,5 +134,5 @@ const itemData = [
     title: 'Charlie Puth',
     //author: '@bkristastucchio',
   },
- ]; 
+];
 

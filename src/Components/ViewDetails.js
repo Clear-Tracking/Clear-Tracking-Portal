@@ -10,9 +10,13 @@ import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import formfilldisplay from "../assets/data/formfilldisplay.json"
 
-export default function ViewDetails(params) {
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { foundPerson,getStationFirsNotLaunched,getAllFirsLaunched  } from '../store/policeDashboardSlice';
+//import formfilldisplay from "../assets/data/formfilldisplay.json"
+
+export default function ViewDetails(props) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -24,9 +28,29 @@ export default function ViewDetails(params) {
     };
     const navigate = useNavigate();
 
+    //const viewdata = () => navigate('/dashboard/viewpersondetail/' + props.perid)
+    const dispatch = useDispatch()
 
-    const viewdata = () => navigate('/dashboard/viewpersondetail/' + params.perid)
-
+    const foundPersonEvent = async() => {
+        const firObjectUpdateFound = {... props.formDataView, found:"true"}
+        delete firObjectUpdateFound.id;
+        delete firObjectUpdateFound.createdAt;
+        delete firObjectUpdateFound.publishedAt;
+        delete firObjectUpdateFound.updatedAt;
+        delete firObjectUpdateFound.personpic;
+        console.log(firObjectUpdateFound)
+        const formData = {
+            data: firObjectUpdateFound
+        }
+        await dispatch(foundPerson({id: props.formDataView.id, formData: formData}));
+        setOpen(false);
+        
+        const stationId = JSON.parse(localStorage.getItem('profile'))?.stationId;
+        if (stationId) {
+            dispatch(getStationFirsNotLaunched({ stationId: stationId,count:25}));
+          }
+          dispatch(getAllFirsLaunched());
+    }
     return (
         <div>
             <Button variant="contained" onClick={handleClickOpen}>
@@ -47,7 +71,7 @@ export default function ViewDetails(params) {
                         <Grid container>
                             <Grid item xs={4}>
                                 <Box sx={{ display: 'flex', height: "100%", flexDirection: "column", justifyContent: "center" }}>
-                                    <img src={formfilldisplay.personpic} style={{ height: "65%",borderRadius:15 }}
+                                    <img src={props.formDataView.personpic} style={{ height: "100%", borderRadius: 15 }}
                                     />
                                 </Box>
                             </Grid>
@@ -60,169 +84,143 @@ export default function ViewDetails(params) {
 
 
                                     <form>
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "48%" }}
                                             required
                                             id="outlined-required"
                                             label="Name"
-                                            defaultValue={formfilldisplay.firstName + " " + formfilldisplay.lastName}
+                                            defaultValue={props.formDataView.firstName + " " + props.formDataView.lastName}
                                             inputProps={{ readOnly: true }}
                                         />
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "48%" }}
                                             required
                                             id="outlined-required"
                                             label="Gender"
-                                            defaultValue={formfilldisplay.gender}
+                                            defaultValue={props.formDataView.gender}
                                         /><br />
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "48%" }}
                                             required
                                             id="outlined-required"
                                             label="DOB"
-                                            defaultValue={formfilldisplay.dob}
+                                            defaultValue={props.formDataView.dob}
                                         />
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             required
                                             style={{ width: "48%" }}
                                             id="outlined-required"
                                             label="Aadhar Number"
-                                            defaultValue={formfilldisplay.aadhar}
+                                            defaultValue={props.formDataView.aadhar}
                                         />
                                         <br />
 
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "48%" }}
                                             required
                                             id="outlined-required"
                                             label="Place of Missing"
-                                            defaultValue={formfilldisplay.pom}
+                                            defaultValue={props.formDataView.pom}
                                         />
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "48%" }}
                                             required
                                             id="outlined-required"
                                             label="Date of Missing"
-                                            defaultValue={formfilldisplay.dom}
+                                            defaultValue={props.formDataView.dom}
                                         />
 
 
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             required
                                             fullWidth
                                             id="outlined-required"
                                             label="Address"
                                             maxRows={4}
-                                            defaultValue={formfilldisplay.Address}
+                                            defaultValue={props.formDataView.address}
                                         />
                                         <br /><span style={{ fontWeight: "bold", marginLeft: "15px", fontSize: "1.1rem", marginTop: "10px" }}>Physical Features</span><br />
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "31%" }}
                                             required
                                             id="outlined-required"
                                             label="Height (cm)"
-                                            defaultValue={formfilldisplay.Height}
+                                            defaultValue={props.formDataView.height}
                                         />
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "31%" }}
                                             required
                                             id="outlined-required"
                                             label="Weight (Kg)"
-                                            defaultValue={formfilldisplay.Weight}
+                                            defaultValue={props.formDataView.weight}
                                         />
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "31%" }}
                                             required
                                             id="outlined-required"
                                             label="Complexion"
-                                            defaultValue={formfilldisplay.complexion}
+                                            defaultValue={props.formDataView.complexion}
                                         />
 
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "23%" }}
                                             required
                                             id="outlined-required"
                                             label="Eye Colour"
-                                            defaultValue={formfilldisplay.Eye}
+                                            defaultValue={props.formDataView.Eye}
                                         />
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "23%" }}
                                             required
                                             id="outlined-required"
                                             label="Hair Colour"
-                                            defaultValue={formfilldisplay.Hair}
+                                            defaultValue={props.formDataView.Hair}
                                         />
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "23%" }}
                                             required
                                             id="outlined-required"
                                             label="Any face Marks"
-                                            defaultValue={formfilldisplay.Face}
+                                            defaultValue={props.formDataView.Face}
                                         />
 
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "23%" }}
                                             required
                                             id="outlined-required"
                                             label="Any Disability"
-                                            defaultValue={formfilldisplay.aod}
+                                            defaultValue={props.formDataView.aod}
                                         />
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "31%" }}
                                             required
                                             id="outlined-required"
-                                            label="Neared Police Station"
-                                            defaultValue={formfilldisplay.neareststation}
+                                            label="Police Station Id"
+                                            defaultValue={props.formDataView.stationId}
                                         />
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "31%" }}
                                             required
                                             id="outlined-required"
                                             label="Guardian Name"
-                                            defaultValue={formfilldisplay.Guardian}
+                                            defaultValue={props.formDataView.guardian}
                                         />
-                                        <TextField InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        <TextField
                                             style={{ width: "31%" }}
                                             required
                                             id="outlined-required"
                                             label="Contact Number"
-                                            defaultValue={formfilldisplay.Contact}
+                                            defaultValue={props.formDataView.Contact}
                                         /><br />
+                                        <span style={{ fontWeight: "bold", marginLeft: "15px", fontSize: "1.1rem", marginTop: "10px" }}>Filled by Police</span><br />
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            id="outlined-required"
+                                            label="FIR Launched By"
+                                            value={props.formDataView.firLaunchedBy}
 
+                                        />
                                     </form>
                                 </Box>
                             </Grid>
@@ -230,7 +228,7 @@ export default function ViewDetails(params) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions style={{ padding: "20px" }}>
-                    <Button variant="contained">Found</Button>
+                    <Button variant="contained" onClick={foundPersonEvent}>Found</Button>
                     <Button variant='contained' onClick={handleClose} color="error">Close</Button>
                     {/* <Button variant='contained' onClick={viewdata} autoFocus>
                         View
