@@ -62,6 +62,11 @@ export const userRegistered = createAsyncThunk("/fammilyMember-registered-missin
     return response.data; // response.data is your entire object that is seen in postman as the response
 });
 
+export const userRegisteredStatus = createAsyncThunk("/fammilyMember-registered-missing-data-status", async (reqParams) => {
+    const response = await API.userRegisteredStatus(reqParams);
+    return response.data; // response.data is your entire object that is seen in postman as the response
+});
+
 
 
 const policeDashboardSlice = createSlice({
@@ -206,6 +211,21 @@ const policeDashboardSlice = createSlice({
                 });
             })
             .addCase(userRegistered.rejected, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_FAILED;
+                state.message = action.error.message
+            })
+
+            // Get Station Firs Launched status
+            .addCase(userRegisteredStatus.pending, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_LOADING;
+            })
+            .addCase(userRegisteredStatus.fulfilled, (state, action) => { // action.payload is the response.data
+                state.requestStatus = REQUEST_STATUS_SUCCEEDED;
+                state.stationFirs = action.payload.data.map((missingPersonProfile) => {
+                    return { ...missingPersonProfile.attributes, id: missingPersonProfile.id }
+                });
+            })
+            .addCase(userRegisteredStatus.rejected, (state, action) => {
                 state.requestStatus = REQUEST_STATUS_FAILED;
                 state.message = action.error.message
             })

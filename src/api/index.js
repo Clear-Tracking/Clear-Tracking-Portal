@@ -36,4 +36,5 @@ export const foundPerson = (id,formData) => API.put(`/reoprt-firs/${id}`, formDa
 export const foundPersonsData = (reqParams) => API.get(`/reoprt-firs?filters[found]=true&filters[isLaunched]=true&filters[stationId]=${reqParams.stationId}&pagination[limit]=${reqParams.count}&populate=personpic`);
 export const checkAadharDetail = (requestData) => API.get(`/aadhars?filters[AadharNo]=${requestData.AadharNo}`);
 export const userRegistered = (reqParams) => API.get(`/reoprt-firs?filters[found]=false&filters[familyRegisteredAadhar]=${reqParams.familyRegisteredAadhar}&pagination[limit]=${reqParams.count}&populate=personpic`);
+export const userRegisteredStatus = (reqParams) => API.get(`/reoprt-firs?filters[familyRegisteredAadhar]=${reqParams.familyRegisteredAadhar}&pagination[limit]=${reqParams.count}&populate=personpic`);
 

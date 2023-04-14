@@ -7,7 +7,7 @@ import { Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import UserRegisteredMissingProfile from '../../../Components/UserRegisteredMissingProfile';
-import { userRegistered } from '../../../store/policeDashboardSlice';
+import { userRegisteredStatus } from '../../../store/policeDashboardSlice';
 
 
 export default function MissingPersonProfile(props) {
@@ -20,7 +20,7 @@ export default function MissingPersonProfile(props) {
   // Call Backend APIs when Page Loads
   useEffect(() => {
     if (familyRegisteredAadhar) {
-      dispatch(userRegistered({ familyRegisteredAadhar: familyRegisteredAadhar, count: 1 }));
+      dispatch(userRegisteredStatus({ familyRegisteredAadhar: familyRegisteredAadhar, count: 1 }));
     }
   }, []);
   console.log(policeDashboardState)

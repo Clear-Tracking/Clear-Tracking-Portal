@@ -12,15 +12,19 @@ export default function UserRegisteredMissingProfile(props) {
         var display = "Fir Launched"
         var color= "green"
     }
-    else{
+    if(!props.missingObject.isLaunched){
         var display = "Fir Yet to Launch"
         var color= "red"
+    }
+    if(props.missingObject.found){
+        var display = "Found"
+        var color= "blue"
     }
     return (
         <Box>
             <Typography variant="h4" align="center" sx={{fontStyle:"Poppins"}}>
         Missing Person Profile
-        <span style={{background: color, fontSize:"1rem", color:"white"}}>{display}</span>
+        <span style={{background: color, fontSize:"1rem", color:"white", padding: "3px", borderRadius: "3px", marginLeft:"5px"}}>{display}</span>
         </Typography>
             <Grid>
             <Grid container sx={{ mt: 2 }}>

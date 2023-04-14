@@ -73,7 +73,7 @@ export default function ReportMissingForm() {
 const [aadharFirstName, setaadharFirstName] = useState("")
 
 const checkAadhar = (e)=>{
-  console.log(e.target.value)
+  //console.log(e.target.value)
    
   dispatch(checkAadharDetail({AadharNo: e.target.value}))
   // setaadharFirstName(getAadharDataState.aadharData.firstName)
@@ -146,7 +146,7 @@ console.log(getAadharDataState.aadharData)
           sx={{
             padding:"5%",
             borderRadius:10,
-            border:2,borderColor:"pink",
+            border:2,borderColor:"#003d80",
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
