@@ -23,7 +23,21 @@ function ScanFace() {
 
 
     let navigate = useNavigate();
-
+		const matchFace = () => {
+		 //navigate("/dashboard/matches", { state: { img: imageSrc } })
+		 			fetch("http://localhost:3500/validate", {
+						method: 'POST', 
+						mode: 'cors',
+								headers:{
+								    "Accept" : "*/*",
+								    'Access-Control-Allow-Origin': "*",
+								    'Content-Type': 'application/json'
+								},
+						body: JSON.stringify({"image":imageSrc}) 
+					})
+						.then(res=>res.json())
+						.then(res=> console.log(res))
+		 }
     return (
         <Box>
 
@@ -56,7 +70,7 @@ function ScanFace() {
                     <img src={imageSrc} width={480} height={480} style={{ padding: '20px',border:"1px solid black" }} />
                 </div>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: `${40}px` }}>
-                        <Button variant="contained" color="warning" sx={{width:"20vw"}} onClick={() => navigate("/dashboard/matches", { state: { img: imageSrc } })} 
+                        <Button variant="contained" color="warning" sx={{width:"20vw"}} onClick={matchFace} 
                         >
                             Search
                         </Button>
