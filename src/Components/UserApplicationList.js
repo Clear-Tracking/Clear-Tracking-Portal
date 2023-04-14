@@ -27,14 +27,14 @@ export const mainListItems = (
             <ListItemText primary="Home" />
         </ListItemButton>
         </Link>
-        <Link  style={{ textDecoration: "none", color: "black" }} to="/userdashboard/profile" >
+        {/* <Link  style={{ textDecoration: "none", color: "black" }} to="/userdashboard/profile" >
         <ListItemButton >
             <ListItemIcon>
                 <AppRegistrationIcon />
             </ListItemIcon>
             <ListItemText primary="Your Profile" />
         </ListItemButton>
-        </Link>
+        </Link> */}
         <Link style={{ textDecoration: "none", color: "black" }} to="/userdashboard/reportmissing">
         <ListItemButton >
             <ListItemIcon>
@@ -51,21 +51,21 @@ export const mainListItems = (
             <ListItemText primary="Missing Person Profile" />
         </ListItemButton>
         </Link>
-        <Link style={{ textDecoration: "none", color: "black" }} to="/userdashboard/">
+        {/* <Link style={{ textDecoration: "none", color: "black" }} to="/userdashboard/">
         <ListItemButton >
             <ListItemIcon>
                 <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Notification" />
         </ListItemButton>
-        </Link>
+        </Link> */}
         
         <Link style={{ textDecoration: "none", color: "black" }} to="/userdashboard/analytics">
         <ListItemButton>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Analytics" />
+            <ListItemText primary="Status" />
         </ListItemButton>
         </Link>
     </React.Fragment>

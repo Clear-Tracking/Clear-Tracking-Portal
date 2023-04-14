@@ -134,7 +134,7 @@ export function MainListItems(props) {
                     </ListItemButton>
                 </Link>
                 <Divider sx={{ my: 1 }} />
-                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard/policeprofile">
+                {/* <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard/policeprofile">
                     <ListItemButton sx={{ borderRadius: 3 }}
                         selected={selectedIndex === 7}
                         onClick={(event) => handleListItemClick(event, 7)}>
@@ -143,7 +143,7 @@ export function MainListItems(props) {
                         </ListItemIcon>
                         <ListItemText primary="Profile" />
                     </ListItemButton >
-                </Link>
+                </Link> */}
                 <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard/analytics">
                     <ListItemButton sx={{ borderRadius: 3 }}
                         selected={selectedIndex === 8}
