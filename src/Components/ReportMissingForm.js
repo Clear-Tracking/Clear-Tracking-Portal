@@ -32,6 +32,7 @@ import { DatePicker } from '@mui/x-date-pickers';
 import { useSelector } from 'react-redux';
 import { checkAadharDetail } from '../store/policeDashboardSlice';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 function Copyright(props) {
   return (
@@ -134,7 +135,6 @@ console.log(getAadharDataState.aadharData)
       }
       
       sendPhotoToMlServer(imageData, data.get("aadhar"))
-      
       dispatch(createFir(formData))
     };
     reader.readAsDataURL(data.get("uploadedpic"))
@@ -463,13 +463,13 @@ console.log(getAadharDataState.aadharData)
                   autoComplete="Weight"
                 />
               </Grid>
-            <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive updates via email."
                 />
-              </Grid>
-              </Grid>
+              </Grid> */}
+            </Grid>
             <Button
               type="submit"
               fullWidth

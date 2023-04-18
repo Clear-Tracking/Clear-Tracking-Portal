@@ -9,6 +9,10 @@ const API = axios.create({
     baseURL: env.local,
 });
 
+const API2 = axios.create({
+    baseURL: "http://localhost:3500/api/"
+})
+
 // // //* Adding Authorization Token in req.headers
 // API.interceptors.request.use((req) => {
 //     // if Profile Exists
@@ -37,4 +41,5 @@ export const foundPersonsData = (reqParams) => API.get(`/reoprt-firs?filters[fou
 export const checkAadharDetail = (requestData) => API.get(`/aadhars?filters[AadharNo]=${requestData.AadharNo}`);
 export const userRegistered = (reqParams) => API.get(`/reoprt-firs?filters[found]=false&filters[familyRegisteredAadhar]=${reqParams.familyRegisteredAadhar}&pagination[limit]=${reqParams.count}&populate=personpic`);
 export const userRegisteredStatus = (reqParams) => API.get(`/reoprt-firs?filters[familyRegisteredAadhar]=${reqParams.familyRegisteredAadhar}&pagination[limit]=${reqParams.count}&populate=personpic`);
-
+export const scanFaceResult = (reqParams) => API.get(`/reoprt-firs?filters[aadhar]=${reqParams.scanfaceAadhar}&pagination[limit]=${reqParams.count}&populate=personpic`);
+// export const analyseData = (reqData) => API2.requests.get(`/reoprt-firs?${reqData.queryParams}`)

@@ -133,7 +133,7 @@ export function MainListItems(props) {
                         <ListItemText primary="Alert" />
                     </ListItemButton>
                 </Link>
-                <Divider sx={{ my: 1 }} />
+                {/* <Divider sx={{ my: 1 }} /> */}
                 {/* <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard/policeprofile">
                     <ListItemButton sx={{ borderRadius: 3 }}
                         selected={selectedIndex === 7}

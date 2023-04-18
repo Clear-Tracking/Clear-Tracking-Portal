@@ -88,6 +88,7 @@ function UserApplication() {
     const globalState = useSelector((state) => state.global);
 
 
+    const userName = JSON.parse(localStorage.getItem('profile'))?.username;
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -125,7 +126,7 @@ function UserApplication() {
                     >
                         <IconButton
                             edge="start"
-                            color="inherit"
+                            color="black"
                             aria-label="open drawer"
                             onClick={toggleDrawer}
                             sx={{
@@ -142,13 +143,13 @@ function UserApplication() {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Hi User
+                            Hi {userName}
                         </Typography>
-                        <IconButton color="inherit">
+                        {/* <IconButton color="inherit">
                             <Badge badgeContent={4} color="secondary">
                                 <NotificationsIcon />
                             </Badge>
-                        </IconButton>
+                        </IconButton> */}
                         <IconButton
                             size="large"
                             edge="end"
@@ -156,7 +157,7 @@ function UserApplication() {
                             aria-controls={menuId}
                             aria-haspopup="true"
                             onClick={handleClick}
-                            color="inherit"
+                            color="black"
                         >
                             <AccountCircle />
 

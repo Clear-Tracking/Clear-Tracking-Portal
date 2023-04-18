@@ -10,56 +10,8 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
+import { useState, useEffect } from 'react';
 
-
-// const QontoStepIconRoot = styled('div')(({ theme, ownerState }) => ({
-//   color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
-//   display: 'flex',
-//   height: 22,
-//   alignItems: 'center',
-//   ...(ownerState.active && {
-//     color: '#784af4',
-//   }),
-//   '& .QontoStepIcon-completedIcon': {
-//     color: '#784af4',
-//     zIndex: 1,
-//     fontSize: 18,
-//   },
-//   '& .QontoStepIcon-circle': {
-//     width: 8,
-//     height: 8,
-//     borderRadius: '50%',
-//     backgroundColor: 'currentColor',
-//   },
-// }));
-
-// function QontoStepIcon(props) {
-//   const { active, completed, className } = props;
-
-//   return (
-//     <QontoStepIconRoot ownerState={{ active }} className={className}>
-//       {completed ? (
-//         <Check className="QontoStepIcon-completedIcon" />
-//       ) : (
-//         <div className="QontoStepIcon-circle" />
-//       )}
-//     </QontoStepIconRoot>
-//   );
-// }
-
-// QontoStepIcon.propTypes = {
-//   /**
-//    * Whether this step is active.
-//    * @default false
-//    */
-//   active: PropTypes.bool,
-//   className: PropTypes.string,
-//   /**
-//    * Mark the step as completed. Is passed to child components.
-//    * @default false
-//    */
-//   completed: PropTypes.bool,
-// };
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -143,10 +95,21 @@ ColorlibStepIcon.propTypes = {
 
 const steps = ['Registered FIR', 'FIR Launched', 'Person Found'];
 
-export default function CustomizedSteppers() {
+export default function CustomizedSteppers(props) {
+  const [step, setStep] = useState(0)
+  useEffect(() => {
+    if(props.formdata.found){
+      setStep(2)
+    }
+    else if(props.formdata.isLaunched){
+      setStep(1)
+    }
+  
+  }, [props.formdata])
+  
   return (
     <Stack sx={{ width: '100%' }} spacing={4}>
-      <Stepper alternativeLabel activeStep={1} connector={<ColorlibConnector />}>
+      <Stepper alternativeLabel activeStep={step} connector={<ColorlibConnector />}>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>

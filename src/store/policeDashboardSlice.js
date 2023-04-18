@@ -14,6 +14,7 @@ const initialState = {
     stationFirs: [],
     allFirs: [],
     aadharData: {},
+    matchResults:[],
     message: null
 }
 
@@ -67,7 +68,16 @@ export const userRegisteredStatus = createAsyncThunk("/fammilyMember-registered-
     return response.data; // response.data is your entire object that is seen in postman as the response
 });
 
+export const scanFaceResult = createAsyncThunk("/fammilyMember-registered-s", async (reqParams) => {
+    const response = await API.scanFaceResult(reqParams);
+    return response.data; // response.data is your entire object that is seen in postman as the response
+});
 
+// export const analyseData = createAsyncThunk('/analyseData', async (formData) => {
+//     const queryParams = `field=gender`;
+//     const response = await API2.analyseData({queryParams:queryParams});
+//     return response.data; // response.data is your entire object that is seen in postman as the response
+// });
 
 const policeDashboardSlice = createSlice({
     name: "policeDashboard",
@@ -76,6 +86,9 @@ const policeDashboardSlice = createSlice({
         resetRequestStatus: (state, action) => {
             state.requestStatus = REQUEST_STATUS_IDLE;
             state.message = null;
+        },
+        setMatchResults: (state, action) => {
+            state.matchResults = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -229,10 +242,25 @@ const policeDashboardSlice = createSlice({
                 state.requestStatus = REQUEST_STATUS_FAILED;
                 state.message = action.error.message
             })
+
+            //Scan Face Result
+            .addCase(scanFaceResult.pending, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_LOADING;
+            })
+            .addCase(scanFaceResult.fulfilled, (state, action) => { // action.payload is the response.data
+                state.requestStatus = REQUEST_STATUS_SUCCEEDED;
+                state.matchResults = action.payload.data.map((missingPersonProfile) => {
+                    return { ...missingPersonProfile.attributes, id: missingPersonProfile.id }
+                });
+            })
+            .addCase(scanFaceResult.rejected, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_FAILED;
+                state.message = action.error.message
+            })
     }
 
 });
 
-export const { resetRequestStatus } = policeDashboardSlice.actions;
+export const { resetRequestStatus, setMatchResults } = policeDashboardSlice.actions;
 
 export default policeDashboardSlice.reducer;

@@ -9,11 +9,11 @@ import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/material';
 export default function UserRegisteredMissingProfile(props) {
     if(props.missingObject.isLaunched){
-        var display = "Fir Launched"
+        var display = "FIR Launched"
         var color= "green"
     }
     if(!props.missingObject.isLaunched){
-        var display = "Fir Yet to Launch"
+        var display = "FIR Yet to Launch"
         var color= "red"
     }
     if(props.missingObject.found){
@@ -22,9 +22,9 @@ export default function UserRegisteredMissingProfile(props) {
     }
     return (
         <Box>
-            <Typography variant="h4" align="center" sx={{fontStyle:"Poppins"}}>
+            <Typography variant="h4" align="center" sx={{fontFamily:"Poppins", fontWeight: 400}}>
         Missing Person Profile
-        <span style={{background: color, fontSize:"1rem", color:"white", padding: "3px", borderRadius: "3px", marginLeft:"5px"}}>{display}</span>
+        <span style={{background: color, fontSize:"1rem", color:"white", padding: "3px", borderRadius: "3px", marginLeft:"15px"}}>{display}</span>
         </Typography>
             <Grid>
             <Grid container sx={{ mt: 2 }}>

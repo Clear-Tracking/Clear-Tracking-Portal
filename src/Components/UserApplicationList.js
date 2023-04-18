@@ -27,14 +27,14 @@ export const mainListItems = (
             <ListItemText primary="Home" />
         </ListItemButton>
         </Link>
-        {/* <Link  style={{ textDecoration: "none", color: "black" }} to="/userdashboard/profile" >
+        <Link  style={{ textDecoration: "none", color: "black" }} to="/userdashboard/profile" >
         <ListItemButton >
             <ListItemIcon>
                 <AppRegistrationIcon />
             </ListItemIcon>
             <ListItemText primary="Your Profile" />
         </ListItemButton>
-        </Link> */}
+        </Link>
         <Link style={{ textDecoration: "none", color: "black" }} to="/userdashboard/reportmissing">
         <ListItemButton >
             <ListItemIcon>

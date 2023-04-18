@@ -31,6 +31,7 @@ export default function UserAnalytics(props) {
             dispatch(userRegisteredStatus({ familyRegisteredAadhar: familyRegisteredAadhar, count: 1 }));
         }
     }, []);
+    
     return (
         <>
 
@@ -41,14 +42,16 @@ export default function UserAnalytics(props) {
                         {
                             policeDashboardState.stationFirs.map(formdata => {
                                 //const url= backendURl+formdata.personpic.data.attributes.url
-                                //console.log(formdata)
+                                console.log(formdata)
                                 return (
-                                    <StatusUserSide missingObject={formdata} />
-                                    
-                                    )
-                                })
-                            }
-                            <StepperUserside/>
+                                    <>
+                                        <StatusUserSide missingObject={formdata} />
+
+                                        <StepperUserside formdata={formdata} />
+                                    </>
+                                )
+                            })
+                        }
                     </Grid>
                     <Grid item xs={12} sm={8}>
                         <Grid container spacing={1}>

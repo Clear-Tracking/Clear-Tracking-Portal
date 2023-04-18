@@ -4,12 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-
+import UserRegisteredMissingProfile from '../../Components/UserRegisteredMissingProfile';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { useState } from 'react';
-
+import { scanFaceResult } from '../../store/policeDashboardSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMatchResults } from '../../store/policeDashboardSlice';
 
 const videoConstraints = {
     width: 480,
@@ -21,11 +23,14 @@ function ScanFace() {
     const [imageSrc, setImageSrc] = useState("/user.jpg");
     const [open, setOpen] = React.useState(true);
 
+// Redux State
+const dispatch = useDispatch();
+const policeDashboardState = useSelector((state) => state.policeDashboard);
 
     let navigate = useNavigate();
 		const matchFace = () => {
 		 //navigate("/dashboard/matches", { state: { img: imageSrc } })
-		 			fetch("http://localhost:3500/validate", {
+		 			fetch("http://localhost:3500/api/validate", {
 						method: 'POST', 
 						mode: 'cors',
 								headers:{
@@ -36,9 +41,22 @@ function ScanFace() {
 						body: JSON.stringify({"image":imageSrc}) 
 					})
 						.then(res=>res.json())
-						.then(res=> console.log(res))
+						.then(res=> {   
+                            if(res.data.length>0){
+                            var scanAadharIdentities = res.data.map((item)=>item.identity.slice(6,-4));
+                            console.log(scanAadharIdentities);
+                            
+                                dispatch(scanFaceResult({ scanfaceAadhar: scanAadharIdentities, count: 1 }));
+                                navigate("/dashboard/matches")
+                  
+                            }
+
+                        }
+                        )
+                        
 		 }
     return (
+        <>
         <Box>
 
 
@@ -78,6 +96,8 @@ function ScanFace() {
             </Container>
        
            </Box>
+            
+           </>
                  
     )
 }
