@@ -47,14 +47,15 @@ const data = [
         "Not Found": 67,
     },
 ]
-const YearlyStatistics = () => (
+const YearlyStatistics = ({yearData}) => {
+    return (
 
     <ResponsiveBar
-        data={data}
+        data={yearData}
         keys={[
-            'Found','Not Found'
+            'found','notFound'
         ]}
-        indexBy="Year"
+        indexBy="year"
         margin={{ top: 10, right: 10, bottom: 50, left: 10 }}
         padding={0.3}
         valueScale={{ type: 'linear' }}
@@ -83,7 +84,7 @@ const YearlyStatistics = () => (
         fill={[
             {
                 match: {
-                    id: 'Found'
+                    id: 'found'
                 },
                 id: 'dots'
             },
@@ -132,5 +133,5 @@ const YearlyStatistics = () => (
         ariaLabel="Nivo bar chart demo"
         barAriaLabel={function (e) { return e.id + ": " + e.formattedValue + " in Year: " + e.indexValue }}
     />
-)
+)}
 export default YearlyStatistics;
