@@ -46,7 +46,7 @@ const policeDashboardState = useSelector((state) => state.policeDashboard);
                             var scanAadharIdentities = res.data.map((item)=>item.identity.slice(6,-4));
                             console.log(scanAadharIdentities);
                             
-                                dispatch(scanFaceResult({ scanfaceAadhar: scanAadharIdentities, count: 1 }));
+                                dispatch(scanFaceResult({ scanfaceAadhar: scanAadharIdentities, count: 25 }));
                                 navigate("/dashboard/matches")
                   
                             }
