@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import GenderAnalytics from '../../Components/GenderAnalytics';
 import RegionAnalytics from '../../Components/RegionAnalytics';
 import YearlyAnalytics from '../../Components/YearlyAnalytics';
+import { Button } from '@mui/material';
+import * as API2 from "../../api";
 
 export default  function Dashboarddatabase() {
 
@@ -14,7 +16,7 @@ export default  function Dashboarddatabase() {
     useEffect(()=>{
         const loadData = async ()=>{
             let newChartData = {gender:{maleCount: 0, femaleCount:0}, years:{}, region: {}}
-            fetch("http://localhost:1337/api/reoprt-firs")
+            fetch(`http://localhost:1337/api/reoprt-firs`)
             .then(res=>res.json())
             .then(res=>{
                 let maleCount =0
@@ -89,7 +91,7 @@ export default  function Dashboarddatabase() {
                     </Box>
                 </Grid>
 
-                
+                <Button onClick= {()=>{API2.analyseData()}}>click me</Button>
 
             </Grid>
         </Box >

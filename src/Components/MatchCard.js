@@ -60,7 +60,7 @@ export default function MatchCard(props) {
         navigate('/dashboard/')
         // console.log("after navigate")
     }
-    console.log(props.firObject)
+    // console.log(props.firObject)
 
     // const viewProfileClicked = () => navigate('/dashboard/firdetails/' + props.firObject.id)
 

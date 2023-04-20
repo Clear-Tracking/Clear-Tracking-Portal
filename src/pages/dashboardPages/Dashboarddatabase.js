@@ -8,7 +8,6 @@ import { datediff } from '../../util';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllFirsLaunched } from '../../store/policeDashboardSlice';
 import { useEffect } from 'react';
-import { backendURl } from '../../constants/Constants';
 
 const columns = [
   {

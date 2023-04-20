@@ -6,13 +6,13 @@ import {
     REQUEST_STATUS_IDLE,
     CUSTOM_ERROR_MESSAGE
 } from "../constants/Constants";
-import { backendURl } from "../constants/Constants";
 import * as API from "../api";
 
 const initialState = {
     requestStatus: REQUEST_STATUS_LOADING,
     stationFirs: [],
     allFirs: [],
+    userProfile: [],
     aadharData: {},
     matchResults:[],
     message: null
@@ -70,6 +70,11 @@ export const userRegisteredStatus = createAsyncThunk("/fammilyMember-registered-
 
 export const scanFaceResult = createAsyncThunk("/fammilyMember-registered-s", async (reqParams) => {
     const response = await API.scanFaceResult(reqParams);
+    return response.data; // response.data is your entire object that is seen in postman as the response
+});
+
+export const userProfileData = createAsyncThunk("/user-Profile-Data", async (reqParams) => {
+    const response = await API.userProfileData(reqParams);
     return response.data; // response.data is your entire object that is seen in postman as the response
 });
 
@@ -209,6 +214,22 @@ const policeDashboardSlice = createSlice({
                 }
             })
             .addCase(checkAadharDetail.rejected, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_FAILED;
+                state.message = action.error.message
+            })
+
+            // Get User Profile
+            .addCase(userProfileData.pending, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_LOADING;
+            })
+            .addCase(userProfileData.fulfilled, (state, action) => { // action.payload is the response.data
+            
+                state.requestStatus = REQUEST_STATUS_SUCCEEDED;
+                state.userProfile = action.payload.data.map((userProfile) => {
+                    return { ...userProfile.attributes, id: userProfile.id }
+                });
+            })
+            .addCase(userProfileData.rejected, (state, action) => {
                 state.requestStatus = REQUEST_STATUS_FAILED;
                 state.message = action.error.message
             })

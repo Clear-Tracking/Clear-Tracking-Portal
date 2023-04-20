@@ -31,29 +31,35 @@ export default function UserAnalytics(props) {
             dispatch(userRegisteredStatus({ familyRegisteredAadhar: familyRegisteredAadhar, count: 1 }));
         }
     }, []);
-    
+
     return (
         <>
 
             <Box>
+                        <Typography container gutterBottom variant="h6" sx={{ fontStyle: "Poppins", fontWeight: "bold", ml: 1 }}>
+                            Missing Person
+                        </Typography>
                 <Grid container spacing={3}>
-
-                    <Grid item xs={12} sm={4}>
+                   
+                    <Grid item xs={12} sm={10}>
                         {
                             policeDashboardState.stationFirs.map(formdata => {
                                 //const url= backendURl+formdata.personpic.data.attributes.url
                                 console.log(formdata)
                                 return (
                                     <>
-                                        <StatusUserSide missingObject={formdata} />
-
-                                        <StepperUserside formdata={formdata} />
+                                        <Grid item xs={12}>
+                                            <StepperUserside formdata={formdata} />
+                                        </Grid>
+                                        <Grid>
+                                            <StatusUserSide missingObject={formdata} />
+                                        </Grid>
                                     </>
                                 )
                             })
                         }
                     </Grid>
-                    <Grid item xs={12} sm={8}>
+                    {/* <Grid item xs={12} sm={8}>
                         <Grid container spacing={1}>
                             <Grid item xs={12}>
                                 <Typography gutterBottom variant="h6" sx={{ fontStyle: "Poppins", fontWeight: "bold", ml: 1 }}>Leads</Typography>
@@ -69,7 +75,7 @@ export default function UserAnalytics(props) {
                                 })
                             }
                         </Grid>
-                    </Grid>
+                    </Grid> */}
 
                 </Grid>
             </Box>

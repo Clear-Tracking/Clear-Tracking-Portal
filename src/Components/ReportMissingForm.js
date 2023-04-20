@@ -82,23 +82,23 @@ const checkAadhar = (e)=>{
 
 
 
-console.log(getAadharDataState.aadharData)
+// console.log(getAadharDataState.aadharData)
 
-	const sendPhotoToMlServer = (imageData, uuid)=>{
-		fetch("http://localhost:3500/saveFace", {
-    method: 'POST', 
-    mode: 'cors',
-        headers:{
-            "Accept" : "*/*",
-            'Access-Control-Allow-Origin': "*",
-            'Content-Type': 'application/json'
-        },
-    body: JSON.stringify({"image":imageData, "uuid": uuid}) 
-  })
-    .then(res=>res.json())
-    .then(res=> console.log(res))
+	// const sendPhotoToMlServer = (imageData, uuid)=>{
+	// 	fetch("http://localhost:3500/saveFace", {
+  //   method: 'POST', 
+  //   mode: 'cors',
+  //       headers:{
+  //           "Accept" : "*/*",
+  //           'Access-Control-Allow-Origin': "*",
+  //           'Content-Type': 'application/json'
+  //       },
+  //   body: JSON.stringify({"image":imageData, "uuid": uuid}) 
+  // })
+  //   .then(res=>res.json())
+  //   .then(res=> console.log(res))
 
-	}
+	// }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -134,8 +134,9 @@ console.log(getAadharDataState.aadharData)
         }
       }
       
-      sendPhotoToMlServer(imageData, data.get("aadhar"))
+      // sendPhotoToMlServer(imageData, data.get("aadhar"))
       dispatch(createFir(formData))
+      navigate("/userdashboard/missingpersonprofile")
     };
     reader.readAsDataURL(data.get("uploadedpic"))
     
