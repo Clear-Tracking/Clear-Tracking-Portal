@@ -23,7 +23,7 @@ export default function MissingPersonProfile(props) {
       dispatch(userRegisteredStatus({ familyRegisteredAadhar: familyRegisteredAadhar, count: 1 }));
     }
   }, []);
-  console.log(policeDashboardState)
+  // console.log(policeDashboardState)
 
   return (
     <>

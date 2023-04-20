@@ -24,14 +24,14 @@ const data = [
         "Missing": 40
     }
 ]
-const RegionAnalytics = () => (
+const RegionAnalytics = ({regionData}) => (
 
     <ResponsiveBar
-        data={data}
+        data={regionData}
         keys={[
-            'Missing'
+            'missing'
         ]}
-        indexBy="Region"
+        indexBy="region"
         margin={{ top: 10, right: 10, bottom: 50, left: 10 }}
         padding={0.3}
         valueScale={{ type: 'linear' }}

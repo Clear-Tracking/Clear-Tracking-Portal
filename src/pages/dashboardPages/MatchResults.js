@@ -1,10 +1,17 @@
 import React from 'react'
-import UserRegisteredCard from '../../Components/UserRegisteredCard'
+import MatchCard from '../../Components/MatchCard'
 import Userformdata from "../../assets/data/userformdata.json"
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { useSelector, useDispatch } from 'react-redux';
+
 export default function MatchResults() {
+
+   // Redux State
+   const dispatch = useDispatch();
+   const policeDashboardState = useSelector((state) => state.policeDashboard);
+
   return (
     
     <Box sx={{p:4}}>
@@ -12,16 +19,16 @@ export default function MatchResults() {
       Match Results
     </Typography>
     <Grid container spacing={2} sx={{mt:1}}>
-      {
-        Userformdata.map(formdata => {
+    {
+        policeDashboardState.matchResults.map(formdata => {
+          //const url= backendURl+formdata.personpic.data.attributes.url
+          //console.log(formdata)
           return (
-          <Grid item md={3} xs={12} sm={6}>  <UserRegisteredCard personimage={formdata.personpic} personfirstname={formdata.firstName} 
-            personlastname={formdata.lastName} gender={formdata.gender} dateofmissing={formdata.dom}
-            persondob={formdata.dob}
-            id={formdata.id}
-            />
-            </Grid>
-          )
+            <Grid item md={3} xs={12} sm={6}>  <MatchCard firObject={formdata} 
+            
+              />
+              </Grid>
+            )
         })
       }
     </Grid> 
@@ -29,3 +36,5 @@ export default function MatchResults() {
     
   )
 }
+
+          

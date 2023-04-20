@@ -1,16 +1,16 @@
 import { ResponsivePie } from '@nivo/pie'
 
-const GenderAnalytics = () => {
+const GenderAnalytics = ({maleCount, femaleCount}) => {
     const data = [
         {
             "id": "Male",
             "label": "Male",
-            "value": 5
+            "value": maleCount
         },
         {
             "id": "Female",
             "label": "Female",
-            "value": 7
+            "value": femaleCount
         }
     ]
     return (

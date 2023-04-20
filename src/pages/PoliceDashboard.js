@@ -142,7 +142,7 @@ function PoliceDashboard() {
   const dispatch = useDispatch();
   const globalState = useSelector((state) => state.global);
   const policeDashboardState = useSelector((state) => state.policeDashboard);
-
+  const stationName = JSON.parse(localStorage.getItem('profile'))?.username;
 
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -310,7 +310,7 @@ function PoliceDashboard() {
             MissingPortal
           </Typography>
           <img style={{position:'relative', left:'100px',  width: '50px;',    height: '50px',    borderRadius: '50%'}} src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Maharashtra_Police_Insignia_%28India%29.svg/140px-Maharashtra_Police_Insignia_%28India%29.svg.png' alt='img'></img>
-          <strong><p style={{position:'relative', left:'100px'}}>Borivali Police Station</p></strong>
+          <strong><p style={{position:'relative', left:'100px'}}>{stationName}</p></strong>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -323,7 +323,7 @@ function PoliceDashboard() {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
 
-            <IconButton
+            {/* <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
@@ -331,7 +331,7 @@ function PoliceDashboard() {
               <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton
               size="large"
               edge="end"
@@ -353,7 +353,7 @@ function PoliceDashboard() {
                   'aria-labelledby': 'basic-button',
                 }}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
             {/* <div style={{display: 'flex',     flexDirection: 'column'}}>
