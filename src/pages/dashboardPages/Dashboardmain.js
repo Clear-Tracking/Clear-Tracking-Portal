@@ -12,7 +12,7 @@ import { REQUEST_STATUS_LOADING } from '../../constants/Constants';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import { useSelector,useDispatch } from 'react-redux';
-import { getStationFirsNotLaunched,getAllFirsLaunched } from '../../store/policeDashboardSlice';
+import { getStationFirsNotLaunched,getAllFirsLaunched,analyseData } from '../../store/policeDashboardSlice';
 
 export default function Dashboardmain() {
 
@@ -27,6 +27,7 @@ export default function Dashboardmain() {
     if (stationId) {
       dispatch(getStationFirsNotLaunched({ stationId: stationId,count:25}));
       dispatch(getAllFirsLaunched(3));
+      dispatch(analyseData())
     }
   }, []);
 
@@ -97,14 +98,14 @@ export default function Dashboardmain() {
               <Grid item xs={12} sx={{ mt: 4 }}>
                 <Typography variant="h6" sx={{ fontWeight: 600, ml: 4 }}>Analytics</Typography>
                 <Box sx={{ height: "40vh" }}>
-                  <MissingPercentage />
+                  <MissingPercentage found = {policeDashboardState.analytics?.found} notFound = {policeDashboardState.analytics?.notFound}/>
                 </Box>
 
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="h6" sx={{ fontWeight: 600, ml: 4 }}> Monthly Statistics</Typography>
                 <Box sx={{ height: "40vh" }}>
-                  <MonthlyStatistics />
+                  <MonthlyStatistics data = {policeDashboardState.monthlyStatistics}/>
                 </Box>
               </Grid>
             </Grid>

@@ -5,24 +5,24 @@ import { ResponsiveBar } from '@nivo/bar'
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const data = [
-    {
-        "Month": "Jan 2022",
-        "Found": 26,
-        "Not Found": 67,
-    },
-    {
-        "Month": "Feb 2022",
-        "Found": 50,
-        "Not Found": 10,
-    },
-    {
-        "Month": "Mar 2022",
-        "Found": 80,
-        "Not Found": 100,
-    }
-]
-const MonthlyStatistics = () => (
+// const data = [
+//     {
+//         "Month": "Jan 2022",
+//         "Found": 26,
+//         "Not Found": 67,
+//     },
+//     {
+//         "Month": "Feb 2022",
+//         "Found": 50,
+//         "Not Found": 10,
+//     },
+//     {
+//         "Month": "Mar 2022",
+//         "Found": 80,
+//         "Not Found": 100,
+//     }
+// ]
+const MonthlyStatistics = ({data}) => (
 
     <ResponsiveBar
         data={data}

@@ -43,4 +43,4 @@ export const userRegistered = (reqParams) => API.get(`/reoprt-firs?filters[found
 export const userRegisteredStatus = (reqParams) => API.get(`/reoprt-firs?filters[familyRegisteredAadhar]=${reqParams.familyRegisteredAadhar}&pagination[limit]=${reqParams.count}&populate=personpic`);
 export const scanFaceResult = (reqParams) => API.get(`/reoprt-firs?filters[isLaunched]=true&filters[found]=false${reqParams.scanfaceAadhar}&pagination[limit]=${reqParams.count}&populate=personpic`);
 export const userProfileData = (reqData) => API.get(`/aadhars?filters[AadharNo]=${reqData.AadharNo}&pagination[limit]=${reqData.count}&populate=photo`);
-export const analyseData = (reqData) => API2.get(`/analyse`)
+export const analyseData = () => API2.get(`/analyse`)

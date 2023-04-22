@@ -14,7 +14,12 @@ const initialState = {
     allFirs: [],
     userProfile: [],
     aadharData: {},
-    matchResults:[],
+    matchResults: [],
+    genderAnalytics: {},
+    regionalAnalytics:[],
+    yearlyAnalytics: [],
+    analytics: {},
+    monthlyStatistics: [],
     message: null
 }
 
@@ -78,11 +83,10 @@ export const userProfileData = createAsyncThunk("/user-Profile-Data", async (req
     return response.data; // response.data is your entire object that is seen in postman as the response
 });
 
-// export const analyseData = createAsyncThunk('/analyseData', async (formData) => {
-//     const queryParams = `field=gender`;
-//     const response = await API2.analyseData({queryParams:queryParams});
-//     return response.data; // response.data is your entire object that is seen in postman as the response
-// });
+export const analyseData = createAsyncThunk('/analyseData', async (formData) => {
+    const response = await API.analyseData();
+    return response.data; // response.data is your entire object that is seen in postman as the response
+});
 
 const policeDashboardSlice = createSlice({
     name: "policeDashboard",
@@ -91,6 +95,9 @@ const policeDashboardSlice = createSlice({
         resetRequestStatus: (state, action) => {
             state.requestStatus = REQUEST_STATUS_IDLE;
             state.message = null;
+        },
+        setRequestStatus: (state, action) => {
+            state.requestStatus = action.payload;
         },
         setMatchResults: (state, action) => {
             state.matchResults = action.payload;
@@ -209,7 +216,7 @@ const policeDashboardSlice = createSlice({
                     const aadharData = action.payload.data[0];
                     state.aadharData = { ...aadharData.attributes, id: aadharData.id }
                 }
-                else{
+                else {
                     state.aadharData = {}
                 }
             })
@@ -223,7 +230,7 @@ const policeDashboardSlice = createSlice({
                 state.requestStatus = REQUEST_STATUS_LOADING;
             })
             .addCase(userProfileData.fulfilled, (state, action) => { // action.payload is the response.data
-            
+
                 state.requestStatus = REQUEST_STATUS_SUCCEEDED;
                 state.userProfile = action.payload.data.map((userProfile) => {
                     return { ...userProfile.attributes, id: userProfile.id }
@@ -278,10 +285,27 @@ const policeDashboardSlice = createSlice({
                 state.requestStatus = REQUEST_STATUS_FAILED;
                 state.message = action.error.message
             })
+
+            //Analytics
+            .addCase(analyseData.pending, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_LOADING;
+            })
+            .addCase(analyseData.fulfilled, (state, action) => { // action.payload is the response.data
+                state.requestStatus = REQUEST_STATUS_SUCCEEDED;
+                state.genderAnalytics = action.payload.data.genderAnalytics
+                state.regionalAnalytics = action.payload.data.regionalAnalytics
+                state.yearlyAnalytics = action.payload.data.yearlyAnalytics
+                state.analytics = action.payload.data.analytics
+                state.monthlyStatistics = action.payload.data.monthlyStatistics
+            })
+            .addCase(analyseData.rejected, (state, action) => {
+                state.requestStatus = REQUEST_STATUS_FAILED;
+                state.message = action.error.message
+            })
     }
 
 });
 
-export const { resetRequestStatus, setMatchResults } = policeDashboardSlice.actions;
+export const { resetRequestStatus, setMatchResults, setRequestStatus } = policeDashboardSlice.actions;
 
 export default policeDashboardSlice.reducer;

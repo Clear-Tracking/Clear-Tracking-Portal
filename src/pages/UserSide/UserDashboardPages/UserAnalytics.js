@@ -51,7 +51,7 @@ export default function UserAnalytics(props) {
                                         <Grid item xs={12}>
                                             <StepperUserside formdata={formdata} />
                                         </Grid>
-                                        <Grid>
+                                        <Grid item xs={12}>
                                             <StatusUserSide missingObject={formdata} />
                                         </Grid>
                                     </>

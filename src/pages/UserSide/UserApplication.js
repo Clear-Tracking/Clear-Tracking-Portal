@@ -135,6 +135,7 @@ useEffect(() => {
     };
     const handleClose = () => {
         setAnchorProfileMenu(null);
+        navigate('/userdashboard/profile')
     };
 
     const handleLogout = () => {
