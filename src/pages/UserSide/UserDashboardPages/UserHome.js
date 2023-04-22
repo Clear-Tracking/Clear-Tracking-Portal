@@ -10,14 +10,14 @@ import Grid from '@mui/material/Grid';
 import UserMainDisplayCard from '../../../Components/UserHomePageDisplay';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getStationFirsNotLaunched, getAllFirsLaunched } from '../../../store/policeDashboardSlice';
+import { getStationFirsNotLaunched, getAllFirsLaunched } from '../../../store/dashboardSlice';
 import { REQUEST_STATUS_LOADING } from '../../../constants/Constants';
 import CircularProgress from '@mui/material/CircularProgress';
 
 export default function UserHome() {
   // Redux State
   const dispatch = useDispatch();
-  const viewAllCards = useSelector((state) => state.policeDashboard);
+  const viewAllCards = useSelector((state) => state.dashboard);
 
   const useremail = JSON.parse(localStorage.getItem('profile'))?.email;
 

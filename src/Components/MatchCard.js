@@ -20,7 +20,7 @@ import formfilldisplay from "../assets/data/formfilldisplay.json";
 import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { foundPerson, getStationFirsNotLaunched } from '../store/policeDashboardSlice';
+import { foundPerson, getStationFirsNotLaunched } from '../store/dashboardSlice';
 import { getAllFirsLaunched } from '../api';
 
 

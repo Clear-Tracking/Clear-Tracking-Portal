@@ -1,11 +1,11 @@
 import { combineReducers,configureStore } from "@reduxjs/toolkit";
 
 import globalSlice from "./globalSlice";
-import policeDashboardSlice from "./policeDashboardSlice";
+import dashboardSlice from "./dashboardSlice";
 
 const combineReducer = combineReducers({
     global: globalSlice,
-    policeDashboard:policeDashboardSlice,
+    dashboard:dashboardSlice,
 });
 
 export const store = configureStore({reducer:combineReducer});

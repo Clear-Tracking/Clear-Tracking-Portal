@@ -13,7 +13,7 @@ import TextField from '@mui/material/TextField';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { foundPerson,getStationFirsNotLaunched,getAllFirsLaunched  } from '../store/policeDashboardSlice';
+import { foundPerson,getStationFirsLaunched,getAllFirsLaunched  } from '../store/dashboardSlice';
 //import formfilldisplay from "../assets/data/formfilldisplay.json"
 
 export default function ViewDetails(props) {
@@ -47,7 +47,7 @@ export default function ViewDetails(props) {
         
         const stationId = JSON.parse(localStorage.getItem('profile'))?.stationId;
         if (stationId) {
-            dispatch(getStationFirsNotLaunched({ stationId: stationId,count:25}));
+            dispatch(getStationFirsLaunched({ stationId: stationId,count:25}));
           }
           dispatch(getAllFirsLaunched());
     }

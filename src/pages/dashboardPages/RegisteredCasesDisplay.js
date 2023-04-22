@@ -7,14 +7,14 @@ import Grid from '@mui/material/Grid';
 
 import { useEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
-import { getStationFirsNotLaunched } from '../../store/policeDashboardSlice';
+import { getStationFirsNotLaunched } from '../../store/dashboardSlice';
 import { backendURl } from '../../constants/Constants';
 
 export default function RegisteredCasesDisplay() {
 
     // Redux State
     const dispatch = useDispatch();
-    const policeDashboardState = useSelector((state) => state.policeDashboard);
+    const dashboardState = useSelector((state) => state.dashboard);
   
     const stationId = JSON.parse(localStorage.getItem('profile'))?.stationId;
   
@@ -33,7 +33,7 @@ export default function RegisteredCasesDisplay() {
     
     <Grid container spacing={2} sx={{mt:1}}>
       {
-        policeDashboardState.stationFirs.map(formdata => {
+        dashboardState.stationFirs.map(formdata => {
           //const url= backendURl+formdata.personpic.data.attributes.url
           //console.log(formdata)
           return (

@@ -20,7 +20,7 @@ import formfilldisplay from "../assets/data/formfilldisplay.json";
 import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { updateFir, getStationFirsNotLaunched } from '../store/policeDashboardSlice';
+import { updateFir, getStationFirsNotLaunched } from '../store/dashboardSlice';
 
 
 export default function UserRegisteredCard(props) {

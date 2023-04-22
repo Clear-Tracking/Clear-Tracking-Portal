@@ -8,13 +8,13 @@ import YearlyAnalytics from '../../Components/YearlyAnalytics';
 import { Button } from '@mui/material';
 import * as API2 from "../../api";
 import { useDispatch, useSelector } from 'react-redux';
-import { analyseData } from '../../store/policeDashboardSlice';
+import { analyseData } from '../../store/dashboardSlice';
 
 export default function Dashboarddatabase() {
 
     const [chartData, setChartData] = useState({ gender: { maleCount: 0, femaleCount: 0 }, years: [], region: [] })
     const dispatch = useDispatch()
-    const policeDashboardState = useSelector((state) => state.policeDashboard);
+    const dashboardState = useSelector((state) => state.dashboard);
 
     useEffect(() => {
         dispatch(analyseData())
@@ -30,7 +30,7 @@ export default function Dashboarddatabase() {
                             Gender Analytics
                         </Typography>
                         <Box sx={{ height: "40vh" }}>
-                            <GenderAnalytics maleCount={policeDashboardState.genderAnalytics?.male} femaleCount={policeDashboardState.genderAnalytics?.female} />
+                            <GenderAnalytics maleCount={dashboardState.genderAnalytics?.male} femaleCount={dashboardState.genderAnalytics?.female} />
                         </Box>
                     </Box>
                 </Grid>
@@ -40,7 +40,7 @@ export default function Dashboarddatabase() {
                             Region Analytics
                         </Typography>
                         <Box sx={{ height: "40vh" }}>
-                            <RegionAnalytics regionData={policeDashboardState.regionalAnalytics} />
+                            <RegionAnalytics regionData={dashboardState.regionalAnalytics} />
                         </Box>
                     </Box>
                 </Grid>
@@ -50,7 +50,7 @@ export default function Dashboarddatabase() {
                             Yearly Analytics
                         </Typography>
                         <Box sx={{ height: "60vh" }}>
-                            <YearlyAnalytics yearData={policeDashboardState.yearlyAnalytics} />
+                            <YearlyAnalytics yearData={dashboardState.yearlyAnalytics} />
                         </Box>
                     </Box>
                 </Grid>

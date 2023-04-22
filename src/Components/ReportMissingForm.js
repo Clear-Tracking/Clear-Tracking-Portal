@@ -27,10 +27,10 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
 import { useDispatch } from 'react-redux';
-import { createFir } from '../store/policeDashboardSlice';
+import { createFir } from '../store/dashboardSlice';
 import { DatePicker } from '@mui/x-date-pickers';
 import { useSelector } from 'react-redux';
-import { checkAadharDetail } from '../store/policeDashboardSlice';
+import { checkAadharDetail } from '../store/dashboardSlice';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -55,7 +55,7 @@ export default function ReportMissingForm() {
   
   // Redux State
   const dispatch = useDispatch();
-  const getAadharDataState = useSelector((state) => state.policeDashboard);
+  const getAadharDataState = useSelector((state) => state.dashboard);
 
   const [nearestStation, setnearestStation] = React.useState('');
 
@@ -384,7 +384,7 @@ const checkAadhar = (e)=>{
         </Select>
       </FormControl>
               </Grid>
-              <Typography variant="h5" style={{marginTop:10,fontFamily:"Poppins",fontWeight:"bold",fontStyle:"normal",lineHeight:"143%"}}>
+              <Typography variant="h5" style={{marginTop:10,fontFamily:"Poppins",fontWeight:"bold",fontStyle:"normal",lineHeight:"143%", marginLeft:"20px"}}>
               Physical Features
               </Typography>
               <Grid item xs={12}>

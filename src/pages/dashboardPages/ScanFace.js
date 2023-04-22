@@ -9,12 +9,12 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { useState } from 'react';
-import { scanFaceResult } from '../../store/policeDashboardSlice';
+import { scanFaceResult } from '../../store/dashboardSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMatchResults } from '../../store/policeDashboardSlice';
+import { setMatchResults } from '../../store/dashboardSlice';
 import { CircularProgress } from '@mui/material';
 import { REQUEST_STATUS_IDLE, REQUEST_STATUS_LOADING, REQUEST_STATUS_SUCCEEDED } from '../../constants/Constants';
-import { setRequestStatus } from '../../store/policeDashboardSlice';
+import { setRequestStatus } from '../../store/dashboardSlice';
 
 const videoConstraints = {
     width: 480,
@@ -28,7 +28,7 @@ function ScanFace() {
 
     // Redux State
     const dispatch = useDispatch();
-    const policeDashboardState = useSelector((state) => state.policeDashboard);
+    const dashboardState = useSelector((state) => state.dashboard);
 
     let navigate = useNavigate();
     const matchFace = () => {
@@ -103,7 +103,7 @@ function ScanFace() {
                             <Button variant="contained" color="warning" sx={{ width: "20vw" }} onClick={matchFace}
                             >
                                 {
-                                    policeDashboardState.requestStatus === REQUEST_STATUS_LOADING?
+                                    dashboardState.requestStatus === REQUEST_STATUS_LOADING?
                                     (<Box><CircularProgress size="1rem"/></Box>):
                                     "Search"
                                 }

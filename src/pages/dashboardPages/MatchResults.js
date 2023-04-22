@@ -10,7 +10,7 @@ export default function MatchResults() {
 
    // Redux State
    const dispatch = useDispatch();
-   const policeDashboardState = useSelector((state) => state.policeDashboard);
+   const dashboardState = useSelector((state) => state.dashboard);
 
   return (
     
@@ -20,7 +20,7 @@ export default function MatchResults() {
     </Typography>
     <Grid container spacing={2} sx={{mt:1}}>
     {
-        policeDashboardState.matchResults.map(formdata => {
+        dashboardState.matchResults.map(formdata => {
           //const url= backendURl+formdata.personpic.data.attributes.url
           //console.log(formdata)
           return (

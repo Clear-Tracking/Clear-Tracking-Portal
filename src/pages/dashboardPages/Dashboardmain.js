@@ -12,13 +12,13 @@ import { REQUEST_STATUS_LOADING } from '../../constants/Constants';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import { useSelector,useDispatch } from 'react-redux';
-import { getStationFirsNotLaunched,getAllFirsLaunched,analyseData } from '../../store/policeDashboardSlice';
+import { getStationFirsNotLaunched,getAllFirsLaunched,analyseData } from '../../store/dashboardSlice';
 
 export default function Dashboardmain() {
 
   // Redux State
   const dispatch = useDispatch();
-  const policeDashboardState = useSelector((state) => state.policeDashboard);
+  const dashboardState = useSelector((state) => state.dashboard);
 
   const stationId = JSON.parse(localStorage.getItem('profile'))?.stationId;
 
@@ -43,7 +43,7 @@ export default function Dashboardmain() {
                 </Typography>
               </Grid>
               {
-                policeDashboardState.requestStatus === REQUEST_STATUS_LOADING ? (
+                dashboardState.requestStatus === REQUEST_STATUS_LOADING ? (
                   // false? (
                   <Grid item xs={12}>
                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
@@ -51,7 +51,7 @@ export default function Dashboardmain() {
                     </Box>
                   </Grid>
                 ) : (
-                  policeDashboardState.stationFirs.map(formdata => {
+                  dashboardState.stationFirs.map(formdata => {
                     //const url= backendURl+formdata.personpic.data.attributes.url;
                     return (
                       <Grid item xs={12} md={4} >
@@ -67,7 +67,7 @@ export default function Dashboardmain() {
                 </Typography>
               </Grid>
               {
-                policeDashboardState.requestStatus === REQUEST_STATUS_LOADING ? (
+                dashboardState.requestStatus === REQUEST_STATUS_LOADING ? (
                   // false? (
                   <Grid item xs={12}>
                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
@@ -75,7 +75,7 @@ export default function Dashboardmain() {
                     </Box>
                   </Grid>
                 ) : (
-                  policeDashboardState.allFirs.map(allmissingpeople => {
+                  dashboardState.allFirs.map(allmissingpeople => {
                     //const url= backendURl+allmissingpeople.personpic.data.attributes.url;
                     return (
                       <Grid item xs={12}>
@@ -98,14 +98,14 @@ export default function Dashboardmain() {
               <Grid item xs={12} sx={{ mt: 4 }}>
                 <Typography variant="h6" sx={{ fontWeight: 600, ml: 4 }}>Analytics</Typography>
                 <Box sx={{ height: "40vh" }}>
-                  <MissingPercentage found = {policeDashboardState.analytics?.found} notFound = {policeDashboardState.analytics?.notFound}/>
+                  <MissingPercentage found = {dashboardState.analytics?.found} notFound = {dashboardState.analytics?.notFound}/>
                 </Box>
 
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="h6" sx={{ fontWeight: 600, ml: 4 }}> Monthly Statistics</Typography>
                 <Box sx={{ height: "40vh" }}>
-                  <MonthlyStatistics data = {policeDashboardState.monthlyStatistics}/>
+                  <MonthlyStatistics data = {dashboardState.monthlyStatistics}/>
                 </Box>
               </Grid>
             </Grid>
