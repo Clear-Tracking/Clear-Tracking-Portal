@@ -33,7 +33,7 @@ export default function UserRegisteredMissingProfile(props) {
                     <Grid container sx={{ mt: 2 }}>
                         <Grid item xs={12}>
                             <Box sx={{ display: 'flex', height: "100%", flexDirection: "column" }}>
-                                <img src={props.missingObject.personpic} style={{ height: "40vh", borderRadius: 15 }}
+                                <img src={props.missingObject.personpic} style={{ height: "40vh", borderRadius: 15, objectFit: "cover" }}
                                 />
                             </Box>
                         </Grid>

@@ -154,10 +154,8 @@ export default function StatusUserSide(props) {
 
       <Grid container spacing={2} paddingTop="30px">
         <Grid item xs={12} lg={6} md={6}>
-
           <Box sx={{ display: 'flex', height: "100%", flexDirection: "column" }}>
-            <img src={props.missingObject.personpic} style={{ height: "65%", borderRadius: 15, width: "100%" }}
-
+            <img src={props.missingObject.personpic} style={{ height: "65%", borderRadius: 15, width: "100%", objectFit: "cover" }}
             />
           </Box>
         </Grid>

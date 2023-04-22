@@ -5,57 +5,57 @@ import { ResponsiveBar } from '@nivo/bar'
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const data = [
-    {
-        "Year": "2023",
-        "Found": 69,
-        "Not Found": 88,
-    },
-    {
-        "Year": "2022",
-        "Found": 26,
-        "Not Found": 67,
-    },
-    {
-        "Year": "2021",
-        "Found": 50,
-        "Not Found": 10,
-    },
-    {
-        "Year": "2020",
-        "Found": 80,
-        "Not Found": 100,
-    },
-    {
-        "Year": "2019",
-        "Found": 40,
-        "Not Found": 20,
-    },
-    {
-        "Year": "2018",
-        "Found": 26,
-        "Not Found": 67,
-    },
-    {
-        "Year": "2017",
-        "Found": 26,
-        "Not Found": 67,
-    },
-    {
-        "Year": "2016",
-        "Found": 26,
-        "Not Found": 67,
-    },
-]
+// const data = [
+//     {
+//         "Year": "2023",
+//         "Found": 69,
+//         "Not Found": 88,
+//     },
+//     {
+//         "Year": "2022",
+//         "Found": 26,
+//         "Not Found": 67,
+//     },
+//     {
+//         "Year": "2021",
+//         "Found": 50,
+//         "Not Found": 10,
+//     },
+//     {
+//         "Year": "2020",
+//         "Found": 80,
+//         "Not Found": 100,
+//     },
+//     {
+//         "Year": "2019",
+//         "Found": 40,
+//         "Not Found": 20,
+//     },
+//     {
+//         "Year": "2018",
+//         "Found": 26,
+//         "Not Found": 67,
+//     },
+//     {
+//         "Year": "2017",
+//         "Found": 26,
+//         "Not Found": 67,
+//     },
+//     {
+//         "Year": "2016",
+//         "Found": 26,
+//         "Not Found": 67,
+//     },
+// ]
 const YearlyStatistics = ({yearData}) => {
     return (
 
     <ResponsiveBar
         data={yearData}
         keys={[
-            'found','notFound'
+            'Found','Not Found'
         ]}
-        indexBy="year"
+        indexBy="Year"
         margin={{ top: 10, right: 10, bottom: 50, left: 10 }}
         padding={0.3}
         valueScale={{ type: 'linear' }}

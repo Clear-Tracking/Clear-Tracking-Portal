@@ -1,16 +1,16 @@
 import { ResponsivePie } from '@nivo/pie'
 
-const MissingPercentage = () => {
+const MissingPercentage = ({found, notFound}) => {
     const data = [
         {
             "id": "Found Rate",
             "label": "Found Rate ",
-            "value": 5
+            "value": found
         },
         {
             "id": "Missing Rate",
             "label": "Missing Rate",
-            "value": 7
+            "value": notFound
         }
     ]
     return (

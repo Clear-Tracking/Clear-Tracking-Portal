@@ -12,6 +12,9 @@ import { useState } from 'react';
 import { scanFaceResult } from '../../store/policeDashboardSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMatchResults } from '../../store/policeDashboardSlice';
+import { CircularProgress } from '@mui/material';
+import { REQUEST_STATUS_IDLE, REQUEST_STATUS_LOADING, REQUEST_STATUS_SUCCEEDED } from '../../constants/Constants';
+import { setRequestStatus } from '../../store/policeDashboardSlice';
 
 const videoConstraints = {
     width: 480,
@@ -30,6 +33,7 @@ function ScanFace() {
     let navigate = useNavigate();
     const matchFace = () => {
         //navigate("/dashboard/matches", { state: { img: imageSrc } })
+        dispatch(setRequestStatus(REQUEST_STATUS_LOADING))
         fetch(`${process.env.REACT_APP_ML_URL}/api/validate`, {
             method: 'POST',
             mode: 'cors',
@@ -42,6 +46,7 @@ function ScanFace() {
         })
             .then(res => res.json())
             .then(res => {
+                dispatch(setRequestStatus(REQUEST_STATUS_SUCCEEDED))
                 if (res.data.length > 0) {
                     var scanAadharIdentities = res.data.map((item) => item.identity.slice(6, 18));
                     console.log(scanAadharIdentities);
@@ -51,12 +56,12 @@ function ScanFace() {
                         apiString.push("&filters[aadhar][$in][" + i + "]=" + scanAadharIdentities[i])
                         console.log(apiString)
                     }
-let finalVal= apiString.join("")
-console.log(finalVal)
+                    let finalVal = apiString.join("")
+                    console.log(finalVal)
                     dispatch(scanFaceResult({ scanfaceAadhar: finalVal, count: 25 }));
                     navigate("/dashboard/matches")
-
                 }
+                dispatch(setRequestStatus(REQUEST_STATUS_IDLE))
 
             }
             )
@@ -97,7 +102,12 @@ console.log(finalVal)
                         <div style={{ display: 'flex', justifyContent: 'center', marginTop: `${40}px` }}>
                             <Button variant="contained" color="warning" sx={{ width: "20vw" }} onClick={matchFace}
                             >
-                                Search
+                                {
+                                    policeDashboardState.requestStatus === REQUEST_STATUS_LOADING?
+                                    (<Box><CircularProgress size="1rem"/></Box>):
+                                    "Search"
+                                }
+                                
                             </Button>
                         </div></>
                 </Container>
