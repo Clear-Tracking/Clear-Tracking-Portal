@@ -13,7 +13,7 @@ import AllMissingPeopleData from "../../../assets/data/missingPeopleDataset.json
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import UserRegisteredMissingProfile from '../../../Components/UserRegisteredMissingProfile';
-import { userRegisteredStatus } from '../../../store/policeDashboardSlice';
+import { userRegisteredStatus } from '../../../store/dashboardSlice';
 import StatusUserSide from '../../../Components/StatusUserSide';
 import StepperUserside from '../../../Components/StepperUserside'
 
@@ -21,7 +21,7 @@ export default function UserAnalytics(props) {
 
     // Redux State
     const dispatch = useDispatch();
-    const policeDashboardState = useSelector((state) => state.policeDashboard);
+    const dashboardState = useSelector((state) => state.dashboard);
 
     const familyRegisteredAadhar = JSON.parse(localStorage.getItem('profile'))?.AadharNo;
 
@@ -43,7 +43,7 @@ export default function UserAnalytics(props) {
                    
                     <Grid item xs={12} sm={10}>
                         {
-                            policeDashboardState.stationFirs.map(formdata => {
+                            dashboardState.stationFirs.map(formdata => {
                                 //const url= backendURl+formdata.personpic.data.attributes.url
                                 console.log(formdata)
                                 return (

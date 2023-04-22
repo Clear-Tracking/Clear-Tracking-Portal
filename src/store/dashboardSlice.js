@@ -88,8 +88,8 @@ export const analyseData = createAsyncThunk('/analyseData', async (formData) => 
     return response.data; // response.data is your entire object that is seen in postman as the response
 });
 
-const policeDashboardSlice = createSlice({
-    name: "policeDashboard",
+const dashboardSlice = createSlice({
+    name: "dashboard",
     initialState: initialState,
     reducers: {
         resetRequestStatus: (state, action) => {
@@ -306,6 +306,6 @@ const policeDashboardSlice = createSlice({
 
 });
 
-export const { resetRequestStatus, setMatchResults, setRequestStatus } = policeDashboardSlice.actions;
+export const { resetRequestStatus, setMatchResults, setRequestStatus } = dashboardSlice.actions;
 
-export default policeDashboardSlice.reducer;
+export default dashboardSlice.reducer;

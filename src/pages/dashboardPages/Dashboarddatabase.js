@@ -6,7 +6,7 @@ import allmissingpeople from "../../assets/data/missingPeopleDataset.json"
 import Box from '@mui/material/Box';
 import { datediff } from '../../util';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllFirsLaunched } from '../../store/policeDashboardSlice';
+import { getAllFirsLaunched } from '../../store/dashboardSlice';
 import { useEffect } from 'react';
 
 const columns = [
@@ -87,15 +87,15 @@ export default function Dashboarddatabase() {
   // Redux State
   const dispatch = useDispatch();
 
-  const policeDashboardState = useSelector((state) => state.policeDashboard);
+  const dashboardState = useSelector((state) => state.dashboard);
   const stationId = JSON.parse(localStorage.getItem('profile'))?.stationId;
   useEffect(() => {
 
     dispatch(getAllFirsLaunched());
 
   }, []);
-  //console.log(policeDashboardState.allFirs)
-
+  //console.log(dashboardState.allFirs)
+console.log(dashboardState)
   return (
 
     <Box sx={{ p: 4 }}>
@@ -105,7 +105,7 @@ export default function Dashboarddatabase() {
       <div className='container' style={{ marginTop: "1rem", height: "80vh", background: "#ffffff" }}>
 
         <DataGrid
-          rows={policeDashboardState.allFirs}
+          rows={dashboardState.allFirs}
           columns={columns}
           pageSize={6}
           rowsPerPageOptions={[5]}

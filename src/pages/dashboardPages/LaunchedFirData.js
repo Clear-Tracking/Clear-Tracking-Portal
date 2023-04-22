@@ -6,7 +6,7 @@ import userformData from "../../assets/data/userformdata.json"
 import Box from '@mui/material/Box';
 import { datediff } from '../../util';
 import { useSelector, useDispatch } from 'react-redux';
-import { getStationFirsLaunched } from '../../store/policeDashboardSlice';
+import { getStationFirsLaunched } from '../../store/dashboardSlice';
 import { useEffect } from 'react';
 
 const columns = [
@@ -86,7 +86,7 @@ export default function Launchedfirdata() {
 
    // Redux State
    const dispatch = useDispatch();
-   const policeDashboardState = useSelector((state) => state.policeDashboard);
+   const dashboardState = useSelector((state) => state.dashboard);
  
    const stationId = JSON.parse(localStorage.getItem('profile'))?.stationId;
  
@@ -96,7 +96,7 @@ export default function Launchedfirdata() {
       dispatch(getStationFirsLaunched({ stationId: stationId,count:25}));
      }
    }, []);
-
+console.log(dashboardState)
   return (
     <>
       <Box sx={{ p: 4 }}>
@@ -106,7 +106,7 @@ export default function Launchedfirdata() {
         <div className='container' style={{ marginTop: "1rem", height: "80vh", background: "#ffffff" }}>
 
           <DataGrid
-            rows={policeDashboardState.stationFirs}
+            rows={dashboardState.stationFirs}
             columns={columns}
             pageSize={6}
             rowsPerPageOptions={[5]}

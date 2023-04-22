@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 
 import { useEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
-import { foundPersonsData } from '../../store/policeDashboardSlice';
+import { foundPersonsData } from '../../store/dashboardSlice';
 import { backendURl } from '../../constants/Constants';
 import FoundPersonCard from '../../Components/FoundPersonCard'
 
@@ -14,7 +14,7 @@ export default function PersonFoundData() {
 
 // Redux State
 const dispatch = useDispatch();
-const policeDashboardState = useSelector((state) => state.policeDashboard);
+const dashboardState = useSelector((state) => state.dashboard);
 
 const stationId = JSON.parse(localStorage.getItem('profile'))?.stationId;
 
@@ -33,7 +33,7 @@ useEffect(() => {
   
   <Grid container spacing={2} sx={{mt:1}}>
     {
-      policeDashboardState.stationFirs.map(formdata => {
+      dashboardState.stationFirs.map(formdata => {
         //const url= backendURl+formdata.personpic.data.attributes.url
         //console.log(formdata)
         return (

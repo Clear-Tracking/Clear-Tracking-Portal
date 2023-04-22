@@ -26,7 +26,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../store/globalSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetRequestStatus } from '../../store/policeDashboardSlice';
+import { resetRequestStatus } from '../../store/dashboardSlice';
 
 // constants
 import { REQUEST_STATUS_FAILED, REQUEST_STATUS_SUCCEEDED,REQUEST_STATUS_LOADING } from '../../constants/Constants';
@@ -86,13 +86,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme();
 
 function UserApplication() {
-    const policeDashboardState = useSelector((state) => state.policeDashboard);
+    const dashboardState = useSelector((state) => state.dashboard);
 // toaster for Login state
 useEffect(() => {
 
     // In case of success
-    if (policeDashboardState.requestStatus === REQUEST_STATUS_SUCCEEDED) {
-      toast.success(policeDashboardState.message, {
+    if (dashboardState.requestStatus === REQUEST_STATUS_SUCCEEDED) {
+      toast.success(dashboardState.message, {
         position: "bottom-right",
         hideProgressBar: false,
         autoClose: 2000,
@@ -104,8 +104,8 @@ useEffect(() => {
     }
 
     // In case of failure
-    else if (policeDashboardState.requestStatus === REQUEST_STATUS_FAILED) {
-      toast.error(policeDashboardState.message, {
+    else if (dashboardState.requestStatus === REQUEST_STATUS_FAILED) {
+      toast.error(dashboardState.message, {
         position: "bottom-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -116,7 +116,7 @@ useEffect(() => {
       dispatch(resetRequestStatus());
     }
 
-  }, [policeDashboardState.requestStatus])
+  }, [dashboardState.requestStatus])
     const navigate = useNavigate();
     // Redux state
     const dispatch = useDispatch();

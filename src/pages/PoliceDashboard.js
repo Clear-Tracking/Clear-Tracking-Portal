@@ -29,7 +29,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 // Redux Actions
 import {logout} from '../store/globalSlice';
-import { resetRequestStatus } from '../store/policeDashboardSlice';
+import { resetRequestStatus } from '../store/dashboardSlice';
 
 // constants
 import { REQUEST_STATUS_FAILED, REQUEST_STATUS_SUCCEEDED,REQUEST_STATUS_LOADING } from '../constants/Constants';
@@ -141,7 +141,7 @@ function PoliceDashboard() {
   // Redux state
   const dispatch = useDispatch();
   const globalState = useSelector((state) => state.global);
-  const policeDashboardState = useSelector((state) => state.policeDashboard);
+  const dashboardState = useSelector((state) => state.dashboard);
   const stationName = JSON.parse(localStorage.getItem('profile'))?.username;
 
   const [open, setOpen] = React.useState(true);
@@ -184,8 +184,8 @@ function PoliceDashboard() {
   useEffect(() => {
 
     // In case of success
-    if (policeDashboardState.requestStatus === REQUEST_STATUS_SUCCEEDED) {
-      toast.success(policeDashboardState.message, {
+    if (dashboardState.requestStatus === REQUEST_STATUS_SUCCEEDED) {
+      toast.success(dashboardState.message, {
         position: "bottom-right",
         hideProgressBar: false,
         autoClose: 2000,
@@ -197,8 +197,8 @@ function PoliceDashboard() {
     }
 
     // In case of failure
-    else if (policeDashboardState.requestStatus === REQUEST_STATUS_FAILED) {
-      toast.error(policeDashboardState.message, {
+    else if (dashboardState.requestStatus === REQUEST_STATUS_FAILED) {
+      toast.error(dashboardState.message, {
         position: "bottom-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -209,7 +209,7 @@ function PoliceDashboard() {
       dispatch(resetRequestStatus());
     }
 
-  }, [policeDashboardState.requestStatus])
+  }, [dashboardState.requestStatus])
 
   // When user is loggout, redirect to login page
   useEffect(() => {
@@ -221,8 +221,8 @@ function PoliceDashboard() {
 
 
   // useEffect(() => {
-  //   console.log(policeDashboardState)
-  // }, [policeDashboardState])
+  //   console.log(dashboardState)
+  // }, [dashboardState])
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
