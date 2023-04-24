@@ -1,5 +1,5 @@
 import axios from "axios";
-
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 const env = {
     "backend": `${process.env.REACT_APP_BACKEND_URL}/api`,
     "ml": `${process.env.REACT_APP_ML_URL}/api`
