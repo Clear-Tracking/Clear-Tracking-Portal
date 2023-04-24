@@ -1,12 +1,17 @@
 import axios from "axios";
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 const env = {
     "backend": `${process.env.REACT_APP_BACKEND_URL}/api`,
     "ml": `${process.env.REACT_APP_ML_URL}/api`
 }
 
 const API = axios.create({
-    baseURL: env.backend
+    baseURL: env.backend,
+    headers: {
+        common:{
+            "Access-Control-Allow-Origin":"*"
+        }
+    }
 });
 
 const API2 = axios.create({
